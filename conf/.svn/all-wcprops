@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/sn_athagram/!svn/ver/65/solrconfig
+END
+admin-extra.menu-top.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/sn_athagram/!svn/ver/2/solrconfig/admin-extra.menu-top.html
+END
+raven2.png
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/sn_athagram/!svn/ver/8/solrconfig/raven2.png
+END
+admin-extra.menu-bottom.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/sn_athagram/!svn/ver/2/solrconfig/admin-extra.menu-bottom.html
+END
+protwords.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/sn_athagram/!svn/ver/2/solrconfig/protwords.txt
+END
+stopwords.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/sn_athagram/!svn/ver/2/solrconfig/stopwords.txt
+END
+elevate.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/sn_athagram/!svn/ver/2/solrconfig/elevate.xml
+END
+mapping-ISOLatin1Accent.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/sn_athagram/!svn/ver/2/solrconfig/mapping-ISOLatin1Accent.txt
+END
+currency.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/sn_athagram/!svn/ver/2/solrconfig/currency.xml
+END
+update-script.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sn_athagram/!svn/ver/2/solrconfig/update-script.js
+END
+schema.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/sn_athagram/!svn/ver/59/solrconfig/schema.xml
+END
+solrconfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/sn_athagram/!svn/ver/65/solrconfig/solrconfig.xml
+END
+mapping-FoldToASCII.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/sn_athagram/!svn/ver/2/solrconfig/mapping-FoldToASCII.txt
+END
+scripts.conf
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/sn_athagram/!svn/ver/2/solrconfig/scripts.conf
+END
+admin-extra.html
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/sn_athagram/!svn/ver/2/solrconfig/admin-extra.html
+END
+synonyms.txt
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/sn_athagram/!svn/ver/2/solrconfig/synonyms.txt
+END
+spellings.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/sn_athagram/!svn/ver/2/solrconfig/spellings.txt
+END

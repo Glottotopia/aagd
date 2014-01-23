@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/sn_athagram/!svn/ver/2/solrconfig/clustering/carrot2
+END
+kmeans-attributes.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/sn_athagram/!svn/ver/2/solrconfig/clustering/carrot2/kmeans-attributes.xml
+END
+lingo-attributes.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/sn_athagram/!svn/ver/2/solrconfig/clustering/carrot2/lingo-attributes.xml
+END
+stc-attributes.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/sn_athagram/!svn/ver/2/solrconfig/clustering/carrot2/stc-attributes.xml
+END
