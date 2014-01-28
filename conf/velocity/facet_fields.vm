@@ -79,7 +79,7 @@
 	
 	<span class="facet-field">$field.name</span>   
 	    
-	<ul id="ul$field.name" name="facetul" style="display:none;">
+	<ul id="ul$field.name" name="facetul">
 
 	    #foreach($facet in $field.values)
 	    <li>
