@@ -47,7 +47,7 @@ body {
   padding: 5px;
   top: -20px;
 /*   position: relative;   */
-  max-height:300px;
+/*   max-height:300px; */
 /*   overflow:auto; */
 }
 
@@ -163,8 +163,7 @@ body {
 }
 
 
-.query-boost {
-  
+.query-boost { 
   top: 10px;
   left: 50px;
   position: relative;
@@ -177,15 +176,11 @@ body {
   max-width: 60%;
 }
 
-.inputs input{
-    
+.inputs input{ 
   margin-left:1px;
+  font-size:150%;
 }
 
-#logo {
-  margin: 10px;
-  border-style: none;
-}
 
 .pagination {
 /*  padding-left: 33%;
@@ -266,11 +261,17 @@ li.show {
 
 /* Seb additions */
 
-#logo{
-    position:absolute;
-    width:200px;    
-    top:0;
+
+
+
+#logo {
+  margin: 10px;
+  border-style: none;
+  width:100px;
+  float:left;
+  display:inline; 
 }
+
 
 #headerh{ 
     position:relative;
@@ -339,7 +340,7 @@ td.lxmeta{
 
 #headerinfo{
     position:relative;
-    left:250px;
+/*     left:250px; */
 }
 
 
@@ -693,3 +694,4 @@ scrollbar-track-color: #fff!important;
     border-radius:5px;
     box-shadow: 1px 1px 1px 1px;
 }
+ 

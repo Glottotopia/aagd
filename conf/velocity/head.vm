@@ -14,7 +14,7 @@
 
 <link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/main.css&contentType=text/css"/>
 <link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/bootstrap.min.css&contentType=text/css"/>
-<link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/offcanvas.css&contentType=text/css"/>
+## <link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/offcanvas.css&contentType=text/css"/>
 ##  
 
 

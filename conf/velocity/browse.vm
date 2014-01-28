@@ -6,20 +6,15 @@
 #set($annotate = $params.get("annotateBrowse"))
 
 <body>  
-    <div class="container"> 
-	<div class="row row-offcanvas row-offcanvas-right"> 
-	    <div class="col-xs-12 col-sm-9">
-		<p class="pull-right visible-xs">
-		    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-		</p> 
-
-		<div class="jumbotron"> 
-			<img src="#{url_root}/img/beads.png" id="logo"/></a> 
+    <div class="container">  
+	    <div class="col-xs-12 col-sm-9">  
+		<div > 
+			<img src="#{url_root}/img/beads.png" id="logo" /></a> 
 			<div id="headerinfo">
 			    <h1> AAGD <h1> 
 			    <h3> Alaskan Athabascan Grammar Database </h3> 
-			</div>   
 			#parse('query_form.vm')
+			</div>   
 			#parse('did_you_mean.vm') 
 		</div> 
 		<div class="row">
@@ -36,20 +31,19 @@
 			#parse("pagination_bottom.vm")
 		    </div>
 		</div><!--/row-->
+	<footer>
+	    <p>&copy; Glottotopia 2013-4</p>
+	</footer> 
 	    </div><!--/span--> 
-	    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-		<div class="list-group"> 
+	    <div class="col-xs-6 col-sm-3 " >
+		<div > 
 		    <div class="navigators">
 			#parse("facets.vm")
 		    </div>  
 		</div>
-	    </div><!--/span-->
-	</div><!--/row-->
+	    </div><!--/span--> 
 
 	<hr/> 
-	<footer>
-	    <p>&copy; Glottotopia 2013</p>
-	</footer> 
     </div><!--/.container-->
 
 
