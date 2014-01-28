@@ -74,19 +74,23 @@
 
 <b>#field('name')</b> 
 
-<span class="togglebutton" onclick='jQuery(this).parent().siblings("table").toggle();' > &pm;   </span>
+## <span class="togglebutton" onclick='jQuery(this).parent().siblings("table").toggle();' > &pm;   </span>
+<a  onclick='jQuery(this).parent().siblings("table").toggle();' > show example   </a>
 
-<span class="togglebutton" onclick='jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > &#x25BE;&#x25B4;  </span>
+## <span class="togglebutton" onclick='jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > &#x25BE;&#x25B4;  </span>
+<a  onclick='jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > show tags  </a>
 
 #if($request.params.get('admin')=='true') 
-<span class="togglebutton"  onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > &equiv;   
-</span> 
+## <span class="togglebutton"  onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > &equiv;   </span>
+<a   onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > add tags  </a> 
 #end
 
 
 
+
 <span class="mlt">   #if($params.getBool('mlt', false) == false)
-<a href="#lensNoQ&q=id:$docId&mlt=true">&hellip;</a>
+## <a href="#lensNoQ&q=id:$docId&mlt=true">&hellip;</a>
+<a href="#lensNoQ&q=id:$docId&mlt=true">similar examples</a>
 #end
 </span>
 </div>

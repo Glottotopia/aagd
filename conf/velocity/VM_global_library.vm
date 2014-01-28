@@ -44,7 +44,7 @@
 
 #macro(url_for_start $start)#url_for_home#lens&start=$start#end
 
-#macro(url_for_filters $p)#url_for_home?#q#spatial#qOpts#if($list.size($p) > 0)&#fqs($p)#end#debug#end
+#macro(url_for_filters $p)#url_for_home?#q#spatial#qOpts#if($list.size($p) > 0)&#fqs($p)#end#debug#admin#end
 
 #macro(url_for_nested_facet_query $field)#url_for_home#lens&fq=$esc.url($field)#end
 

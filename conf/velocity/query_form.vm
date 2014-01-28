@@ -9,7 +9,8 @@
       <span #annTitle("Add the query using the &q= parameter")>
         Find:
         <input type="text" id="q" name="q" value="$!esc.html($params.get('q'))"/>
-        <input type="submit" id="querySubmit"/><input type="reset" onClick="document.getElementById('q').setAttribute('value','')"/></span>
+        <input type="submit" id="querySubmit"/>
+	<input type="submit" value="Reset" onClick="document.getElementById('q').setAttribute('value','')"/></span>
       </span> 
   </div>
 
@@ -76,6 +77,10 @@
       #set($queryOpts = $request.params.get("queryOpts"))
       #if($queryOpts && $queryOpts != "")
         <input type="hidden" name="queryOpts" value="$queryOpts"/>
+      #end
+      #set($admin = $request.params.get("admin"))
+      #if($admin && $admin != "")
+        <input type="hidden" name="admin" value="$admin"/>
       #end
     </div>
 
