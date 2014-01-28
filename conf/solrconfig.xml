@@ -965,6 +965,8 @@
  
        
        <str name="facet.field">gloss</str>
+       <str name="facet.field">grammaticalgloss</str>
+       <str name="facet.field">lexicalgloss</str>
        <str name="facet.field">vernacularword</str>
        <str name="facet.field">translatedword</str>
        
