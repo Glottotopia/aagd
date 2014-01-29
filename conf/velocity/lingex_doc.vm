@@ -75,10 +75,7 @@
 <b>#field('name')</b> 
 
 ## <span class="togglebutton" onclick='jQuery(this).parent().siblings("table").toggle();' > &pm;   </span>
-<a  onclick='jQuery(this).parent().siblings("table").toggle();' > show example   </a>
-
-## <span class="togglebutton" onclick='jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > &#x25BE;&#x25B4;  </span>
-<a  onclick='jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > show tags  </a>
+<a  onclick='jQuery(this).parent().siblings("table").toggle();jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > expand  </a>
 
 #if($request.params.get('admin')=='true') 
 ## <span class="togglebutton"  onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > &equiv;   </span>
@@ -108,7 +105,7 @@
 	    </tr>
 	    <tr>
 		<td class="lxlg" title="#field('language')">#field('iso639-3')</td>
-		<td class="lxlg"> <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Flag_icon_darkblue.svg/250px-Flag_icon_darkblue.svg.png" width="32px"></td>
+		<td class="lxlg"></td>
 	    </tr>
 	</table>
     </td>
@@ -133,12 +130,18 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 		#set ( $l = $l + 1 )
 	    #end
 	    </tr> 
-	    <tr name="extr" style="display:none;" id="imtline$exnr"> 
+	    <tr name="extr"  id="imtline$exnr"> 
 	    #set( $exnr = $exnr + 1 )
 	    #set( $imts = $doc.getFieldValue('imtsentence') )  
-	    #set($array = $imts.split(" ")) 
-	    #foreach($a in $array)
-		<td> $a </td>
+	    #if($imts)
+		#set($array = $imts.split(" ")) 
+		#foreach($a in $array)
+		    <td> $a </td>
+		#end
+	    #else	
+		#if($request.params.get('admin')=='true')  
+		    <td colspan="$l"> <input type="textarea" /> <input type="button" value="provide IMT"/></td>
+		#end
 	    #end
 	    </tr>
 	    <tr><td colspan="$l">" #field('translatedsentence') "</td></tr>
@@ -154,7 +157,7 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
  
  
 ##   <div class="tagcontainer"  name="extr"   id="tagcontainer$docId" style="display:none;" >
-<div class="tagcontainer"  name="extr"  id="tagcontainer$docId" >    
+<div class="tagcontainer"  name="extr"  id="tagcontainer$docId"  style="display:none;">    
 #foreach($fieldname in $doc.fieldNames)   
     #foreach($ontofields in $megafields)     
 	#foreach($ontofield in $ontofields)     
@@ -177,7 +180,17 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 		#end
 	    #end
 	#end	 
-#end	 
+#end	
+#set($id_ = $doc.getFieldValue('id'))
+
+
+#if($request.params.get('admin')=='true') 
+    #if($id_== true)   	
+	<img id="flag$id_" onclick="setFlag('$id_',false)"  src="#{url_root}/img/redflag.png"  width="32px">
+    #else
+	<img id="flag$id_"  onclick="setFlag('$id_',true)"  src="#{url_root}/img/greenflag.png"  width="32px">
+    #end
+#end
 </div> 
     
  ## Display Similar Documents / MLT = More Like This

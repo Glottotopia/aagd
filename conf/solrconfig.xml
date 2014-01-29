@@ -918,7 +918,7 @@
        <!-- Query settings -->
        <str name="defType">edismax</str>
        <str name="qf"> 
-         translatedword^1.5 gloss^2.0
+         translatedword gloss vernacularword
        </str>
        <str name="df">gloss</str>
        <str name="mm">100%</str>

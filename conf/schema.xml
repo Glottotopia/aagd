@@ -116,6 +116,7 @@
    <field name="vernacularsentence" type="text_general" indexed="true" stored="true"/>
    <field name="translatedsentence" type="text_general" indexed="true" stored="true"/>
    <field name="imtsentence" type="text_general" indexed="true" stored="true"/>
+   <field name="flag" type="boolean" indexed="true" stored="true"/>
    
    
    <field name="iso639-3" type="string" indexed="true" stored="true"/>
@@ -309,6 +310,8 @@
    <copyField source="author" dest="text"/>
    <copyField source="vernacularword" dest="text"/>
    <copyField source="translatedword" dest="text"/>
+   <copyField source="vernacularsentence" dest="text"/>
+   <copyField source="translatedsentence" dest="text"/>
    <copyField source="gloss" dest="text"/>
    <copyField source="iso639-3" dest="text"/>
 <!--    <copyField source="manu" dest="text"/> -->
