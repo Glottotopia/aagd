@@ -213,7 +213,14 @@ position:relative;
 }
 
 .result-title{
-  width:60%;
+/*   width:60%; */
+}
+.result-title a{
+ font-size:70%;
+ background: #ccc;
+ border: 1px solid gray;
+ border-radius:2px;
+ margin-left:2px;
 }
 
 .result-body{
@@ -355,7 +362,7 @@ div.tag{
     min-width: 100px;
     padding: 5px;  
     vertical-align:top;
-    font-size: 8pt;
+    font-size: 70%;
 /*     height:40px; */
     margin-right:4px;
     padding: 1px;
@@ -683,8 +690,7 @@ scrollbar-track-color: #fff!important;
     height:10px;
     width:105%;
     text-align:right;
-    font-weight:bold;
-    font-size:200%;
+    font-weight:bold; 
 }
 
 .closer span{
@@ -695,3 +701,6 @@ scrollbar-track-color: #fff!important;
     box-shadow: 1px 1px 1px 1px;
 }
  
+#meaningbox{
+    
+}

@@ -108,7 +108,7 @@
 	    </tr>
 	    <tr>
 		<td class="lxlg" title="#field('language')">#field('iso639-3')</td>
-		<td class="lxlg"> </td>
+		<td class="lxlg"> <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Flag_icon_darkblue.svg/250px-Flag_icon_darkblue.svg.png" width="32px"></td>
 	    </tr>
 	</table>
     </td>

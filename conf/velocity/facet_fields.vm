@@ -3,7 +3,8 @@
     "predicate_type",
     "phrase_type",
     "incorporation",
-    "vernacularword"
+    "vernacularword",
+    "grammaticalgloss" 
     ]
 )
 

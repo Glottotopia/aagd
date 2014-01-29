@@ -122,7 +122,9 @@
    <field name="language" type="string" indexed="true" stored="true"/>
    <field name="vernacularword" type="string" indexed="true" stored="true" multiValued="true"   termVectors="true" />
    <field name="translatedword" type="string" indexed="true" stored="true" multiValued="true"   termVectors="true" />
-   <field name="gloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
+   <field name="gloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/> 
+   <field name="lexicalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
+   <field name="grammaticalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
 <!--    start ontology import here -->
 
 <field name="sentence_type" type="string" indexed="true" stored="true" multiValued="true"/>
