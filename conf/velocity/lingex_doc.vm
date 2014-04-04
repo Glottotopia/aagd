@@ -152,12 +152,29 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 </table> 
 <div class="translatedsentence">"#field('translatedsentence')"</div>
 
- 
 ## <span> #field('author')</span></div>
  
  
 ##   <div class="tagcontainer"  name="extr"   id="tagcontainer$docId" style="display:none;" >
 <div class="tagcontainer"  name="extr"  id="tagcontainer$docId"  style="display:none;">    
+
+
+<div class="metadatacontainer">
+<span class="metadatafield">lg</span><span class="metadatavalue">$doc.getFieldValue('lg')</span>
+<span class="metadatafield">dialect</span><span class="metadatavalue">$doc.getFieldValue('dialect')</span>
+<span class="metadatafield">speakers</span><span class="metadatavalue">$doc.getFieldValue('speakers')</span>
+<span class="metadatafield">sources</span><span class="metadatavalue">$doc.getFieldValue('sources')</span>
+<span class="metadatafield">recordingname</span><span class="metadatavalue">$doc.getFieldValue('recordingname')</span>
+<span class="metadatafield">recordingdate</span><span class="recordingdate"></span>
+<span class="metadatafield">recordinglinguists</span><span class="metadatavalue"$doc.recordinglinguists('imtsentence')></span>
+<span class="metadatafield">anlalink</span><span class="metadatavalue"></$doc.getFieldValue('anlalink')span>
+<span class="metadatafield">editedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('editedBySpeaker')</span>
+<span class="metadatafield">editedByLinguist</span><span class="metadatavalue">$doc.getFieldValue('editedByLinguist')</span>
+<span class="metadatafield">textTypes</span><span class="metadatavalue"><$doc.getFieldValue('textTypes')/span>
+<span class="metadatafield">rejectedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('rejectedBySpeaker')</span>
+</div> 
+ 
+
 #foreach($fieldname in $doc.fieldNames)   
     #foreach($ontofields in $megafields)     
 	#foreach($ontofield in $ontofields)     

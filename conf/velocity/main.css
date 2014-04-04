@@ -704,3 +704,14 @@ scrollbar-track-color: #fff!important;
 #meaningbox{
     
 }
+
+.metadatafield{
+    font-size:small;
+    margin-left:3px;
+    font-weight:bold;
+}
+
+.metadatavalue{
+    font-size:small;
+    margin-left:3px;
+}
