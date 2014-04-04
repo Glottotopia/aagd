@@ -126,7 +126,24 @@
    <field name="gloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/> 
    <field name="lexicalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
    <field name="grammaticalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
-<!--    start ontology import here -->
+<!--    from metadata spreadsheet -->
+    <field name="lg" type="string" indexed="true" stored="true"/> <!--must be unified with lg-->
+    <field name="dialect" type="string" indexed="true" stored="true"/>
+    <field name="speakers" type="string" indexed="true" stored="true"/>
+    <field name="sources" type="string" indexed="true" stored="true"/>
+    <field name="recordingname" type="string" indexed="true" stored="true"/>
+    <field name="recordingdate" type="string" indexed="true" stored="true"/>
+    <field name="recordinglinguists" type="string" indexed="true" stored="true"/>
+    <field name="anlalink" type="string" indexed="true" stored="true"/>
+    <field name="editedBySpeaker" type="string" indexed="true" stored="true"/>
+    <field name="editedByLinguist" type="string" indexed="true" stored="true"/>
+    <field name="textTypes" type="string" indexed="true" stored="true"/>
+    <field name="rejectedBySpeaker" type="string" indexed="true" stored="true"/>
+	   
+	    
+   
+   
+   <!--    start ontology import here -->
 
 <field name="sentence_type" type="string" indexed="true" stored="true" multiValued="true"/>
 <field name="predicate_type" type="string" indexed="true" stored="true" multiValued="true"/>
