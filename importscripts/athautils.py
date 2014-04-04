@@ -8,6 +8,37 @@ import pprint
 
 IMTSPLITTERS = re.compile('[-=;:\.]')
 
+
+class MetadataRecord:
+    def __init__(self, params):  
+	self.lg = params[0] 
+	self.dialect = params[1] 
+	self.speakers = params[2].split(';') 
+	self.sources = params[3].split(';') 
+	self.recordingname = params[4] 
+	self.recordingdate = params[5] 
+	self.recordinglinguists = params[6].split(';') 
+	self.anlalink = params[7] 
+	self.editedBySpeaker = False
+	if params[8].lower() == 'Y':
+	    self.editedBySpeaker = True
+	self.editedByLinguist = False
+	if params[9].lower() == 'Y':
+	    self.editedByLinguist = True 
+	self.textTypes = params[10].split(';')
+	self.rejectedBySpeaker = False
+	if params[11].lower() == 'Y':
+	    self.rejectedBySpeaker = True  
+
+class Metadata:
+    def __init__(self,csvfile):
+	self.files = {}
+	lines = open(csvfile).readlines()[1:] #drop first line where the labels are
+	for line in lines:
+	    fields = line.strip().split('\t')
+	    self.files[fields[0]] = MetadataRecord(fields[1:])
+	     
+	
 class Language:
     def __init__(self,name,iso,coords):
 	self.name=name
@@ -17,8 +48,9 @@ class Language:
 class EAF:    
     athasolar = None
     
-    def __init__(self,utterancefile, language = None):
+    def __init__(self,utterancefile, language = None, metadatafile="aadgmetadata.csv"):
 	self.utterancefile = utterancefile  
+	self.barefile = self.utterancefile.replace('-utterance.xml','')
 	self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
 	self.wordsfile = utterancefile.replace('-utterance','-words')
 	self.posfile = utterancefile.replace('-utterance','-pos')
@@ -27,10 +59,12 @@ class EAF:
 	self.IMTfile = utterancefile.replace('-utterance','-IMT')
 	self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
 	self.language = language
+	self.metadatarecord = Metadata(metadatafile).files[self.barefile]
 	        
-    def __init__(self,utterancefile, language = None, orig='eaf'):
+    def __init__(self,utterancefile, language = None, orig='eaf', metadatafile="aadgmetadata.csv"):
 	if orig=='eaf':
 	    self.utterancefile = utterancefile  
+	    self.barefile = self.utterancefile.replace('-utterance.xml','')
 	    self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
 	    self.wordsfile = utterancefile.replace('-utterance','-words')
 	    self.posfile = utterancefile.replace('-utterance','-pos')
@@ -40,6 +74,7 @@ class EAF:
 	    self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
 	if orig=='typecraft':
 	    self.utterancefile = utterancefile   
+	    self.barefile = self.utterancefile.replace('-utterance.xml','')
 	    self.wordsfile = utterancefile.replace('-phrase','-word')
 	    self.posfile = utterancefile.replace('-phrase','-pos')
 	    self.wordtranslationfile = None
@@ -48,7 +83,10 @@ class EAF:
 	    self.UTfile = utterancefile.replace('-phrase','-translation') 
 	self.language = language 
 	self.orig = orig
+	self.metadatarecord = Metadata(metadatafile).files[self.barefile]
 	    
+	     
+    
     def parse(self, orig='eaf'):	
 	self.ut_tree = GrAFtree(self.UTfile)
 	self.u_tree = GrAFtree(self.utterancefile)
@@ -201,7 +239,7 @@ class EAF:
 	for i,topnode in enumerate(topnodes):  
 	    athasolar = AthaSOLR(i, 
 				    topnode,
-				    self )
+				    self ) 
 	    athasolar.formattemplate()
 	    athasolar.write() 
 
@@ -253,7 +291,8 @@ class AthaSOLR:
     def __init__(self,ID,topnode,eaf):
 	self.topnode=topnode
 	self.language = eaf.language 
-	self.src=eaf.utterancefile 
+	self.metadatarecord = eaf.metadatarecord
+	self.src = eaf.barefile 
 	self.ID="%s-%s-%s"% (self.language.iso,hash(self.src)%1000,ID) 
 	#
 	self.txt=eaf.getText(topnode)
@@ -293,10 +332,27 @@ class AthaSOLR:
 	
     translation = ''
     docs = []
-    
+     
+	
 
     def formattemplate(self):  
-	test = getAdditions(self.translation) 
+	def getMetadatastring(mdr):	    
+	    s = """<field name="lg">{lg}</field>
+<field name="dialect">{dialect}</field>
+<field name="speakers">{speakers}</field>
+<field name="sources">{sources}</field>
+<field name="recordingname">{recordingname}</field>
+<field name="recordingdate">{recordingdate}</field>
+<field name="recordinglinguists">{recordinglinguists}</field>
+<field name="anlalink">{anlalink}</field>
+<field name="editedBySpeaker">{editedBySpeaker}</field>
+<field name="editedByLinguist">{editedByLinguist}</field>
+<field name="textTypes">{textTypes}</field>
+<field name="rejectedBySpeaker">{rejectedBySpeaker}</field>""".format(**mdr.__dict__)
+	    return s
+	   
+	    
+	test = getAdditions(self.translation)  
 	#test = []
 	additions =  u'\n'.join([u'<field name="%s">%s</field>' % a for a in test ] )   
 	#ID = '%s.%s.%s' % (iso,j,i)
@@ -315,6 +371,7 @@ class AthaSOLR:
 			    lenchars=self.lenchars, 
 			    #imtwords=self.imtwords, 
 			    glosses=self.getIMTString(self.imtglosses),
+			    metadatastring = getMetadatastring(self.metadatarecord),
 			    lingex=self.lingex.bb())   
 			    
 			    
@@ -326,6 +383,7 @@ template = u"""<add><doc>
 <field name="vernacularsentence">{txt}</field>  
 <field name="translatedsentence">{trs}</field>
 <field name="author">{src}</field>
+{metadatastring} 
 <!-- Join --> 
 {vernacularwords} 
 {translationwords} 
