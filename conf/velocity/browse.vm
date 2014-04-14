@@ -5,6 +5,11 @@
 #set($mltResults = $response.response.get("moreLikeThis"))
 #set($annotate = $params.get("annotateBrowse"))
 
+#parse("variables.vm")
+#parse("occultono.vm")
+#parse("hiddenparams.vm")
+
+
 <body>  
 
     <div class="navbar navbar-inverse" role="navigation"> 
@@ -32,7 +37,7 @@
     <div class="container">  
 	    <div class="col-xs-12 col-sm-9">  
 		<div > 
-			<img src="#{url_root}/img/beads.png" id="logo" /></a> 
+			<img src="../img/beads.png" id="logo" /></a> 
 			<div id="headerinfo">
 			    <h1> AAGD <h1> 
 			    <h3> Alaskan Athabascan Grammar Database </h3> 

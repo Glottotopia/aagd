@@ -1,9 +1,5 @@
-#**
- *  Render a hit representing a Product
- *  assumed to have a field called "name"
- *#
 
-#set ( $exnr = 0 )
+
 
 ## begin ontology
 #set( $ontofield0 = [
@@ -46,29 +42,35 @@
 
 ## end ontology
  
-#set($thisid = "tagbag"+$doc.getFieldValue('id'))
-<div class="tagbag" name="extr"  id="$thisid" style="display:none;"> 
-    <div onclick='jQuery(this).parent().hide();' class="closer"><span>X</span></div>
-    <div class="callbackmsg" id="callbackmsg$doc.getFieldValue('id')" style="display:none;">
-	
-    </div>
-    <ul class="megarow" >
-    #foreach($ontofields in $megafields) 
-	<li><ul class="tagrow" > 
-	    #foreach($ontofield in $ontofields) 
-		#set( $tid = $ontofield[0]+$doc.getFieldValue('id'))
-		<li class="tagadder">	  
-		    <select size="1" name="value" class="yui3-button" id="$tid" onChange="addfield('$doc.getFieldValue('id')','$ontofield[0]', this.value);"> 
-			<option>$ontofield[0].replace('_',' ')</option> 
-			#foreach($v in $ontofield[1])
-			    <option value="$v">$v.replace('_',' ')</option> 
-			#end	
-		    </select>      
-		</li>
-	    #end
-	</ul></li>
-    #end
-</div>
+#set($thistagbagid = "tagbag"+$doc.getFieldValue('id'))
+#parse("tagbag.vm")
+
+## #set($thisid = "tagbag"+$doc.getFieldValue('id'))
+## <div class="tagbag" name="extr"  id="$thisid" style="display:none;"> 
+##     <div onclick='jQuery(this).parent().hide();' class="closer"><span>X</span></div>
+##     <div class="callbackmsg" id="callbackmsg$doc.getFieldValue('id')" style="display:none;">	
+##     </div>
+##     
+##     <ul class="megarow" >
+## 	#foreach($ontofields in $megafields) 
+## 	    <li>
+## 		<ul class="tagrow" > 
+## 		    #foreach($ontofield in $ontofields) 
+## 			#set( $tid = $ontofield[0]+$doc.getFieldValue('id'))
+## 			<li class="tagadder">	  
+## 			    <select size="1" name="value" class="yui3-button" id="$tid" onChange="addfield('$doc.getFieldValue('id')','$ontofield[0]', this.value);"> 
+## 				<option>$ontofield[0].replace('_',' ')</option> 
+## 				#foreach($v in $ontofield[1])
+## 				    <option value="$v">$v.replace('_',' ')</option> 
+## 				#end	
+## 			    </select>      
+## 			</li>
+## 		    #end
+## 		</ul>
+## 	    </li>
+## 	#end
+##     </ul>
+## </div>
 
 <div class="result-title">
 
@@ -101,10 +103,10 @@
      <td class="lxmeta">
 	<table>
 	    <tr>
-		<td class="lxnumber">(#field('id'))</td> 
+		<td class="lxnumber"><span>#*(#field('aadgID'))*#</span></td> 
 	    </tr>
 	    <tr>
-		<td class="lxlg" title="#field('language')">#field('iso639-3')</td>
+		<td class="lxlg" title="#field('language')">#*#field('iso639-3')*#</td>
 		<td class="lxlg"></td>
 	    </tr>
 	</table>
@@ -150,7 +152,7 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
    </td>
   </tr>
 </table> 
-<div class="translatedsentence">"#field('translatedsentence')"</div>
+<div><span class="translatedsentence">"#field('translatedsentence')"</span> <span class="examplesource">#field('aadgID') </span></div>
 
 ## <span> #field('author')</span></div>
  
@@ -162,16 +164,20 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 <div class="metadatacontainer">
 <span class="metadatafield">lg</span><span class="metadatavalue">$doc.getFieldValue('lg')</span>
 <span class="metadatafield">dialect</span><span class="metadatavalue">$doc.getFieldValue('dialect')</span>
-<span class="metadatafield">speakers</span><span class="metadatavalue">$doc.getFieldValue('speakers')</span>
-<span class="metadatafield">sources</span><span class="metadatavalue">$doc.getFieldValue('sources')</span>
+<span class="metadatafield">speaker</span><span class="metadatavalue">$doc.getFieldValue('speaker')</span>
+#if($doc.getFieldValue('source') != [''])  
+<span class="metadatafield">source</span><span class="metadatavalue">$doc.getFieldValue('source')</span>
+#end
 <span class="metadatafield">recordingname</span><span class="metadatavalue">$doc.getFieldValue('recordingname')</span>
-<span class="metadatafield">recordingdate</span><span class="recordingdate"></span>
-<span class="metadatafield">recordinglinguists</span><span class="metadatavalue"$doc.recordinglinguists('imtsentence')></span>
-<span class="metadatafield">anlalink</span><span class="metadatavalue"></$doc.getFieldValue('anlalink')span>
-<span class="metadatafield">editedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('editedBySpeaker')</span>
-<span class="metadatafield">editedByLinguist</span><span class="metadatavalue">$doc.getFieldValue('editedByLinguist')</span>
-<span class="metadatafield">textTypes</span><span class="metadatavalue"><$doc.getFieldValue('textTypes')/span>
-<span class="metadatafield">rejectedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('rejectedBySpeaker')</span>
+<span class="metadatafield">recordingdate</span><span class="metadatavalue">$doc.getFieldValue('recordingdate')</span>
+<span class="metadatafield">recordinglinguist</span><span class="metadatavalue">$doc.getFieldValue('recordinglinguist')</span>
+#if($doc.getFieldValue('anlalink') != '')  
+<span class="metadatafield">anlalink</span><span class="metadatavalue">$doc.getFieldValue('anlalink')</span>
+#end
+<span class="metadatafield">editedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('editedbyspeaker')</span>
+<span class="metadatafield">editedByLinguist</span><span class="metadatavalue">$doc.getFieldValue('editedbylinguist')</span>
+<span class="metadatafield">textType</span><span class="metadatavalue">$doc.getFieldValue('texttype')</span>
+<span class="metadatafield">rejectedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('rejectedbyspeaker')</span>
 </div> 
  
 

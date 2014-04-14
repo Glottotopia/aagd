@@ -9,8 +9,9 @@
  
 
  
-<script type="text/javascript" src="#{url_root}/js/lib/jquery-1.7.2.min.js"></script>
+## <script type="text/javascript" src="#{url_root}/js/lib/jquery-1.7.2.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 <link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/main.css&contentType=text/css"/>
 <link rel="stylesheet" type="text/css" href="#{url_for_solr}/admin/file?file=/velocity/bootstrap.min.css&contentType=text/css"/>
@@ -18,33 +19,33 @@
 ##  
 
 
-<link rel="stylesheet" href="#{url_for_solr}/admin/file?file=/velocity/jquery.autocomplete.css&contentType=text/css" type="text/css" />
-<script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/jquery.autocomplete.js&contentType=text/javascript"></script>
+## <link rel="stylesheet" href="#{url_for_solr}/admin/file?file=/velocity/jquery.autocomplete.css&contentType=text/css" type="text/css" />
+## <script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/jquery.autocomplete.js&contentType=text/javascript"></script>
+## 
 
 
 
-
-    <script>
-    $(document).ready(function(){
-      $("\#q").autocomplete('#{url_for_solr}/terms', {  ## backslash escaped #q as that is a macro defined in VM_global_library.vm
-           extraParams:{
-             'terms.prefix': function() { return $("\#q").val();},
-             'terms.sort': 'count',
-             'terms.fl': 'name',
-             'wt': 'velocity',
-             'v.template': 'suggest'
-           }
-         }
-      ).keydown(function(e){
-        if (e.keyCode === 13){
-          $("#query-form").trigger('submit');
-        }
-      });
-
-      // http://localhost:8983/solr/collection1/terms?terms.fl=name&terms.prefix=i&terms.sort=count&wt=velocity&v.template=suggest
-    });
-
-    </script>
+##     <script>
+##     $(document).ready(function(){
+##       $("\#q").autocomplete('#{url_for_solr}/terms', {  ## backslash escaped #q as that is a macro defined in VM_global_library.vm
+##            extraParams:{
+##              'terms.prefix': function() { return $("\#q").val();},
+##              'terms.sort': 'count',
+##              'terms.fl': 'name',
+##              'wt': 'velocity',
+##              'v.template': 'suggest'
+##            }
+##          }
+##       ).keydown(function(e){
+##         if (e.keyCode === 13){
+##           $("#query-form").trigger('submit');
+##         }
+##       });
+## 
+##       // http://localhost:8983/solr/collection1/terms?terms.fl=name&terms.prefix=i&terms.sort=count&wt=velocity&v.template=suggest
+##     });
+## 
+##     </script>
 
     <script type="text/javascript">
     <!--
