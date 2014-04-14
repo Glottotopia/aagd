@@ -127,18 +127,19 @@
    <field name="lexicalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
    <field name="grammaticalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
 <!--    from metadata spreadsheet -->
+    <field name="aadgID" type="string" indexed="true" stored="true"/> 
     <field name="lg" type="string" indexed="true" stored="true"/> <!--must be unified with lg-->
     <field name="dialect" type="string" indexed="true" stored="true"/>
-    <field name="speakers" type="string" indexed="true" stored="true"/>
-    <field name="sources" type="string" indexed="true" stored="true"/>
+    <field name="speaker" type="string" indexed="true" stored="true"/>
+    <field name="source" type="string" indexed="true" stored="true"/>
     <field name="recordingname" type="string" indexed="true" stored="true"/>
     <field name="recordingdate" type="string" indexed="true" stored="true"/>
-    <field name="recordinglinguists" type="string" indexed="true" stored="true"/>
+    <field name="recordinglinguist" type="string" indexed="true" stored="true"/>
     <field name="anlalink" type="string" indexed="true" stored="true"/>
-    <field name="editedBySpeaker" type="string" indexed="true" stored="true"/>
-    <field name="editedByLinguist" type="string" indexed="true" stored="true"/>
-    <field name="textTypes" type="string" indexed="true" stored="true"/>
-    <field name="rejectedBySpeaker" type="string" indexed="true" stored="true"/>
+    <field name="editedbyspeaker" type="string" indexed="true" stored="true"/>
+    <field name="editedbylinguist" type="string" indexed="true" stored="true"/>
+    <field name="texttype" type="string" indexed="true" stored="true"/>
+    <field name="rejectedbyspeaker" type="string" indexed="true" stored="true"/>
 	   
 	    
    
