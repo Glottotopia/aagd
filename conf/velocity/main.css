@@ -204,7 +204,7 @@ position:relative;
   border-radius: 5px;
   box-shadow: 3px 2px 2px #ddddee;
   font-size: 150%; 
-  background-image: url("/solr/img/parchment.png");
+/*   background-image: url("/solr/img/parchment.png"); */
 /*   min-height:150px; */
 }
 
@@ -238,7 +238,7 @@ position:relative;
 }
 
 .result-document:nth-child(2n+1) {
-  background-color: #eee;
+  background-color: #cEbF97;
 }
 
 
@@ -378,7 +378,7 @@ div.tag span.value{
 }
 
 .tagcontainer{
-    height:40px;
+/*     height:40px; */
     font-size:100%;
 /*     float:right; */
 }
@@ -533,7 +533,7 @@ div.tag span.value{
 
 .translation{
     background:#e4e4e4;
-    padding:1px;
+/*     padding:1px; */
     margin:1px;
 }
 
@@ -714,4 +714,47 @@ scrollbar-track-color: #fff!important;
 .metadatavalue{
     font-size:small;
     margin-left:3px;
+}
+
+.lxnumber span {
+    content: "(" counter(Ebene01) ")";
+    counter-increment: Ebene01;
+}
+
+.examplesource{
+    font-size:60%;
+}
+
+.xlevel0 .children{
+    margin-bottom:10px;
+}
+
+.xlevel1 .children{
+    margin-bottom:5px;
+}
+
+.xlevel2 .children{
+    margin-bottom:2px;
+}
+
+.xlevel3 .translation{
+    margin-bottom:20px;
+}
+
+a{
+    cursor:pointer;
+}
+
+.addcontainer {
+    padding:0px;   
+    border: 1px solid #428BCA; 
+    border-radius:1px;
+/*     box-shadow:	1px 2px 2px 2px; */
+    width:200px;
+    min-height:400px;
+    background:#eee;
+}
+
+.megarow {
+    padding:0; 
 }
