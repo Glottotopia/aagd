@@ -481,11 +481,11 @@ div.tag span.value{
 }
 
 .megarow>li:nth-child(odd){
-    background:#f4ffe0;
+    background:#DECFA7;
 }
 
 .megarow>li:nth-child(even) {
-    background:#f5f8d4;
+    background:#CEBF97;
 }
   
 
@@ -506,24 +506,27 @@ div.tag span.value{
 .lingex .xlevel0{
     border:none;
     float:none !important;
+    box-shadow: 0px 0px 0px 0px !important;
 }
 
 .lingex .item{ 
     display: inline;
     float: left;
-    margin-right: 2px;
+/*     margin-right: 2px; */
     min-height:40px;
 /*     border: 1px dotted black; */
     padding: 0px !important;
     font-size:100%;
+    box-shadow: 2px 2px 2px 2px;
+    margin: 7px; 
 } 
 
-.lingex .xlevel0>.label{
-    display:none; 
+.xlevel0 > div.xlabel{
+    display: none !important;
 }
 
 .lingex .xlevel1>.label{
-    display:none; 
+/*     display:none;  */
 }
 
 
@@ -532,7 +535,7 @@ div.tag span.value{
 }
 
 .translation{
-    background:#e4e4e4;
+    background:#b4b4b4;
 /*     padding:1px; */
     margin:1px;
 }
@@ -705,14 +708,25 @@ scrollbar-track-color: #fff!important;
     
 }
 
+.metadatacontainer{
+    margin-top:15px;
+    height:150px;
+    font-size:80%;
+}
+
+
+.metadatadiv{
+    width:400px;
+    display:inline;
+    float:left;
+}
+
 .metadatafield{
-    font-size:small;
     margin-left:3px;
     font-weight:bold;
 }
 
 .metadatavalue{
-    font-size:small;
     margin-left:3px;
 }
 
@@ -738,7 +752,7 @@ scrollbar-track-color: #fff!important;
 }
 
 .xlevel3 .translation{
-    margin-bottom:20px;
+/*     margin-bottom:20px; */
 }
 
 a{
@@ -753,8 +767,33 @@ a{
     width:200px;
     min-height:400px;
     background:#eee;
+    border: 3px solid #8B0000;
+    box-shadow: 1px 1px 1px 1px;
 }
 
 .megarow {
     padding:0; 
+}
+
+.tagaddbox{
+    border: 3px double darkred;
+    box-shadow: 2px 2px 2px 2px;
+}
+ 
+
+.navtabli a{
+    background:#CEBF97;
+    font-size:12pt;
+    padding: 2px 5px !important;
+}
+
+.ui-widget{
+    z-index:4;
+    max-height:500px;
+    overflow-y	:scroll;
+    width:200px;
+}
+
+.active{    
+/*     border: 3px double darkred; */
 }

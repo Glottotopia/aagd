@@ -81,7 +81,7 @@
 
 #if($request.params.get('admin')=='true') 
 ## <span class="togglebutton"  onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > &equiv;   </span>
-<a   onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > add tags  </a> 
+<a   onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:3px solid darkred; box-shadow:1px 1px 1px 1px")' > add tags  </a> 
 #end
 
 
@@ -146,13 +146,13 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 		#end
 	    #end
 	    </tr>
-	    <tr><td colspan="$l">" #field('translatedsentence') "</td></tr>
+	    <tr><td colspan="$l">'#field('translatedsentence')'</td></tr>
 	</table>
 #end
    </td>
   </tr>
 </table> 
-<div><span class="translatedsentence">"#field('translatedsentence')"</span> <span class="examplesource">#field('aadgID') </span></div>
+<div><span class="translatedsentence">'#field('translatedsentence')'</span> <span class="examplesource">#field('aadgID') </span></div>
 
 ## <span> #field('author')</span></div>
  
@@ -161,25 +161,69 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 <div class="tagcontainer"  name="extr"  id="tagcontainer$docId"  style="display:none;">    
 
 
-<div class="metadatacontainer">
-<span class="metadatafield">lg</span><span class="metadatavalue">$doc.getFieldValue('lg')</span>
-<span class="metadatafield">dialect</span><span class="metadatavalue">$doc.getFieldValue('dialect')</span>
+<div class="metadatacontainer"> 
+#if($doc.getFieldValue('lg') != '')  
+<div class="metadatadiv" >
+<span class="metadatafield">language</span><span class="metadatavalue">$doc.getFieldValue('lg')</span> 
+</div>
+#end
+#if($doc.getFieldValue('dialect') != '')  
+<div class="metadatadiv" >
+<span class="metadatafield">dialect</span><span class="metadatavalue">$doc.getFieldValue('dialect')</span> 
+</div>
+#end
+#if($doc.getFieldValue('speaker') != [''])  
+<div class="metadatadiv" >
 <span class="metadatafield">speaker</span><span class="metadatavalue">$doc.getFieldValue('speaker')</span>
-#if($doc.getFieldValue('source') != [''])  
-<span class="metadatafield">source</span><span class="metadatavalue">$doc.getFieldValue('source')</span>
+</div>
 #end
-<span class="metadatafield">recordingname</span><span class="metadatavalue">$doc.getFieldValue('recordingname')</span>
-<span class="metadatafield">recordingdate</span><span class="metadatavalue">$doc.getFieldValue('recordingdate')</span>
-<span class="metadatafield">recordinglinguist</span><span class="metadatavalue">$doc.getFieldValue('recordinglinguist')</span>
+#if($doc.getFieldValue('recordingname') != '')  
+<div class="metadatadiv" >
+<span class="metadatafield">recording name</span><span class="metadatavalue">$doc.getFieldValue('recordingname')</span> 
+</div>
+#end
+#if($doc.getFieldValue('recordingdate') != '')  
+<div class="metadatadiv" >
+<span class="metadatafield">recording date</span><span class="metadatavalue">$doc.getFieldValue('recordingdate')</span>
+</div>
+#end
+#if($doc.getFieldValue('recordinglinguist') != [''])  
+<div class="metadatadiv" >
+<span class="metadatafield">recording linguist</span><span class="metadatavalue">$doc.getFieldValue('recordinglinguist')</span>
+</div>
+#end
+#if($doc.getFieldValue('editedbyspeaker') == 'true')  
+<div class="metadatadiv" >
+<span class="metadatafield">edited by speaker</span><span class="metadatavalue">$doc.getFieldValue('editedbyspeaker')</span>
+</div>
+#end
+#if($doc.getFieldValue('editedbylinguist') == 'true')  
+<div class="metadatadiv" >
+<span class="metadatafield">edited by linguist</span><span class="metadatavalue">$doc.getFieldValue('editedbylinguist')</span> 
+</div>
+#end
+#if($doc.getFieldValue('texttype') != [''])  
+<div class="metadatadiv" >
+<span class="metadatafield">text type</span><span class="metadatavalue">$doc.getFieldValue('texttype')</span> 
+</div>
+#end
+#if($doc.getFieldValue('rejectedbyspeaker') == 'true')  
+<div class="metadatadiv" >
+<span class="metadatafield">rejected by speaker</span><span class="metadatavalue">$doc.getFieldValue('rejectedbyspeaker')</span> 
+</div>
+#end
+#if($doc.getFieldValue('source') != '')  
+<div class="metadatadiv" >
+<span class="metadatafield">published in</span><span class="metadatavalue">$doc.getFieldValue('source')</span>
+</div>
+#end
 #if($doc.getFieldValue('anlalink') != '')  
-<span class="metadatafield">anlalink</span><span class="metadatavalue">$doc.getFieldValue('anlalink')</span>
+<div class="metadatadiv" >
+<span class="metadatafield">anlalink</span><span class="metadatavalue">$doc.getFieldValue('anlalink')</span> 
+</div>
 #end
-<span class="metadatafield">editedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('editedbyspeaker')</span>
-<span class="metadatafield">editedByLinguist</span><span class="metadatavalue">$doc.getFieldValue('editedbylinguist')</span>
-<span class="metadatafield">textType</span><span class="metadatavalue">$doc.getFieldValue('texttype')</span>
-<span class="metadatafield">rejectedBySpeaker</span><span class="metadatavalue">$doc.getFieldValue('rejectedbyspeaker')</span>
 </div> 
- 
+<hr/>
 
 #foreach($fieldname in $doc.fieldNames)   
     #foreach($ontofields in $megafields)     
