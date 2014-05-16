@@ -13,8 +13,14 @@
     </div>
 
 <div id="ono">
-#foreach($k in $OCCULTONODICT) 
-    <input name="ono" type="hidden" title="$k"> </input>
+#foreach($o in $megafields)
+    #foreach($a in $o)
+	#set($cat=$a[0])
+	#set($values=$a[1])
+	#foreach($value in $values)
+	    <input name="ono" type="hidden" title="$cat:$value"> </input>
+	#end
+    #end
 #end
 </div>
 

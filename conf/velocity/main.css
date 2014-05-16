@@ -394,13 +394,15 @@ div.tag span.value{
 /*     float: right; */
     font-size: 8pt;
 /*     left: -280px; */
-    margin: 1px 250px 1px 1px;
+    margin: 1px 100px 1px 1px;
     max-width: 200px;
     padding: 1px;
     position: fixed;
-    right: -100px;
+    right: 30px;
     top: 100;
     z-index: 3;
+    box-shadow:0px 10px 20px 20px;
+    color: #8280A9;  
 }
 
 /*.tagbag {
@@ -507,10 +509,46 @@ div.tag span.value{
     border:none;
     float:none !important;
     box-shadow: 0px 0px 0px 0px !important;
+    
 }
 
-.lingex .item{ 
-    display: inline;
+.xlevel0 > .xlabel, .xlevel0 > .translation{ 
+    font-weight:bold;
+    position: relative;
+}
+.xlevel0 > .xlabel{
+    margin-bottom: 12px;
+    top: 12px; 
+}
+
+.xlevel0 > .translation{ 
+    bottom: 6px; 
+}
+
+.lingex{ 
+    box-shadow: 2px 2px 4px 4px; 
+    margin:20px;
+    border-radius:2px;
+}
+
+.lingex .item{
+    float: left;
+/*     margin-right: 2px; */
+    min-height:40px;
+/*     border: 1px dotted black; */
+    padding: 0px !important;
+    font-size:100%;
+    box-shadow: 2px 2px 4px 2px;
+    margin: 7px; 
+    
+}
+
+.lingex .xlevel1{ 
+    box-shadow: 0 0 0 0; 
+} 
+
+.lingex .xlevel0 .item; .lingex .xlevel2 .item; .lingex .xlevel3 .item{ 
+    display: inline !important;
     float: left;
 /*     margin-right: 2px; */
     min-height:40px;
@@ -521,7 +559,12 @@ div.tag span.value{
     margin: 7px; 
 } 
 
-.xlevel0 > div.xlabel{
+.xlevel0{    
+    margin-top:0px !important;
+    margin-bottom:0px !important;
+}
+
+.xlevel1 > div.xlabel{
     display: none !important;
 }
 
@@ -535,10 +578,33 @@ div.tag span.value{
 }
 
 .translation{
-    background:#b4b4b4;
-/*     padding:1px; */
+    padding:2px;
     margin:1px;
 }
+
+.translation span{   
+    background:#b4b4b4;
+    display: inline-block;    
+    width: 100%; 
+}
+
+
+/*.xlevel0 > .translation span{
+    text-align:left;
+}*/
+ 
+.xlevel2  > .translation span{   
+    text-align: center;
+}
+
+
+.xlevel2{
+    display:inline !important;
+}
+/*.xlevel3 > .translation span{        
+    text-align: center !important; 
+}*/
+
 
 .xlabel{
     background:#f3f3f3 !important;
@@ -727,7 +793,7 @@ scrollbar-track-color: #fff!important;
 }
 
 .metadatavalue{
-    margin-left:3px;
+    margin-left:3px; 
 }
 
 .lxnumber span {
@@ -767,7 +833,7 @@ a{
     width:200px;
     min-height:400px;
     background:#eee;
-    border: 3px solid #8B0000;
+    border: 1px solid #8B0000;
     box-shadow: 1px 1px 1px 1px;
 }
 
@@ -785,6 +851,8 @@ a{
     background:#CEBF97;
     font-size:12pt;
     padding: 2px 5px !important;
+    background: none repeat scroll 0 0 #CCCCCC; 
+    font-size: 100%; 
 }
 
 .ui-widget{
@@ -792,8 +860,74 @@ a{
     max-height:500px;
     overflow-y	:scroll;
     width:200px;
+    position:fixed;
 }
+
+.ui-widget ul{
+    margin-top:100px;
+    position:relative; 
+    overflow:visible;
+    z-index:5;
+}
+
+.ui-widget li:nth-child(2n+1){
+    background:#DECFA7; 
+}
+.ui-widget li:nth-child(2n){
+    background:#CEBF97; 
+}
+
+.ui-widget li{    
+    z-index:6;
+    list-style:none;
+    margin-left:2px;
+    margin-bottom:1px;
+    border-left: 11px double #8E8F67;   
+    padding:10px;
+    white-space:pre-wrap;
+    overflow:visible !important;
+    z-index:6;
+    border-radius: 5px 0 0 5px;
+    margin-left:-40px
+}
+
+.ui-widget li a{
+    z-index:7;
+}
+
+
 
 .active{    
 /*     border: 3px double darkred; */
 }
+
+.pos{
+    display: block;
+    height: 20px;
+    width: 100%; 
+}
+
+
+.pos div {
+    border-left: 1px dashed #FFFFFF;
+    border-bottom: 1px dashed #FFFFFF;
+    border-right: 1px dashed #FFFFFF;
+    height: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 66px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.pos span {
+    background: none repeat scroll 0 0 #AABBFF;
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 1px 1px 0 0;
+    font-family: monospace;
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+ 

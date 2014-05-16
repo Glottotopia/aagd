@@ -3,7 +3,7 @@
     <ul class="nav nav-tabs">
 	<li class="navtabli active"><a href="#droptab$thistagbagid" data-toggle="tab">Drop</a></li> 
 	<li class="navtabli"><a href="#freetab$thistagbagid" data-toggle="tab">Free</a></li>
-	<li class="navtabli" onclick='jQuery(this).parent().parent().hide();' style="float:right"><a data-toggle="tab">X</a></li> 
+	<li class="navtabli" onclick='jQuery(this).parent().parent().hide();' style="float:right"><a data-toggle="tab" style="top:-10px;right:-10px;font-size:200%;border-radius:20px;box-shadow:1px -1px 2px 2px;cursor:pointer;">X</a></li> 
     </ul>   
     <div class="tab-content"> 
 	<div class="tab-pane active" id="droptab$thistagbagid">  
@@ -42,9 +42,9 @@
 		<div class="ui-widget">
 		    <div> 
 	    ## 	    <label for="meanings"> Meanings</label>  
-			<input id="meaningsadder$thistagbagid" onkeydown="$( '#fqmeaningsadder$thistagbagid').val(this.value)"/>
-			<input id="fqmeaningsadder$thistagbagid" type="textarea" readonly="true" />
-			<button onclick="alert('to be implemented')">add</button>
+			<button onclick="addfield('$doc.getFieldValue('id')',document.getElementById('meaningsadder$thistagbagid').value.split(':')[0],document.getElementById('meaningsadder$thistagbagid').value.split(':')[1]);">add</button>
+			<input id="meaningsadder$thistagbagid" size="28"/>
+## 			<input id="fqmeaningsadder$thistagbagid" type="textarea" readonly="true" /> 
 		    </div>
 		</div>  
 	    </div>

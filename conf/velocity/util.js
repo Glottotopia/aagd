@@ -1,6 +1,6 @@
 
 function addfield(id,field,value){
-    host = "http://www.glottotopia.org/athagram/mod";  
+    host = "http://www.glottotopia.org/aagd/mod";  
     url = host+'/add/'+id+'/'+field+'/'+value ;
     $.ajax({
     dataType: "json",
@@ -45,7 +45,7 @@ function addfield(id,field,value){
 
 
 function deletefield(id,field,value){
-    host = "http://www.glottotopia.org/athagram/mod";  
+    host = "http://www.glottotopia.org/aagd/mod";  
     url = host+'/delete/'+id+'/'+field+'/'+value ;
     
     $.ajax({
@@ -87,7 +87,7 @@ function toggleBox(id){
 }
 
 function setFlag(id,value){     
-    host = "http://www.glottotopia.org/athagram/mod";  
+    host = "http://www.glottotopia.org/aagd/mod";  
     url = host+'/flag/'+id+'/'+value;
     if (value==false){
 	color='green';
