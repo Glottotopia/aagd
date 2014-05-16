@@ -41,6 +41,7 @@ class Item():
     label = ''
     translation = ''
     comment = ''
+    pos = ''
     
     def __init__(self,children):
 	self.children = children
@@ -74,13 +75,27 @@ class Item():
 	
     def html(self, outer=True, level=0): 
         childhtml = '\n'.join([c.html(outer=False, level=level+1) for c in self.children]) 
+        pospart = ''
+        if self.pos != '':
+	    pospart = u"""  <div class="pos">
+    <div><span>{}</span></div>
+  </div> 
+	    """.format(self.pos)
+	translationpart = ''
+	if self.translation != '':
+	    translationpart = u""" <div class="translation">
+    <span>{}</span></div>
+ """.format(self.translation)
+
 	innerhtml = u"""<div class="item xlevel{}"> 
  <div class="label">{}</div>
-  <div class="children">
-   {}
-  </div>  
- <div class="translation">{}</div>
-  </div>""".format(level,self.label, childhtml, self.translation) 
+    <div class="children">
+    {}
+    </div>  
+  {}
+  {}
+  </div>
+  """.format(level,self.label, childhtml, pospart, translationpart) 
 	if not outer:
 	    return innerhtml
 	return OUTERHTML_%innerhtml	
@@ -146,7 +161,7 @@ class Wordoid(Item):
     """an item of roughly word length"""
     offspringjoiner = ""
     
-    def __init__(self,s,children=False, translation=' '):
+    def __init__(self,s,children=False, translation=' ', pos='POS'):
 	self.label = s
 	self.s = s
 	if children:
@@ -155,6 +170,7 @@ class Wordoid(Item):
 	    self.children = [Morphemoid(x) for x in re.split("([=-])",self.s)][::2]
 	self.joiners = [x for x in re.split("([=-])",self.s)][:1][::2]
 	self.translation = translation
+	self.pos = pos
 	
     def __str__(self): 
 	return self.s 

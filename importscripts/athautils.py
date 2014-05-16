@@ -8,9 +8,12 @@ import pprint
 
 IMTSPLITTERS = re.compile('[-=;:\.]')
 
+class MetadataError(ValueError):
+    pass
 
 class MetadataRecord:
-    def __init__(self, params):  
+    def __init__(self, ID, params):  
+	self.ID = ID
 	self.lg = params[0] 
 	self.dialect = params[1] 
 	self.speakers = params[2].split(';') 
@@ -19,16 +22,34 @@ class MetadataRecord:
 	self.recordingdate = params[5] 
 	self.recordinglinguists = params[6].split(';') 
 	self.anlalink = params[7] 
-	self.editedBySpeaker = False
+	self.editedbyspeaker = False
 	if params[8].lower() == 'Y':
-	    self.editedBySpeaker = True
-	self.editedByLinguist = False
+	    self.editedbyspeaker = True
+	self.editedbylinguist = False
 	if params[9].lower() == 'Y':
-	    self.editedByLinguist = True 
-	self.textTypes = params[10].split(';')
-	self.rejectedBySpeaker = False
+	    self.editedbylinguist = True 
+	self.texttypes = params[10].split(';')
+	self.rejectedbyspeaker = False
 	if params[11].lower() == 'Y':
-	    self.rejectedBySpeaker = True  
+	    self.rejectedbyspeaker = True  
+	    
+    def toSOLRstring(self):	    
+	singlevalues = """<field name="aadgID">{ID}</field>
+<field name="lg">{lg}</field>
+<field name="dialect">{dialect}</field>
+<field name="recordingname">{recordingname}</field>
+<field name="recordingdate">{recordingdate}</field>
+<field name="anlalink">{anlalink}</field>
+<field name="editedbyspeaker">{editedbyspeaker}</field>
+<field name="editedbylinguist">{editedbylinguist}</field>
+<field name="rejectedbyspeaker">{rejectedbyspeaker}</field>""".format(**self.__dict__)
+
+	speakers = '\n'.join(['<field name="speaker">%s</field>'%spkr for spkr in self.speakers])
+	sources = '\n'.join(['<field name="source">%s</field>'%src for src in self.sources])
+	recordinglinguists = '\n'.join(['<field name="recordinglinguist">%s</field>'%rl for rl in self.recordinglinguists])
+	texttypes = '\n'.join(['<field name="texttype">%s</field>'%tt for tt in self.texttypes]) 
+	s = '\n'.join((singlevalues,speakers,sources,recordinglinguists,texttypes))
+	return s
 
 class Metadata:
     def __init__(self,csvfile):
@@ -36,7 +57,8 @@ class Metadata:
 	lines = open(csvfile).readlines()[1:] #drop first line where the labels are
 	for line in lines:
 	    fields = line.strip().split('\t')
-	    self.files[fields[0]] = MetadataRecord(fields[1:])
+	    ID = fields[0]
+	    self.files[ID] = MetadataRecord(ID,fields[1:])
 	     
 	
 class Language:
@@ -61,7 +83,7 @@ class EAF:
 	self.language = language
 	self.metadatarecord = Metadata(metadatafile).files[self.barefile]
 	        
-    def __init__(self,utterancefile, language = None, orig='eaf', metadatafile="aadgmetadata.csv"):
+    def __init__(self, utterancefile, language = None, orig='eaf', metadatafile="aadgmetadata.csv"):
 	if orig=='eaf':
 	    self.utterancefile = utterancefile  
 	    self.barefile = self.utterancefile.replace('-utterance.xml','')
@@ -83,7 +105,11 @@ class EAF:
 	    self.UTfile = utterancefile.replace('-phrase','-translation') 
 	self.language = language 
 	self.orig = orig
-	self.metadatarecord = Metadata(metadatafile).files[self.barefile]
+	try:
+	    self.metadatarecord = Metadata(metadatafile).files[self.barefile]
+	except KeyError:
+	    print "No metadata available for {0}. Will not convert {1}".format(self.barefile, self.utterancefile)
+	    raise MetadataError
 	    
 	     
     
@@ -106,6 +132,7 @@ class EAF:
 	if orig=='eaf':
 	    self.u_tree.edgeclosured['iu'] = {} 
 	self.u_tree.edgeclosured['w'] = {}  
+	self.u_tree.edgeclosured['w2wt'] = {}  
 	self.u_tree.edgeclosured['m'] = {}  
 	self.u_tree.edgeclosured['imt'] = {}  
 	#l = [('iu','w'),('w','wt'),('w','m'),('m','imt')]
@@ -116,7 +143,7 @@ class EAF:
 	
 		
 	
-	def addToClosureDic(u,uppers,h, level):
+	def addToClosureDic(u, uppers, h, level):
 	    if h == []:
 		return
 	    lowertree, lowerstring = h[0]
@@ -133,15 +160,16 @@ class EAF:
 			self.u_tree.edgeclosured[lowerstring][u] = list(lowers) 
 		    addToClosureDic(u, lowers, h, level+1) 
 		     
+		     
 	
 	hierarchy = [(self.m_tree,'m'),(self.imt_tree,'imt')]
 	if orig == 'eaf':
 	    hierarchy = [(self.w_tree,'w'),(self.m_tree,'m'),(self.imt_tree,'imt')]
 	for utterance in utterances: 
 	    if orig=='eaf':
-		addToClosureDic(utterance,tuple(self.iu_tree.edged[utterance]) ,hierarchy,0)  
+		addToClosureDic(utterance,tuple(self.iu_tree.edged[utterance]) ,hierarchy,0)   
 	    if orig =='typecraft':
-		addToClosureDic(utterance,tuple(self.w_tree.edged[utterance]) ,hierarchy,0)  
+		addToClosureDic(utterance,tuple(self.w_tree.edged[utterance]) ,hierarchy,0)   
 		
 	#pprint.pprint(self.u_tree.edgeclosured['imt'])
 	 
@@ -150,8 +178,11 @@ class EAF:
     def computeLingex(self,topnode,orig):
 	if orig == 'eaf':
 	    u = lingex.Utteranceoid(self.getText(topnode),
+		translation = self.getTranslation(topnode),
 		children = [lingex.Utteranceoid(self.iu_tree.textd[iunode],
 			    children =  [lingex.Wordoid(self.w_tree.textd[wnode],
+				#translation = 'wordtrsl',
+				translation = self.wt_tree.textd[self.wt_tree.edged[wnode][0]],
 				children =  [lingex.Morphemoid(self.m_tree.textd[mnode],
 						    translation = self.imt_tree.textd.get(self.imt_tree.edged.get(mnode,[''])[0])
 						    ) 					     
@@ -305,6 +336,8 @@ class AthaSOLR:
 	#
 	#self.imtwords=eaf.getIMTWords(topnode)
 	self.imtglosses=eaf.getIMTGlosses(topnode)
+	self.grammaticalglosses=[x for x in self.imtglosses if re.search('[A-Z]{2}', x)]
+	self.lexicalglosses=[x for x in self.imtglosses if x not in self.grammaticalglosses]
 	self.mn()
 	try: 
 	    self.lingex = eaf.computeLingex(topnode,eaf.orig) 
@@ -324,6 +357,12 @@ class AthaSOLR:
     def getIMTString(self,imts):
 	return u'\n'.join([u'<field name="gloss">%s</field>'%w.strip() for w in self.imtglosses ] )  
 	
+    def getLexicalGlossString(self,imts):
+	return u'\n'.join([u'<field name="lexicalgloss">%s</field>'%w.strip() for w in self.lexicalglosses ] )  
+	
+    def getGrammaticalGlossString(self,imts):
+	return u'\n'.join([u'<field name="grammaticalgloss">%s</field>'%w.strip() for w in self.grammaticalglosses ] )  
+	
     def write(self):
 	out = open('solr/%s.xml'%self.ID,'w')
 	out.write(self.outstring.encode('utf8'))
@@ -336,20 +375,6 @@ class AthaSOLR:
 	
 
     def formattemplate(self):  
-	def getMetadatastring(mdr):	    
-	    s = """<field name="lg">{lg}</field>
-<field name="dialect">{dialect}</field>
-<field name="speakers">{speakers}</field>
-<field name="sources">{sources}</field>
-<field name="recordingname">{recordingname}</field>
-<field name="recordingdate">{recordingdate}</field>
-<field name="recordinglinguists">{recordinglinguists}</field>
-<field name="anlalink">{anlalink}</field>
-<field name="editedBySpeaker">{editedBySpeaker}</field>
-<field name="editedByLinguist">{editedByLinguist}</field>
-<field name="textTypes">{textTypes}</field>
-<field name="rejectedBySpeaker">{rejectedBySpeaker}</field>""".format(**mdr.__dict__)
-	    return s
 	   
 	    
 	test = getAdditions(self.translation)  
@@ -371,7 +396,9 @@ class AthaSOLR:
 			    lenchars=self.lenchars, 
 			    #imtwords=self.imtwords, 
 			    glosses=self.getIMTString(self.imtglosses),
-			    metadatastring = getMetadatastring(self.metadatarecord),
+			    grammaticalglosses=self.getGrammaticalGlossString(self.grammaticalglosses),
+			    lexicalglosses=self.getLexicalGlossString(self.lexicalglosses),
+			    metadatastring = self.metadatarecord.toSOLRstring(),
 			    lingex=self.lingex.bb())   
 			    
 			    
@@ -389,6 +416,8 @@ template = u"""<add><doc>
 {translationwords} 
 {additions} 
 {glosses}
+{grammaticalglosses}
+{lexicalglosses}
 <field name="lingex">{lingex}</field>  
 <field name="location">{coords}</field>  
 <field name="words">{lenws}</field>  
