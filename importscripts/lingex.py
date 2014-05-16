@@ -77,15 +77,10 @@ class Item():
         childhtml = '\n'.join([c.html(outer=False, level=level+1) for c in self.children]) 
         pospart = ''
         if self.pos != '':
-	    pospart = u"""  <div class="pos">
-    <div><span>{}</span></div>
-  </div> 
-	    """.format(self.pos)
+	    pospart = u"""  <div class="pos"><div><span>{}</span></div></div>\n""".format(self.pos)
 	translationpart = ''
 	if self.translation != '':
-	    translationpart = u""" <div class="translation">
-    <span>{}</span></div>
- """.format(self.translation)
+	    translationpart = u""" <div class="translation"> <span>{}</span></div>\n """.format(self.translation)
 
 	innerhtml = u"""<div class="item xlevel{}"> 
  <div class="label">{}</div>

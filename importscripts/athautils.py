@@ -79,6 +79,7 @@ class EAF:
 	self.wordtranslationfile = utterancefile.replace('-utterance','-word_translation')
 	self.morphemesfile = utterancefile.replace('-utterance','-morphemes')
 	self.IMTfile = utterancefile.replace('-utterance','-IMT')
+	self.POSfile = utterancefile.replace('-utterance','-POS')
 	self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
 	self.language = language
 	self.metadatarecord = Metadata(metadatafile).files[self.barefile]
@@ -93,16 +94,17 @@ class EAF:
 	    self.wordtranslationfile = utterancefile.replace('-utterance','-word_translation')
 	    self.morphemesfile = utterancefile.replace('-utterance','-morphemes')
 	    self.IMTfile = utterancefile.replace('-utterance','-IMT')
+	    self.POSfile = utterancefile.replace('-utterance','-POS')
 	    self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
-	if orig=='typecraft':
-	    self.utterancefile = utterancefile   
-	    self.barefile = self.utterancefile.replace('-utterance.xml','')
-	    self.wordsfile = utterancefile.replace('-phrase','-word')
-	    self.posfile = utterancefile.replace('-phrase','-pos')
-	    self.wordtranslationfile = None
-	    self.morphemesfile = utterancefile.replace('-phrase','-morpheme')
-	    self.IMTfile = utterancefile.replace('-phrase','-gloss')
-	    self.UTfile = utterancefile.replace('-phrase','-translation') 
+	#if orig=='typecraft':
+	    #self.utterancefile = utterancefile   
+	    #self.barefile = self.utterancefile.replace('-utterance.xml','')
+	    #self.wordsfile = utterancefile.replace('-phrase','-word')
+	    #self.posfile = utterancefile.replace('-phrase','-pos')
+	    #self.wordtranslationfile = None
+	    #self.morphemesfile = utterancefile.replace('-phrase','-morpheme')
+	    #self.IMTfile = utterancefile.replace('-phrase','-gloss')
+	    #self.UTfile = utterancefile.replace('-phrase','-translation') 
 	self.language = language 
 	self.orig = orig
 	try:
@@ -118,12 +120,12 @@ class EAF:
 	self.u_tree = GrAFtree(self.utterancefile)
 	if orig=='eaf':
 	    self.iu_tree = GrAFtree(self.IUfile)
-	self.w_tree = GrAFtree(self.wordsfile)
-	self.pos_tree = GrAFtree(self.posfile)
+	self.w_tree = GrAFtree(self.wordsfile) 
 	if orig=='eaf':
 	    self.wt_tree = GrAFtree(self.wordtranslationfile)
 	self.m_tree = GrAFtree(self.morphemesfile)
-	self.imt_tree = GrAFtree(self.IMTfile)
+	self.imt_tree = GrAFtree(self.IMTfile)	 
+	self.pos_tree = GrAFtree(self.POSfile)
 	self.edgeclosure(orig=orig) 
 	
 	
@@ -173,7 +175,11 @@ class EAF:
 		
 	#pprint.pprint(self.u_tree.edgeclosured['imt'])
 	 
-				    
+	
+    def getPOS(self,n): 
+	i = self.pos_tree.edged[n][0] 
+	result =  self.pos_tree.textd[i] 
+	return result
 				    
     def computeLingex(self,topnode,orig):
 	if orig == 'eaf':
@@ -183,6 +189,7 @@ class EAF:
 			    children =  [lingex.Wordoid(self.w_tree.textd[wnode],
 				#translation = 'wordtrsl',
 				translation = self.wt_tree.textd[self.wt_tree.edged[wnode][0]],
+				pos = self.getPOS(wnode) ,
 				children =  [lingex.Morphemoid(self.m_tree.textd[mnode],
 						    translation = self.imt_tree.textd.get(self.imt_tree.edged.get(mnode,[''])[0])
 						    ) 					     
@@ -284,7 +291,7 @@ class GrAFtree:
 	self.f = f
 	try:
 	    self.tree = ET.parse(f)
-	except IOError:
+	except IOError: 
 	    self.tree = None
 	    return
 	self.root = self.tree.getroot()
@@ -313,8 +320,7 @@ class GrAFtree:
 	    try:
 		self.edged[from_].append(to_ )
 	    except KeyError:
-		self.edged[from_] = [to_]
-		
+		self.edged[from_] = [to_] 
 	self.dominatednodesd = {}
 
 	    
