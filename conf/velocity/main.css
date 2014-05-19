@@ -523,12 +523,14 @@ div.tag span.value{
 
 .xlevel0 > .translation{ 
     bottom: 6px; 
+    z-index: -1;
 }
 
 .lingex{ 
     box-shadow: 2px 2px 4px 4px; 
     margin:20px;
     border-radius:2px;
+    opacity: .99; /*evil hack to make translation display*/    
 }
 
 .lingex .item{
@@ -562,6 +564,11 @@ div.tag span.value{
 .xlevel0{    
     margin-top:0px !important;
     margin-bottom:0px !important;
+    z-index:1;
+}
+
+.xlevel1{   
+    z-index:2;
 }
 
 .xlevel1 > div.xlabel{
@@ -593,6 +600,13 @@ div.tag span.value{
     text-align:left;
 }*/
  
+
+
+.xlevel2{   
+    z-index:3;
+}
+
+
 .xlevel2  > .translation span{   
     text-align: center;
 }
@@ -604,6 +618,17 @@ div.tag span.value{
 /*.xlevel3 > .translation span{        
     text-align: center !important; 
 }*/
+
+
+
+.xlevel3{   
+    z-index:4;
+}
+
+
+.xlevel4{   
+    z-index:5;
+}
 
 
 .xlabel{
@@ -929,5 +954,13 @@ a{
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    text-decoration:none;
+}
+
+.pos span a{
+    color:#111;
 }
  
+.poslabelVitr{
+/*     text-decoration:underline !important;  */
+}

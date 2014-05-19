@@ -1,10 +1,9 @@
-
-
 import re
 from xml.etree  import ElementTree as ET 
 import lingex
 
 import pprint
+import time
 
 IMTSPLITTERS = re.compile('[-=;:\.]')
 
@@ -18,8 +17,12 @@ class MetadataRecord:
 	self.dialect = params[1] 
 	self.speakers = params[2].split(';') 
 	self.sources = params[3].split(';') 
-	self.recordingname = params[4] 
-	self.recordingdate = params[5] 
+	self.recordingname = params[4]  
+	try:
+	    self.recordingdate = time.strftime("%Y-%m-%e",time.strptime(params[5],"%B %d, %Y"))+"T12:00:00Z/DAY"#choosing noon for unknown time
+	except ValueError:
+	    print "wrong date format in", ID, param[5]
+	    raise
 	self.recordinglinguists = params[6].split(';') 
 	self.anlalink = params[7] 
 	self.editedbyspeaker = False
