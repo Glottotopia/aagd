@@ -913,7 +913,7 @@
        <str name="wt">velocity</str>
        <str name="v.template">browse</str>
        <str name="v.layout">layout</str>
-       <str name="title">AADG</str>
+       <str name="title">AAGD</str>
 
        <!-- Query settings -->
        <str name="defType">edismax</str>

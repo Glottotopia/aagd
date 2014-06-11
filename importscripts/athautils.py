@@ -12,17 +12,17 @@ class MetadataError(ValueError):
 
 class MetadataRecord:
     def __init__(self, ID, params):  
-	self.ID = ID
+	self.ID = ID 
 	self.lg = params[0] 
 	self.dialect = params[1] 
 	self.speakers = params[2].split(';') 
 	self.sources = params[3].split(';') 
 	self.recordingname = params[4]  
 	try:
-	    self.recordingdate = time.strftime("%Y-%m-%e",time.strptime(params[5],"%B %d, %Y"))+"T12:00:00Z/DAY"#choosing noon for unknown time
+	    self.recordingdate = time.strftime("%Y-%m-%e",time.strptime(params[5].strip(),"%y-%b-%d"))+"T12:00:00Z/DAY"#choosing noon for unknown time
 	except ValueError:
-	    print "wrong date format in", ID, param[5]
-	    raise
+	    print "wrong date format in", ID, params[5]
+	    self.recordingdate = False
 	self.recordinglinguists = params[6].split(';') 
 	self.anlalink = params[7] 
 	self.editedbyspeaker = False
@@ -37,31 +37,33 @@ class MetadataRecord:
 	    self.rejectedbyspeaker = True  
 	    
     def toSOLRstring(self):	    
-	singlevalues = """<field name="aadgID">{ID}</field>
+	singlevalues = """<field name="aagdID">{ID}</field>
 <field name="lg">{lg}</field>
 <field name="dialect">{dialect}</field>
 <field name="recordingname">{recordingname}</field>
-<field name="recordingdate">{recordingdate}</field>
 <field name="anlalink">{anlalink}</field>
 <field name="editedbyspeaker">{editedbyspeaker}</field>
 <field name="editedbylinguist">{editedbylinguist}</field>
 <field name="rejectedbyspeaker">{rejectedbyspeaker}</field>""".format(**self.__dict__)
 
+	if self.recordingdate:
+	    singlevalues += """\n<field name="recordingdate">%s</field>"""%self.recordingdate
+
 	speakers = '\n'.join(['<field name="speaker">%s</field>'%spkr for spkr in self.speakers])
 	sources = '\n'.join(['<field name="source">%s</field>'%src for src in self.sources])
 	recordinglinguists = '\n'.join(['<field name="recordinglinguist">%s</field>'%rl for rl in self.recordinglinguists])
 	texttypes = '\n'.join(['<field name="texttype">%s</field>'%tt for tt in self.texttypes]) 
-	s = '\n'.join((singlevalues,speakers,sources,recordinglinguists,texttypes))
+	s = ''.join((singlevalues,speakers,sources,recordinglinguists,texttypes)) 
 	return s
 
 class Metadata:
     def __init__(self,csvfile):
-	self.files = {}
-	lines = open(csvfile).readlines()[1:] #drop first line where the labels are
+	self.chunks = {}
+	lines = open(csvfile).readlines()[1:] #drop first line where the labels are	
 	for line in lines:
 	    fields = line.strip().split('\t')
 	    ID = fields[0]
-	    self.files[ID] = MetadataRecord(ID,fields[1:])
+	    self.chunks[ID] = MetadataRecord(ID,fields[1:])
 	     
 	
 class Language:
@@ -73,9 +75,10 @@ class Language:
 class EAF:    
     athasolar = None
     
-    def __init__(self,utterancefile, language = None, metadatafile="aadgmetadata.csv"):
+    def __init__(self,utterancefile, language = None, metadatafile=None):
 	self.utterancefile = utterancefile  
 	self.barefile = self.utterancefile.replace('-utterance.xml','')
+	self.IDfile = self.utterancefile.replace('-utterance','-default-lt')
 	self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
 	self.wordsfile = utterancefile.replace('-utterance','-words')
 	self.posfile = utterancefile.replace('-utterance','-pos')
@@ -84,41 +87,36 @@ class EAF:
 	self.IMTfile = utterancefile.replace('-utterance','-IMT')
 	self.POSfile = utterancefile.replace('-utterance','-POS')
 	self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
-	self.language = language
-	self.metadatarecord = Metadata(metadatafile).files[self.barefile]
-	        
-    def __init__(self, utterancefile, language = None, orig='eaf', metadatafile="aadgmetadata.csv"):
-	if orig=='eaf':
-	    self.utterancefile = utterancefile  
-	    self.barefile = self.utterancefile.replace('-utterance.xml','')
-	    self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
-	    self.wordsfile = utterancefile.replace('-utterance','-words')
-	    self.posfile = utterancefile.replace('-utterance','-pos')
-	    self.wordtranslationfile = utterancefile.replace('-utterance','-word_translation')
-	    self.morphemesfile = utterancefile.replace('-utterance','-morphemes')
-	    self.IMTfile = utterancefile.replace('-utterance','-IMT')
-	    self.POSfile = utterancefile.replace('-utterance','-POS')
-	    self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
-	#if orig=='typecraft':
-	    #self.utterancefile = utterancefile   
-	    #self.barefile = self.utterancefile.replace('-utterance.xml','')
-	    #self.wordsfile = utterancefile.replace('-phrase','-word')
-	    #self.posfile = utterancefile.replace('-phrase','-pos')
-	    #self.wordtranslationfile = None
-	    #self.morphemesfile = utterancefile.replace('-phrase','-morpheme')
-	    #self.IMTfile = utterancefile.replace('-phrase','-gloss')
-	    #self.UTfile = utterancefile.replace('-phrase','-translation') 
 	self.language = language 
-	self.orig = orig
-	try:
-	    self.metadatarecord = Metadata(metadatafile).files[self.barefile]
-	except KeyError:
-	    print "No metadata available for {0}. Will not convert {1}".format(self.barefile, self.utterancefile)
-	    raise MetadataError
-	    
-	     
+	self.metadata = Metadata(metadatafile)
+	        
+    #def __init__(self, utterancefile, language = None, orig='eaf', metadatafile=None):
+	#if orig=='eaf':
+	    #self.utterancefile = utterancefile  
+	    #self.barefile = self.utterancefile.replace('-utterance.xml','')
+	    #self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
+	    #self.wordsfile = utterancefile.replace('-utterance','-words')
+	    #self.posfile = utterancefile.replace('-utterance','-pos')
+	    #self.wordtranslationfile = utterancefile.replace('-utterance','-word_translation')
+	    #self.morphemesfile = utterancefile.replace('-utterance','-morphemes')
+	    #self.IMTfile = utterancefile.replace('-utterance','-IMT')
+	    #self.POSfile = utterancefile.replace('-utterance','-POS')
+	    #self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
+	##if orig=='typecraft':
+	    ##self.utterancefile = utterancefile   
+	    ##self.barefile = self.utterancefile.replace('-utterance.xml','')
+	    ##self.wordsfile = utterancefile.replace('-phrase','-word')
+	    ##self.posfile = utterancefile.replace('-phrase','-pos')
+	    ##self.wordtranslationfile = None
+	    ##self.morphemesfile = utterancefile.replace('-phrase','-morpheme')
+	    ##self.IMTfile = utterancefile.replace('-phrase','-gloss')
+	    ##self.UTfile = utterancefile.replace('-phrase','-translation') 
+	#self.language = language 
+	#self.orig = 'eaf' 
+	#self.metadata = Metadata(metadatafile)  
     
     def parse(self, orig='eaf'):	
+	self.id_tree = GrAFtree(self.IDfile)
 	self.ut_tree = GrAFtree(self.UTfile)
 	self.u_tree = GrAFtree(self.utterancefile)
 	if orig=='eaf':
@@ -142,9 +140,7 @@ class EAF:
 	self.u_tree.edgeclosured['imt'] = {}  
 	#l = [('iu','w'),('w','wt'),('w','m'),('m','imt')]
 	if orig=='eaf':
-	    utterances = self.iu_tree.edged
-	if orig == 'typecraft':
-	    utterances = self.w_tree.edged
+	    utterances = self.iu_tree.edged 
 	
 		
 	
@@ -166,15 +162,11 @@ class EAF:
 		    addToClosureDic(u, lowers, h, level+1) 
 		     
 		     
-	
-	hierarchy = [(self.m_tree,'m'),(self.imt_tree,'imt')]
-	if orig == 'eaf':
-	    hierarchy = [(self.w_tree,'w'),(self.m_tree,'m'),(self.imt_tree,'imt')]
+	 
+	hierarchy = [(self.w_tree,'w'),(self.m_tree,'m'),(self.imt_tree,'imt')]
 	for utterance in utterances: 
 	    if orig=='eaf':
 		addToClosureDic(utterance,tuple(self.iu_tree.edged[utterance]) ,hierarchy,0)   
-	    if orig =='typecraft':
-		addToClosureDic(utterance,tuple(self.w_tree.edged[utterance]) ,hierarchy,0)   
 		
 	#pprint.pprint(self.u_tree.edgeclosured['imt'])
 	 
@@ -209,41 +201,22 @@ class EAF:
 			    ]
 		)
 	    return u 
-	if orig=='typecraft':	   
-	    toptext = self.getText(topnode)
-	    u = lingex.Utteranceoid(toptext,
-		    children = [lingex.Utteranceoid(toptext,
-				children =  [lingex.Wordoid(self.w_tree.textd[wnode],
-				    children =  [lingex.Morphemoid(self.m_tree.textd[mnode],
-							translation = self.m_tree.meaningd[mnode]
-							) 					     
-						for mnode 
-						in self.m_tree.edged.get(wnode,[])
-						],
-					    )
-					    for wnode 
-					    in self.w_tree.edged[topnode]
-					    ]
-				)  
-				]
-		    )
-	    return u 
 	    
 	
 	
-    def getDominationDictionary_(self, upper, lower):
-	d  = {}
-	for x in upper.textd: 
-	    for y in lower.edged: 
-		if x == y:   
-		    edges = lower.edged[x]
-		    for edge in edges:
-			try:
-			    trs = lower.textd[edge]  
-			    d[x].append(trs)
-			except KeyError: 
-			    d[x] = [trs]	 
-	return d
+    #def getDominationDictionary_(self, upper, lower):
+	#d  = {}
+	#for x in upper.textd: 
+	    #for y in lower.edged: 
+		#if x == y:   
+		    #edges = lower.edged[x]
+		    #for edge in edges:
+			#try:
+			    #trs = lower.textd[edge]  
+			    #d[x].append(trs)
+			#except KeyError: 
+			    #d[x] = [trs]	 
+	#return d
 	
     def getText(self,node):
 	return self.u_tree.textd[node]	
@@ -272,15 +245,31 @@ class EAF:
 	 	
 	
     #def eaf2solr(language=None, offset=0):
+    
+    def getID(self,topnode):
+	d = self.u_tree.edged	 
+	n = None
+	for k in d:
+	    if d[k][0]==topnode:
+		n = k
+		break 
+	result = None
+	try:
+	    result = self.id_tree.textd[n]
+	except KeyError:
+	    print "utterance %s has no ID" % topnode
+	return result
+	
     def eaf2solr(self,orig='eaf'):   
-	d = self.getDominationDictionary_(self.u_tree,self.ut_tree)
+	#d = self.getDominationDictionary_(self.u_tree,self.ut_tree)
 	#print d
-	l = [ (self.u_tree.textd[x], d[x][0]) for x in d ] #there is only one translation per utterance, so we can directly access it at [0]
+	#l = [ (self.u_tree.textd[x], d[x][0]) for x in d ] #there is only one translation per utterance, so we can directly access it at [0]
 	topnodes = self.ut_tree.edged.keys() 
-	for i,topnode in enumerate(topnodes):  
-	    athasolar = AthaSOLR(i, 
+	for topnode in topnodes:  
+	    ID = self.getID(topnode)
+	    athasolar = AthaSOLR(ID, 
 				    topnode,
-				    self ) 
+				    self) 
 	    athasolar.formattemplate()
 	    athasolar.write() 
 
@@ -316,8 +305,8 @@ class GrAFtree:
 	    #try:
 		#text = t.find('.//*/*').text
 	    #except AttributeError:
-		#text = '' 
-	for edge in self.edges:
+		#text = ''  
+	for edge in self.edges: 
 	    from_ = edge.attrib['from']
 	    to_ = edge.attrib['to'] 
 	    try:
@@ -331,9 +320,9 @@ class AthaSOLR:
     def __init__(self,ID,topnode,eaf):
 	self.topnode=topnode
 	self.language = eaf.language 
-	self.metadatarecord = eaf.metadatarecord
+	self.metadata = eaf.metadata
 	self.src = eaf.barefile 
-	self.ID="%s-%s-%s"% (self.language.iso,hash(self.src)%1000,ID) 
+	self.ID=ID
 	#
 	self.txt=eaf.getText(topnode)
 	self.lenchars = len(self.txt)
@@ -349,7 +338,7 @@ class AthaSOLR:
 	self.lexicalglosses=[x for x in self.imtglosses if x not in self.grammaticalglosses]
 	self.mn()
 	try: 
-	    self.lingex = eaf.computeLingex(topnode,eaf.orig) 
+	    self.lingex = eaf.computeLingex(topnode,'eaf') 
 	except KeyError:
 	    self.lingex = lingex.Item([])
 	
@@ -391,6 +380,11 @@ class AthaSOLR:
 	additions =  u'\n'.join([u'<field name="%s">%s</field>' % a for a in test ] )   
 	#ID = '%s.%s.%s' % (iso,j,i)
 	name = u"%s-%s" % (self.src.encode('utf8'),self.ID) 
+	metadatastring = None
+	try:
+	    metadatastring = self.metadata.chunks[self.ID].toSOLRstring()
+	except KeyError:
+	    print "no metadata for", self.ID 
 	self.outstring = template.format(ID=self.ID, 
 			    txt=self.txt,
 			    trs=self.translation,
@@ -407,7 +401,7 @@ class AthaSOLR:
 			    glosses=self.getIMTString(self.imtglosses),
 			    grammaticalglosses=self.getGrammaticalGlossString(self.grammaticalglosses),
 			    lexicalglosses=self.getLexicalGlossString(self.lexicalglosses),
-			    metadatastring = self.metadatarecord.toSOLRstring(),
+			    metadatastring= metadatastring,
 			    lingex=self.lingex.bb())   
 			    
 			    
@@ -430,10 +424,11 @@ template = u"""<add><doc>
 <field name="lingex">{lingex}</field>  
 <field name="location">{coords}</field>  
 <field name="words">{lenws}</field>  
-<field name="chars">{lenchars}</field>  
+<field name="chars">{lenchars}</field>   
 </doc></add>"""
 
 def getAdditions(trs):
+    return []
     trs = trs.lower()
     complexity = False
     negations = ('no', 'none', 'not', 'never', 'nowhere', 'nothing', "don't", "does't", "did't", "won't", "would't", "hasn't", "haven't", "hadn't", "neither" , "nor")
@@ -594,9 +589,9 @@ def getAdditions(trs):
 	#for s in sufficientives: 
 	    #if s == t:
 		#additions.append(('grade','sufficient'))
-	for e in evids: 
-	    if e == t:
-		additions.append(('evidentiality','other'))
+	#for e in evids: 
+	    #if e == t:
+		#additions.append(('evidentiality','other'))
 	#for p in proximals: 
 	    #if p == t:
 		#additions.append(('distance','proximals'))

@@ -103,7 +103,7 @@
      <td class="lxmeta">
 	<table>
 	    <tr>
-		<td class="lxnumber"><span>#*(#field('aadgID'))*#</span></td> 
+		<td class="lxnumber"><span></span></td> 
 	    </tr>
 	    <tr>
 		<td class="lxlg" title="#field('language')">#*#field('iso639-3')*#</td>
@@ -162,6 +162,10 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 
 
 <div class="metadatacontainer"> 
+    
+<div class="metadatadiv" >
+<span class="metadatafield">ID</span><span class="metadatavalue">#field('aagdID')</span> 
+</div>
 #if($doc.getFieldValue('lg') != '')  
 <div class="metadatadiv" >
 <span class="metadatafield">Language</span><span class="metadatavalue">$doc.getFieldValue('lg')</span> 
