@@ -973,6 +973,7 @@
        
        <str name="facet.field">author_s</str>
        <str name="facet.mincount">1</str>
+       <str name="facet.sort">index</str>
 <!--	<str name="facet.pivot">cat,inStock</str>
        <str name="facet.range.other">after</str>-->
        <str name="facet.range">words</str>

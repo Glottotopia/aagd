@@ -1,5 +1,6 @@
 import re
 from xml.etree  import ElementTree as ET 
+from xml.sax.saxutils import escape
 import lingex
 
 import pprint
@@ -19,7 +20,7 @@ class MetadataRecord:
 	self.sources = params[3].split(';') 
 	self.recordingname = params[4]  
 	try:
-	    self.recordingdate = time.strftime("%Y-%m-%e",time.strptime(params[5].strip(),"%y-%b-%d"))+"T12:00:00Z/DAY"#choosing noon for unknown time
+	    self.recordingdate = time.strftime("%Y-%m-%e",time.strptime(params[5].strip(),"%d-%b-%y"))+"T12:00:00Z/DAY"#choosing noon for unknown time
 	except ValueError:
 	    print "wrong date format in", ID, params[5]
 	    self.recordingdate = False
@@ -349,8 +350,8 @@ class AthaSOLR:
 	return w
 
     def mn(self):
-	self.vernacularwords = u'\n'.join([u'<field name="vernacularword">%s</field>'%self.removePunctuation(w.strip())  for w in self.vernacularwords ] )  
-	self.translationwords = u'\n'.join([u'<field name="translatedword">%s</field>'%self.removePunctuation(w.strip())  for w in self.translatedwords ] ) 
+	self.vernacularwords = u'\n'.join([u'<field name="vernacularword">%s</field>'%escape(self.removePunctuation(w.strip()))  for w in self.vernacularwords ] )  
+	self.translationwords = u'\n'.join([u'<field name="translatedword">%s</field>'%escape(self.removePunctuation(w.strip()))  for w in self.translatedwords ] ) 
 	
     def getIMTString(self,imts):
 	return u'\n'.join([u'<field name="gloss">%s</field>'%w.strip() for w in self.imtglosses ] )  
@@ -386,9 +387,9 @@ class AthaSOLR:
 	except KeyError:
 	    print "no metadata for", self.ID 
 	self.outstring = template.format(ID=self.ID, 
-			    txt=self.txt,
-			    trs=self.translation,
-			    src=self.src, 
+			    txt=escape(self.txt),
+			    trs=escape(self.translation),
+			    src=escape(self.src), 
 			    vernacularwords=self.vernacularwords, 
 			    translationwords=self.translationwords, 
 			    additions=additions, 
