@@ -11,6 +11,6 @@ lg = lgs[sys.argv[2]]
 metadatafile = sys.argv[3]
  
 eaf = EAF(f, lg,  metadatafile = metadatafile)
-eaf.parse(orig='eaf') 
-eaf.eaf2solr(orig='eaf')  
+eaf.parse() 
+eaf.eaf2solr()  
 	 
