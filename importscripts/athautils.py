@@ -21,8 +21,8 @@ class MetadataRecord:
 	self.recordingname = params[4]  
 	try:
 	    self.recordingdate = time.strftime("%Y-%m-%e",time.strptime(params[5].strip(),"%d-%b-%y"))+"T12:00:00Z/DAY"#choosing noon for unknown time
-	except ValueError:
-	    print "wrong date format in", ID, params[5]
+	except ValueError: 
+	    #self.recordingdate = time.strftime("%Y-%m-%e",time.strptime("01-Jan-70","%d-%b-%y"))+"T12:00:00Z/DAY"
 	    self.recordingdate = False
 	self.recordinglinguists = params[6].split(';') 
 	self.anlalink = params[7] 
@@ -80,6 +80,7 @@ class EAF:
 	self.utterancefile = utterancefile  
 	self.barefile = self.utterancefile.replace('-utterance.xml','')
 	self.IDfile = self.utterancefile.replace('-utterance','-default-lt')
+	#self.IDfile = self.utterancefile.replace('-utterance','-comment') 
 	self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
 	self.wordsfile = utterancefile.replace('-utterance','-words')
 	self.posfile = utterancefile.replace('-utterance','-pos')
@@ -117,7 +118,7 @@ class EAF:
 	#self.metadata = Metadata(metadatafile)  
     
     def parse(self, orig='eaf'):	
-	self.id_tree = GrAFtree(self.IDfile)
+	self.id_tree = GrAFtree(self.IDfile) 
 	self.ut_tree = GrAFtree(self.UTfile)
 	self.u_tree = GrAFtree(self.utterancefile)
 	if orig=='eaf':
@@ -145,45 +146,48 @@ class EAF:
 	
 		
 	
-	def addToClosureDic(u, uppers, h, level):
-	    if h == []:
-		return
-	    lowertree, lowerstring = h[0]
-	    h = h[1:] 
-	    for upper in uppers:  
-		#print level*' ', upper, lowerstring
-		if upper in lowertree.edged:
-		    lowers = tuple(lowertree.edged[upper])  
-		    #print lowers
-		    try: 
-			for l in lowers:
-			    self.u_tree.edgeclosured[lowerstring][u].append(l)
-		    except KeyError: 
-			self.u_tree.edgeclosured[lowerstring][u] = list(lowers) 
-		    addToClosureDic(u, lowers, h, level+1) 
+	#def addToClosureDic(u, uppers, h, level):
+	    #if h == []:
+		#return
+	    #lowertree, lowerstring = h[0]
+	    #h = h[1:] 
+	    #for upper in uppers:  
+		##print level*' ', upper, lowerstring
+		#if upper in lowertree.edged:
+		    #lowers = tuple(lowertree.edged[upper])  
+		    ##print lowers
+		    #try: 
+			#for l in lowers:
+			    #self.u_tree.edgeclosured[lowerstring][u].append(l)
+		    #except KeyError: 
+			#self.u_tree.edgeclosured[lowerstring][u] = list(lowers) 
+		    #addToClosureDic(u, lowers, h, level+1) 
 		     
 		     
 	 
-	hierarchy = [(self.w_tree,'w'),(self.m_tree,'m'),(self.imt_tree,'imt')]
-	for utterance in utterances: 
-	    if orig=='eaf':
-		addToClosureDic(utterance,tuple(self.iu_tree.edged[utterance]) ,hierarchy,0)   
+	#hierarchy = [(self.w_tree,'w'),(self.m_tree,'m'),(self.imt_tree,'imt')]
+	#for utterance in utterances: 
+	    #if orig=='eaf':
+		#addToClosureDic(utterance,tuple(self.iu_tree.edged[utterance]) ,hierarchy,0)   
 		
 	#pprint.pprint(self.u_tree.edgeclosured['imt'])
 	 
 	
     def getPOS(self,n): 
-	i = self.pos_tree.edged[n][0] 
-	result =  self.pos_tree.textd[i] 
-	return result
+	try:
+	    i = self.pos_tree.edged[n][0] 
+	    result =  self.pos_tree.textd[i] 
+	    return result
+	except KeyError:
+	    print "no POS for", n
+	    return ''
 				    
-    def computeLingex(self,topnode,orig):
-	if orig == 'eaf':
+    def computeLingex(self,topnode):
+	try:
 	    u = lingex.Utteranceoid(self.getText(topnode),
 		translation = self.getTranslation(topnode),
 		children = [lingex.Utteranceoid(self.iu_tree.textd[iunode],
-			    children =  [lingex.Wordoid(self.w_tree.textd[wnode],
-				#translation = 'wordtrsl',
+			    children =  [lingex.Wordoid(self.w_tree.textd[wnode], 
 				translation = self.wt_tree.textd[self.wt_tree.edged[wnode][0]],
 				pos = self.getPOS(wnode) ,
 				children =  [lingex.Morphemoid(self.m_tree.textd[mnode],
@@ -202,23 +206,11 @@ class EAF:
 			    ]
 		)
 	    return u 
+	except KeyError:
+	    print "incomplete example for",self.getText(topnode)
+	    return lingex.Item([])
 	    
-	
-	
-    #def getDominationDictionary_(self, upper, lower):
-	#d  = {}
-	#for x in upper.textd: 
-	    #for y in lower.edged: 
-		#if x == y:   
-		    #edges = lower.edged[x]
-		    #for edge in edges:
-			#try:
-			    #trs = lower.textd[edge]  
-			    #d[x].append(trs)
-			#except KeyError: 
-			    #d[x] = [trs]	 
-	#return d
-	
+	 
     def getText(self,node):
 	return self.u_tree.textd[node]	
 	
@@ -233,8 +225,7 @@ class EAF:
 	#result =  ' '.join(result).replace('- ','-').replace(' -', '-')
 	#return result	
 	
-    def getIMTGlosses(self,node): 
-	#print self.u_tree.edgeclosured['imt']
+    def getIMTGlosses(self,node):  
 	tmp = {} 
 	if node in self.u_tree.edgeclosured['imt']:  
 	    tokens = [ self.imt_tree.textd[x]  for x in self.u_tree.edgeclosured['imt'][node]  ]
@@ -243,9 +234,7 @@ class EAF:
 		    if imt.strip() != '':
 			tmp[imt.strip()] = True 
 	return tmp.keys()
-	 	
-	
-    #def eaf2solr(language=None, offset=0):
+	 	 
     
     def getID(self,topnode):
 	d = self.u_tree.edged	 
@@ -253,18 +242,26 @@ class EAF:
 	for k in d:
 	    if d[k][0]==topnode:
 		n = k
-		break 
+		break  
 	result = None
 	try:
 	    result = self.id_tree.textd[n]
 	except KeyError:
 	    print "utterance %s has no ID" % topnode
-	return result
+	return result   
+	
+    #def getID(self,topnode):
+	#print topnode
+	#d = self.id_tree.edged	
+	#pprint.pprint(d)
+	#try:
+	    #n = d[topnode] 
+	    #result = self.id_tree.textd[n[0]]
+	#except KeyError:
+	    #print "utterance %s has no ID" % topnode
+	#return "-1"
 	
     def eaf2solr(self,orig='eaf'):   
-	#d = self.getDominationDictionary_(self.u_tree,self.ut_tree)
-	#print d
-	#l = [ (self.u_tree.textd[x], d[x][0]) for x in d ] #there is only one translation per utterance, so we can directly access it at [0]
 	topnodes = self.ut_tree.edged.keys() 
 	for topnode in topnodes:  
 	    ID = self.getID(topnode)
@@ -275,8 +272,7 @@ class EAF:
 	    athasolar.write() 
 
 class GrAFtree:
-    def __init__(self,f):
-	print f
+    def __init__(self,f): 
 	self.textd = {} 
 	self.edged = {}
 	self.meaningd = {}
@@ -301,12 +297,7 @@ class GrAFtree:
 		meaning = a.find('.//{http://www.xces.org/ns/GrAF/1.0/}f[@name="meaning"]').text 
 	    except AttributeError:
 		meaning = None
-	    self.meaningd[ref] = meaning 
-	    #print ref, text
-	    #try:
-		#text = t.find('.//*/*').text
-	    #except AttributeError:
-		#text = ''  
+	    self.meaningd[ref] = meaning  
 	for edge in self.edges: 
 	    from_ = edge.attrib['from']
 	    to_ = edge.attrib['to'] 
@@ -337,11 +328,8 @@ class AthaSOLR:
 	self.imtglosses=eaf.getIMTGlosses(topnode)
 	self.grammaticalglosses=[x for x in self.imtglosses if re.search('[A-Z]{2}', x)]
 	self.lexicalglosses=[x for x in self.imtglosses if x not in self.grammaticalglosses]
-	self.mn()
-	try: 
-	    self.lingex = eaf.computeLingex(topnode,'eaf') 
-	except KeyError:
-	    self.lingex = lingex.Item([])
+	self.mn() 
+	self.lingex = eaf.computeLingex(topnode)  
 	
     def removePunctuation(self,w):
 	ps = '()[]{},.:;!?"'
@@ -373,13 +361,10 @@ class AthaSOLR:
      
 	
 
-    def formattemplate(self):  
-	   
-	    
+    def formattemplate(self):   
 	test = getAdditions(self.translation)  
 	#test = []
-	additions =  u'\n'.join([u'<field name="%s">%s</field>' % a for a in test ] )   
-	#ID = '%s.%s.%s' % (iso,j,i)
+	additions =  u'\n'.join([u'<field name="%s">%s</field>' % a for a in test ] )    
 	name = u"%s-%s" % (self.src.encode('utf8'),self.ID) 
 	metadatastring = None
 	try:

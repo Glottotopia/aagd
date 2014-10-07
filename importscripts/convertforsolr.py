@@ -8,9 +8,9 @@ lgs = {'tau':Language('Upper_Tanana',  'tau','63.1377,-142.5244'),
 	
 f = sys.argv[1]
 lg = lgs[sys.argv[2]]
-mdf = sys.argv[3]
+metadatafile = sys.argv[3]
  
-eaf = EAF(f, lg,  metadatafile = mdf)
+eaf = EAF(f, lg,  metadatafile = metadatafile)
 eaf.parse(orig='eaf') 
 eaf.eaf2solr(orig='eaf')  
 	 

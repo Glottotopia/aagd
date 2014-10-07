@@ -150,7 +150,7 @@ class Utteranceoid(Item):
 	for child, token in zip(self.children, tokens):
 	    try:
 		child.insertIMT(token)
-	    except IMTWordError:
+	    except IMTWordError: 
 		pass
         
 class Wordoid(Item):
