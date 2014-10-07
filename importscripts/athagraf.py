@@ -5,13 +5,16 @@ import lingex
 
 import pprint
 import time
+from athahelpers import Metadata
+from graftree import GrAFtree
+from athasolr import AthaSOLR
 
 IMTSPLITTERS = re.compile('[-=;:\.]')
 
-class EAF:    
-    athasolar = None
+class Athagraf:    
+    athasolr = None
     
-    def __init__(self,utterancefile, language = None, metadatafile=None):
+    def __init__(self, utterancefile, language = None, metadatafile=None):
 	self.utterancefile = utterancefile  
 	self.barefile = self.utterancefile.replace('-utterance.xml','')
 	self.IDfile = self.utterancefile.replace('-utterance','-default-lt')
@@ -66,17 +69,6 @@ class EAF:
 	
 	
     def edgeclosure(self):  
-	self.u_tree.edgeclosured = {}  
-	self.u_tree.edgeclosured['iu'] = {} 
-	self.u_tree.edgeclosured['w'] = {}  
-	self.u_tree.edgeclosured['w2wt'] = {}  
-	self.u_tree.edgeclosured['m'] = {}  
-	self.u_tree.edgeclosured['imt'] = {}  
-	#l = [('iu','w'),('w','wt'),('w','m'),('m','imt')] 
-	utterances = self.iu_tree.edged 
-	
-		
-	
 	def addToClosureDic(u, uppers, h, level):
 	    if h == []:
 		return
@@ -94,7 +86,15 @@ class EAF:
 			self.u_tree.edgeclosured[lowerstring][u] = list(lowers) 
 		    addToClosureDic(u, lowers, h, level+1) 
 		     
-		     
+
+	self.u_tree.edgeclosured = {}  
+	self.u_tree.edgeclosured['iu'] = {} 
+	self.u_tree.edgeclosured['w'] = {}  
+	self.u_tree.edgeclosured['w2wt'] = {}  
+	self.u_tree.edgeclosured['m'] = {}  
+	self.u_tree.edgeclosured['imt'] = {}  
+	#l = [('iu','w'),('w','wt'),('w','m'),('m','imt')] 
+	utterances = self.iu_tree.edged 		     
 	 
 	hierarchy = [(self.w_tree,'w'),(self.m_tree,'m'),(self.imt_tree,'imt')]
 	for utterance in utterances:  
@@ -191,14 +191,12 @@ class EAF:
 	    #print "utterance %s has no ID" % topnode
 	#return "-1"
 	
-    def eaf2solr(self):   
+    def graf2solr(self):   
 	topnodes = self.ut_tree.edged.keys() 
 	for topnode in topnodes:  
 	    ID = self.getID(topnode)
-	    athasolar = AthaSOLR(ID, 
-				    topnode,
-				    self) 
-	    athasolar.formattemplate()
-	    athasolar.write() 
+	    athasolr = AthaSOLR(ID, topnode, self) 
+	    athasolr.formattemplate()
+	    athasolr.write() 
 
 

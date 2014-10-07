@@ -1,5 +1,8 @@
-	    
+import re
+from xml.sax.saxutils import escape
+
 class AthaSOLR:
+    """An object holding all information we need for SOLR import"""
     def __init__(self,ID,topnode,eaf):
 	self.topnode=topnode
 	self.language = eaf.language 
@@ -53,7 +56,7 @@ class AthaSOLR:
 	
 
     def formattemplate(self):   
-	test = getAdditions(self.translation)  
+	test = self.getAdditions(self.translation)  
 	#test = []
 	additions =  u'\n'.join([u'<field name="%s">%s</field>' % a for a in test ] )    
 	name = u"%s-%s" % (self.src.encode('utf8'),self.ID) 
@@ -62,7 +65,7 @@ class AthaSOLR:
 	    metadatastring = self.metadata.chunks[self.ID].toSOLRstring()
 	except KeyError:
 	    print "no metadata for", self.ID 
-	self.outstring = template.format(ID=self.ID, 
+	self.outstring = self.template.format(ID=self.ID, 
 			    txt=escape(self.txt),
 			    trs=escape(self.translation),
 			    src=escape(self.src), 
@@ -104,7 +107,7 @@ class AthaSOLR:
     <field name="chars">{lenchars}</field>   
     </doc></add>"""
 
-    def getAdditions(trs):
+    def getAdditions(self,trs):
 	return []
 	trs = trs.lower()
 	complexity = False
@@ -146,7 +149,7 @@ class AthaSOLR:
 	reflexives = ('myself','yourself','himself','herself','ourselves','yourselves','themselves')
 	reciprocals = ('each other',)
 	inceptives = ('begin', 'began', 'begun', 'begins', 'beginning', 'start', 'started', 'starting', 'starts')
-	terminatives = ('ends', 'ended', 'stops', 'stop', 'stopped')
+	terminatives = ('ends', 'ended'	, 'stops', 'stop', 'stopped')
 	repetitives = ('again', )
 	modals = ('want','wants','need','needs','must','can','might','may','could', 'should')
 	additions = []

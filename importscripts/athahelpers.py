@@ -1,3 +1,4 @@
+import time
 
 class MetadataError(ValueError):
     pass

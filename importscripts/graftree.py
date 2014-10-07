@@ -1,3 +1,6 @@
+
+from xml.etree  import ElementTree as ET 
+
 class GrAFtree:
     def __init__(self,f): 
 	self.textd = {} 
