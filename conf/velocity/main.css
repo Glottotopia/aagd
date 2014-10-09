@@ -357,7 +357,8 @@ div.tag{
     border: 1px solid #008;
     border-radius: 5px 5px 5px 5px;
 /*     box-shadow: 1px 1px 2px 1px; */
-    float: left;  
+/*     float: left;   */
+    display:inline;
     margin: 1px;
     min-width: 100px;
     padding: 5px;  
@@ -366,6 +367,8 @@ div.tag{
 /*     height:40px; */
     margin-right:4px;
     padding: 1px;
+    white-space:nowrap;
+    line-height:150%;
 }
 
 div.tag span.field{
@@ -963,4 +966,8 @@ a{
  
 .poslabelVitr{
 /*     text-decoration:underline !important;  */
+}
+
+.tagcontainer2{
+line-height:120%;
 }
