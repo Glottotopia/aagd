@@ -186,7 +186,7 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 <span class="metadatafield">Recording name</span><span class="metadatavalue">$doc.getFieldValue('recordingname')</span> 
 </div>
 #end
-#if($doc.getFieldValue('recordingdate') != '')  
+#if($doc.getFieldValue('recordingdate') and $doc.getFieldValue('recordingdate') != '')  
 <div class="metadatadiv" >
 <span class="metadatafield">Recording date</span><span class="metadatavalue">
      $date.format('medium_date', $doc.getFieldValue('recordingdate'))     
