@@ -1,10 +1,7 @@
-import re
-from xml.etree  import ElementTree as ET 
-from xml.sax.saxutils import escape
+import re 
 import lingex
 
-import pprint
-import time
+import pprint 
 from athahelpers import Metadata
 from graftree import GrAFtree
 from athasolr import AthaSOLR
@@ -100,7 +97,7 @@ class Athagraf:
 	for utterance in utterances:  
 	    addToClosureDic(utterance,tuple(self.iu_tree.edged[utterance]) ,hierarchy,0)   
 		
-	pprint.pprint(self.u_tree.edgeclosured['imt'])
+	#pprint.pprint(self.u_tree.edgeclosured['imt'])
 	 
 	
     def getPOS(self,n): 
