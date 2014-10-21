@@ -8,10 +8,10 @@ lgs = {'tau':Language('Upper_Tanana',  'tau','63.1377,-142.5244'),
 	}
 	
 f = sys.argv[1]
-lg = lgs[sys.argv[2]]
-metadatafile = sys.argv[3]
+lg = f.split('/')[0]
+metadatafile = '/'.join((lg,'metadata.csv')) 
  
-athagraf = Athagraf(f, lg,  metadatafile = metadatafile)
+athagraf = Athagraf(f, lgs[lg],  metadatafile = metadatafile)
 athagraf.parse() 
 athagraf.graf2solr()  
 	 
