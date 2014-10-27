@@ -7,8 +7,10 @@ class AthaSOLR:
 	self.topnode=topnode
 	self.language = eaf.language 
 	self.metadata = eaf.metadata
-	self.src = eaf.barefile 
-	self.ID=ID
+	self.src = eaf.barefile  
+	self.ID=ID 
+	if ID in (None,''):
+	    raise ValueError
 	#
 	self.txt=eaf.getText(topnode)
 	self.lenchars = len(self.txt)
@@ -64,7 +66,7 @@ class AthaSOLR:
 	try:
 	    metadatastring = self.metadata.chunks[self.ID].toSOLRstring()
 	except KeyError:
-	    print "no metadata for", self.ID 
+	    print "no metadata\n\t%s" % self.ID
 	self.outstring = self.template.format(ID=self.ID, 
 			    txt=escape(self.txt),
 			    trs=escape(self.translation),
