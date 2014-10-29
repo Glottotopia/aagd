@@ -42,8 +42,8 @@
 		<div > 
 			<img src="../img/beads.png" id="logo" /></a> 
 			<div id="headerinfo">
-			    <h1> AAGD <h1> 
-			    <h3> Alaskan Athabascan Grammar Database </h3> 
+			    <h1> BVV <h1> 
+			    <h3>  </h3> 
 			#parse('query_form.vm')
 			</div>   
 			#parse('did_you_mean.vm') 
