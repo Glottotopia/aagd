@@ -9,7 +9,7 @@ import json
 import requests
 
 def sanitize(s):
-    return ''.join([x for x in s if x in '-.'+string.ascii_letters+string.digits])
+    return ''.join([x for x in s if x in '-_.'+string.ascii_letters+string.digits])
    
 def updateSOLR(f):
     cmd = 'bash {postpath} {f}'.format(postpath='/usr/local/share/solr-atha/example/exampledocs/post.sh',f=f)
