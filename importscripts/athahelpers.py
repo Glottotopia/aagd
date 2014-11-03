@@ -4,7 +4,7 @@ class MetadataError(ValueError):
     pass
 
 class MetadataRecord:
-    def __init__(self, ID, params):  
+    def __init__(self, ID, params): 
 	self.ID = ID 
 	self.lg = params[0] 
 	self.dialect = params[1] 
@@ -51,10 +51,10 @@ class MetadataRecord:
 
 class Metadata:
     def __init__(self,csvfile):
-	self.chunks = {}
-	lines = open(csvfile).readlines()[1:] #drop first line where the labels are	
+	self.chunks = {} 
+	lines = open(csvfile).readlines()[1:] #drop first line where the labels are 
 	for line in lines:
-	    fields = line.strip().split('\t')
+	    fields = line.split('\t')
 	    ID = fields[0]
 	    self.chunks[ID] = MetadataRecord(ID,fields[1:])
 	     
