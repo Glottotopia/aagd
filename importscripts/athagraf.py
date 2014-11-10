@@ -108,6 +108,11 @@ class Athagraf:
 	except KeyError:
 	    #print "no POS for", n
 	    return '~'
+	
+    def getPOSlist(self,topnode):
+	return list(set([self.getPOS(word) 
+		    for iunode in self.iu_tree.edged[topnode]
+			for word  in  self.w_tree.edged[iunode]]))
 				    
     def computeLingex(self,topnode):
 	try:
