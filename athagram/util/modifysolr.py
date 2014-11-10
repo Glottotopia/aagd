@@ -9,7 +9,7 @@ import json
 import requests
 
 def sanitize(s):
-    return ''.join([x for x in s if x in '-.'+string.ascii_letters+string.digits])
+    return ''.join([x for x in s if x in '-_.'+string.ascii_letters+string.digits])
    
 def updateSOLR(f):
     cmd = 'bash {postpath} {f}'.format(postpath='/usr/local/share/solr-atha/example/exampledocs/post.sh',f=f)
@@ -22,7 +22,7 @@ def add(request):
     value =  request.matchdict['value']
     ID =  request.matchdict['ID']
     ID = sanitize(ID) 
-    address = "http://localhost:8983/solr/athagram/update?commit=true"
+    address = "http://localhost:8983/solr/aagd/update?commit=true"
     data = [{"id":ID,"%s"%field:{"add":"%s"%value}}] 
     r = requests.post(address, data=json.dumps(data), headers={'content-type': 'application/json'})
     try:
@@ -47,7 +47,7 @@ def delete(request):
     value =  request.matchdict['value']
     ID =  request.matchdict['ID']
     ID = sanitize(ID) 
-    getaddress = "http://localhost:8983/solr/athagram/get?id=%s"%ID
+    getaddress = "http://localhost:8983/solr/aagd/get?id=%s"%ID
     r = requests.get(getaddress)
     doc = None
     try:
@@ -68,7 +68,7 @@ def delete(request):
     empty = False
     if len(newvalues) == 0:
 	empty = True
-    address = "http://localhost:8983/solr/athagram/update?commit=true"
+    address = "http://localhost:8983/solr/aagd/update?commit=true"
     data = [{"id":ID,"%s"%field:{"set":newvalues}}] 
     
     r = requests.post(address, data=json.dumps(data), headers={'content-type': 'application/json'})
