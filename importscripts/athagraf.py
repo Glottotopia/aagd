@@ -1,6 +1,7 @@
 import re 
 import lingex
 
+import random
 import pprint 
 from athahelpers import Metadata
 from graftree import GrAFtree
@@ -14,8 +15,9 @@ class Athagraf:
     def __init__(self, utterancefile, language = None, metadatafile=None):
 	self.utterancefile = utterancefile  
 	self.barefile = self.utterancefile.replace('-utterance.xml','')
-	self.IDfile = self.utterancefile.replace('-utterance','-default-lt')
+	#self.IDfile = self.utterancefile.replace('-utterance','-default-ldt')
 	#self.IDfile = self.utterancefile.replace('-utterance','-comment') 
+	self.IDfile = self.utterancefile.replace('-utterance','-ID')
 	self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
 	self.wordsfile = utterancefile.replace('-utterance','-words')
 	self.posfile = utterancefile.replace('-utterance','-pos')
@@ -169,16 +171,40 @@ class Athagraf:
 	 	 
     
     def getID(self,topnode):
-	#print topnode,
-	d = self.u_tree.edged	 
+	#print topnode 
+	IDid = self.id_tree.edged[topnode][0]
+	#print IDid
+	ID = self.id_tree.textd[IDid]
+	#print ID
+	return ID
+	##print d
+	#n = None
+	#for k in d:
+	    #if d[k][0]==topnode:
+		#n = k
+		##print n
+		#break  
+	#result = None 
+	#print self.id_tree.edged
+	#print self.id_tree.textd
+	#result = self.id_tree.textd[n] 
+	##print repr(result)
+	#return result       
+	
+    def getID2(self,topnode):
+	print topnode   
+	print d
 	n = None
 	for k in d:
 	    if d[k][0]==topnode:
 		n = k
+		print n
 		break  
 	result = None 
+	print self.id_tree.edged
+	print self.id_tree.textd
 	result = self.id_tree.textd[n] 
-	#print repr(result)
+	print repr(result)
 	return result   
 	
     #def getID(self,topnode):
@@ -201,9 +227,11 @@ class Athagraf:
 		ID = self.getID(topnode)	    
 	    except KeyError: 
 		print "no ID\n\t%s" % self.getText(topnode)
+		#ID = "rnd"+str(random.randint(1000000,9999999))
 		continue	
 	    if ID == '':
 		print "no ID\n\t%s" % self.getText(topnode)
+		#ID = "rnd"+str(random.randint(1000000,9999999))
 		continue	
 		
 	    athasolr = AthaSOLR(ID, topnode, self) 

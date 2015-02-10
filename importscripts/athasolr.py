@@ -68,6 +68,8 @@ class AthaSOLR:
 	name = u"%s-%s" % (self.src.encode('utf8'),self.ID) 
 	metadatastring = None
 	try:
+	    #print self.ID
+	    #print self.metadata.chunks[self.ID]
 	    metadatastring = self.metadata.chunks[self.ID].toSOLRstring()
 	except KeyError:
 	    print "no metadata\n\t%s" % self.ID
