@@ -146,7 +146,11 @@ class Athagraf:
 	    
 	 
     def getText(self,node):
-	return self.u_tree.textd[node]	
+	try:
+	    return self.u_tree.textd[node]	
+	except KeyError:
+	    print "could not retrieve text for node", node
+	    return "[missing text]"
 	
     def getTranslation(self,node):
 	return self.ut_tree.textd[self.ut_tree.edged[node][0]]
@@ -193,18 +197,19 @@ class Athagraf:
 	
     def getID2(self,topnode):
 	print topnode   
-	print d
 	n = None
+	d = self.id_tree.edged
+	print d 
 	for k in d:
 	    if d[k][0]==topnode:
 		n = k
 		print n
 		break  
 	result = None 
-	print self.id_tree.edged
-	print self.id_tree.textd
+	#print self.id_tree.edged
+	#print self.id_tree.textd
 	result = self.id_tree.textd[n] 
-	print repr(result)
+	#print repr(result)
 	return result   
 	
     #def getID(self,topnode):
