@@ -124,11 +124,7 @@
    <field name="vernacularword" type="string" indexed="true" stored="true" multiValued="true"   termVectors="true" />
    <field name="translatedword" type="string" indexed="true" stored="true" multiValued="true"   termVectors="true" />
    <field name="gloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/> 
-<<<<<<< HEAD
    <field name="pos"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/> 
-=======
-   <field name="pos"          type="string" indexed="true" stored="true" multiValued="true"  /> 
->>>>>>> 1bb2803b05e10db9b94e5d9808abbbb8150a2709
    <field name="lexicalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
    <field name="grammaticalgloss"          type="string" indexed="true" stored="true" multiValued="true"   termVectors="true"/>
 <!--    from metadata spreadsheet -->
