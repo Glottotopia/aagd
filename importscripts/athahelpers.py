@@ -52,7 +52,7 @@ class MetadataRecord:
 class Metadata:
     def __init__(self,csvfile):
 	self.chunks = {} 
-	lines = open(csvfile).readlines()[1:] #drop first line where the labels are 
+	lines = open(csvfile).readlines()[1:] #drop first line where the labels are  
 	for line in lines:
 	    fields = line.split('\t')
 	    ID = fields[0]

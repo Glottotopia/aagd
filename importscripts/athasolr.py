@@ -7,8 +7,10 @@ class AthaSOLR:
 	self.topnode=topnode
 	self.language = eaf.language 
 	self.metadata = eaf.metadata
-	self.src = eaf.barefile 
-	self.ID=ID
+	self.src = eaf.barefile  
+	self.ID=ID 
+	if ID in (None,''):
+	    raise ValueError
 	#
 	self.txt=eaf.getText(topnode)
 	self.lenchars = len(self.txt)
@@ -23,7 +25,8 @@ class AthaSOLR:
 	self.grammaticalglosses=[x for x in self.imtglosses if re.search('[A-Z]{2}', x)]
 	self.lexicalglosses=[x for x in self.imtglosses if x not in self.grammaticalglosses]
 	self.mn() 
-	self.lingex = eaf.computeLingex(topnode)  
+	self.lingex = eaf.computeLingex(topnode) 
+	self.partsofspeech = eaf.getPOSlist(topnode)
 	
     def removePunctuation(self,w):
 	ps = '()[]{},.:;!?"'
@@ -37,6 +40,9 @@ class AthaSOLR:
 	
     def getIMTString(self,imts):
 	return u'\n'.join([u'<field name="gloss">%s</field>'%w.strip() for w in self.imtglosses ] )  
+	
+    def getPOSString(self,poss):
+	return u'\n'.join([u'<field name="pos">%s</field>'%w.strip() for w in self.partsofspeech ] )  
 	
     def getLexicalGlossString(self,imts):
 	return u'\n'.join([u'<field name="lexicalgloss">%s</field>'%w.strip() for w in self.lexicalglosses ] )  
@@ -62,9 +68,11 @@ class AthaSOLR:
 	name = u"%s-%s" % (self.src.encode('utf8'),self.ID) 
 	metadatastring = None
 	try:
+	    #print self.ID
+	    #print self.metadata.chunks[self.ID]
 	    metadatastring = self.metadata.chunks[self.ID].toSOLRstring()
 	except KeyError:
-	    print "no metadata for", self.ID 
+	    print "no metadata\n\t%s" % self.ID
 	self.outstring = self.template.format(ID=self.ID, 
 			    txt=escape(self.txt),
 			    trs=escape(self.translation),
@@ -78,6 +86,7 @@ class AthaSOLR:
 			    lenws = self.lenwords, 
 			    lenchars=self.lenchars, 
 			    #imtwords=self.imtwords, 
+			    pos = self.getPOSString(self.partsofspeech),
 			    glosses=self.getIMTString(self.imtglosses),
 			    grammaticalglosses=self.getGrammaticalGlossString(self.grammaticalglosses),
 			    lexicalglosses=self.getLexicalGlossString(self.lexicalglosses),
@@ -101,6 +110,7 @@ class AthaSOLR:
     {glosses}
     {grammaticalglosses}
     {lexicalglosses}
+    {pos}
     <field name="lingex">{lingex}</field>  
     <field name="location">{coords}</field>  
     <field name="words">{lenws}</field>  

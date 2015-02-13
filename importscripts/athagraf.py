@@ -1,6 +1,7 @@
 import re 
 import lingex
 
+import random
 import pprint 
 from athahelpers import Metadata
 from graftree import GrAFtree
@@ -14,8 +15,9 @@ class Athagraf:
     def __init__(self, utterancefile, language = None, metadatafile=None):
 	self.utterancefile = utterancefile  
 	self.barefile = self.utterancefile.replace('-utterance.xml','')
-	self.IDfile = self.utterancefile.replace('-utterance','-default-lt')
+	#self.IDfile = self.utterancefile.replace('-utterance','-default-ldt')
 	#self.IDfile = self.utterancefile.replace('-utterance','-comment') 
+	self.IDfile = self.utterancefile.replace('-utterance','-ID')
 	self.IUfile = utterancefile.replace('-utterance','-Intonation_unit')
 	self.wordsfile = utterancefile.replace('-utterance','-words')
 	self.posfile = utterancefile.replace('-utterance','-pos')
@@ -106,8 +108,13 @@ class Athagraf:
 	    result =  self.pos_tree.textd[i] 
 	    return result
 	except KeyError:
-	    print "no POS for", n
-	    return ''
+	    #print "no POS for", n
+	    return '~'
+	
+    def getPOSlist(self,topnode):
+	return list(set([self.getPOS(word) 
+		    for iunode in self.iu_tree.edged[topnode]
+			for word  in  self.w_tree.edged[iunode]]))
 				    
     def computeLingex(self,topnode):
 	try:
@@ -116,7 +123,7 @@ class Athagraf:
 		children = [lingex.Utteranceoid(self.iu_tree.textd[iunode],
 			    children =  [lingex.Wordoid(self.w_tree.textd[wnode], 
 				translation = self.wt_tree.textd[self.wt_tree.edged[wnode][0]],
-				pos = self.getPOS(wnode) ,
+				pos = self.getPOS(wnode),
 				children =  [lingex.Morphemoid(self.m_tree.textd[mnode],
 						    translation = self.imt_tree.textd.get(self.imt_tree.edged.get(mnode,[''])[0])
 						    ) 					     
@@ -134,7 +141,7 @@ class Athagraf:
 		)
 	    return u 
 	except KeyError:
-	    print "incomplete example for",self.getText(topnode)
+	    print "incomplete example\n\t%s"% self.getText(topnode)
 	    return lingex.Item([])
 	    
 	 
@@ -164,17 +171,40 @@ class Athagraf:
 	 	 
     
     def getID(self,topnode):
-	d = self.u_tree.edged	 
+	#print topnode 
+	IDid = self.id_tree.edged[topnode][0]
+	#print IDid
+	ID = self.id_tree.textd[IDid]
+	#print ID
+	return ID
+	##print d
+	#n = None
+	#for k in d:
+	    #if d[k][0]==topnode:
+		#n = k
+		##print n
+		#break  
+	#result = None 
+	#print self.id_tree.edged
+	#print self.id_tree.textd
+	#result = self.id_tree.textd[n] 
+	##print repr(result)
+	#return result       
+	
+    def getID2(self,topnode):
+	print topnode   
+	print d
 	n = None
 	for k in d:
 	    if d[k][0]==topnode:
 		n = k
+		print n
 		break  
-	result = None
-	try:
-	    result = self.id_tree.textd[n]
-	except KeyError:
-	    print "utterance %s has no ID" % topnode
+	result = None 
+	print self.id_tree.edged
+	print self.id_tree.textd
+	result = self.id_tree.textd[n] 
+	print repr(result)
 	return result   
 	
     #def getID(self,topnode):
@@ -190,8 +220,20 @@ class Athagraf:
 	
     def graf2solr(self):   
 	topnodes = self.ut_tree.edged.keys() 
-	for topnode in topnodes:  
-	    ID = self.getID(topnode)
+	#print topnodes
+	for topnode in topnodes:
+	    #print topnode
+	    try:
+		ID = self.getID(topnode)	    
+	    except KeyError: 
+		print "no ID\n\t%s" % self.getText(topnode)
+		#ID = "rnd"+str(random.randint(1000000,9999999))
+		continue	
+	    if ID == '':
+		print "no ID\n\t%s" % self.getText(topnode)
+		#ID = "rnd"+str(random.randint(1000000,9999999))
+		continue	
+		
 	    athasolr = AthaSOLR(ID, topnode, self) 
 	    athasolr.formattemplate()
 	    athasolr.write() 
