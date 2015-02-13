@@ -18,17 +18,35 @@ function addfield(id,field,value){
 		fieldspan.appendChild(document.createTextNode(field));
 		valuespan = document.createElement('span');
 		valuespan.setAttribute('class','value');
-		valuespan.setAttribute('id',id+field+value)
-		valuespan.appendChild(document.createTextNode(value));
-		closerspan = document.createElement('span');
-		a = document.createElement('a');
-		a.appendChild(document.createTextNode("X"))
-		a.setAttribute('href','#');
-		clickstring = "deletefield('"+id+"','"+field+"','"+value+"');" 
-		a.setAttribute('onClick',clickstring);
-		closerspan.appendChild(a);
-		valuespan.appendChild(closerspan);
-		div.appendChild(fieldspan);
+		valueidspan = document.createElement('span'); 
+		valueidspan.setAttribute('id',id+field+value)
+		valueidspan.appendChild(document.createTextNode(value));
+		valuespan.appendChild(valueidspan)
+		
+		select = document.createElement('select')
+		o1=document.createElement('option')
+		o1.appendChild(document.createTextNode('---'))
+		o2=document.createElement('option')
+		o2.appendChild(document.createTextNode('delete'))
+		o3=document.createElement('option')
+		o3.appendChild(document.createTextNode('exemplar'))
+		 
+		select.appendChild(o1)
+		select.appendChild(o2)
+// 		select.appendChild(o3)
+		select.setAttribute('onChange','deletefield("'+id+'","'+field+'","'+value+'")')
+		valuespan.appendChild(select)
+		
+// 		closerspan = document.createElement('span');		
+// 		a = document.createElement('a');
+// 		a.appendChild(document.createTextNode("X"))
+// 		a.setAttribute('href','#');
+// 		clickstring = "deletefield('"+id+"','"+field+"','"+value+"');" 
+// 		a.setAttribute('onClick',clickstring);		
+// 		closerspan.appendChild(a);
+// 		valuespan.appendChild(closerspan);
+		
+		div.appendChild(fieldspan); 
 		div.appendChild(valuespan);
 		tagcontainer.appendChild(div) 
 	    }

@@ -242,7 +242,13 @@ $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="l
 					<span class="closer">
 
     #if($request.params.get('admin')=='true')  
-					    <a href="#" onclick="deletefield('$docId','$fieldname','$value')">X</a>
+<select onChange="deletefield('$docId','$fieldname', '$value')">
+<option>---</option>
+<option>delete</option>
+## <option>exemplar</option>	
+## 					    <a href="#" onclick="deletefield('$docId','$fieldname','$value')">X</a>
+##  					    <a href="#" onclick="exemplar('$docId','$fieldname','$value')">[!]</a>
+</select>
     #end
 					</span>
 				    </span>
