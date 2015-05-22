@@ -70,7 +70,8 @@
 		<div > 
 		    <div class="navigators">
 			#parse("facets.vm")
-		    </div>  
+			#parse("upload.vm")
+		    </div>   
 		</div>
 	    </div><!--/span--> 
 

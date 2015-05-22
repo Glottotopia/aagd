@@ -223,6 +223,25 @@ class Athagraf:
 	    #print "utterance %s has no ID" % topnode
 	#return "-1"
 	
+    def graf2json(self): 
+	topnodes = self.ut_tree.edged.keys() 
+	#print topnodes
+	for topnode in topnodes:
+	    #print topnode
+	    try:
+		ID = self.getID(topnode)	    
+	    except KeyError: 
+		print "no ID\n\t%s" % self.getText(topnode)
+		#ID = "rnd"+str(random.randint(1000000,9999999))
+		continue	
+	    if ID == '':
+		print "no ID\n\t%s" % self.getText(topnode)
+		#ID = "rnd"+str(random.randint(1000000,9999999))
+		continue	
+		
+	    athasolr = AthaSOLR(ID, topnode, self) 
+	    return athasolr.json()
+	
     def graf2solr(self):   
 	topnodes = self.ut_tree.edged.keys() 
 	#print topnodes

@@ -1,5 +1,6 @@
 import re
 from xml.sax.saxutils import escape
+import xmltodict
 
 class AthaSOLR:
     """An object holding all information we need for SOLR import"""
@@ -54,6 +55,9 @@ class AthaSOLR:
 	out = open('solr/%s.xml'%self.ID,'w')
 	out.write(self.outstring.encode('utf8'))
 	out.close()
+	
+    def json(self):
+	return json.dumps(xmltodict.parse(self.outstring)
 	
 	
     translation = ''

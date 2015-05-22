@@ -7,6 +7,12 @@ import string
 import json
 #import subprocess
 import requests
+ 
+from athagraf import Athagraf
+from athahelpers import Language
+import poioapi
+from poioapi.io import typecraft, elan
+
 
 def sanitize(s):
     return ''.join([x for x in s if x in '-_.'+string.ascii_letters+string.digits])
@@ -87,6 +93,70 @@ def delete(request):
 				    'msg':u'unknown error: %s'%retval}), 
 				    content_type='application/json')
     
+    
+   
+def put(request):    
+    def _transferfile(inputfn,input_file,accept):  
+	filetype = inputfn.split('.')[-1]
+	if filetype != 'eaf':
+	    raise WrongFileFormatError(filetype)
+	tmpdir = '%s'%uuid.uuid4()
+	os.mkdir(os.path.join('/tmp',tmpdir)) 
+	file_path = os.path.join('/tmp',tmpdir,inputfn)
+	# We first write to a temporary file to prevent incomplete files from
+	# being used.
+	temp_file_path = file_path + '~'
+	output_file = open(temp_file_path, 'wb')
+	# Finally write the data to a temporary file
+	input_file.seek(0)
+	while True:
+	    data = input_file.read(2<<16)
+	    if not data:
+		break
+	    output_file.write(data)          
+	output_file.close()
+	# Now that we know the file has been fully saved to disk move it into place.
+	os.rename(temp_file_path, file_path) 
+	return file_path
+    
+
+    lgs = {'tau':Language('Upper_Tanana',  'tau','63.1377,-142.5244'),
+    'taa':Language('Lower_Tanana',  'taa','65.1577, -149.3765'),
+    'koy':Language('Koyukon',       'koy','64.8816,-157.7044')
+    }
+    
+    fn = request.POST['elanfile'].filename
+    input_file = request.POST['elanfile'].file 
+    lg = fn[:3].lower()
+    eafpath = _transferfile(fn, input_file)
+    
+    parser  =  poioapi.io.elan.Parser(eafpath) 
+    writer  =  poioapi.io.graf.Writer()
+    converter  =  poioapi.io.graf.GrAFConverter(parser,  writer)
+    converter.parse()
+    converter.write("%s.hdr"%eafpath[:-4])
+
+    athagraf = Athagraf(eafpath.replace('.eaf','-utterance.xml'), lgs[lg],  metadatafile = None)
+    athagraf.parse() 
+    jsondata = athagraf.graf2json()  
+    
+    updateaddress = "http://localhost:8983/solr/aagd/update?commit=true" 
+    
+    r = requests.post(address, jsondata, headers={'content-type': 'application/json'})
+    try:
+	retval = json.loads(r.text)['responseHeader']['status']
+    except:
+	return Response(body=json.dumps({'status':'failure',
+					'msg':u'json error'}), content_type='application/json')
+    if retval == 0:
+	return Response(body=json.dumps({'status':'success','msg':u'Added %s:%s to %s' % (field,value,ID)} ), content_type='application/json') 
+    if retval == 400:
+	msg = json.loads(r.text)['error']['msg']
+	return Response(body=json.dumps({'status':'failure',
+					    'msg':msg}), content_type='application/json')
+    return Response(body=json.dumps({'status':'failure',
+				    'msg':u'unknown error: %s'%retval}), 
+				    content_type='application/json')
     
     
     
