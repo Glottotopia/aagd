@@ -1,0 +1,9 @@
+<h2 #annTitle("Upload")>
+  Upload  
+ <span class="togglebutton"  onClick="toggleBox('uploadbox')">&#x25BE;&#x25B4;</span>
+</h2>
+<div class="navigatorbox" id="uploadbox">
+<form action="http://www.glottotopia.org/aagd/mod/put" method="post" enctype="multipart/form-data" >   
+<input type="file" accept="text/*" name="elanfile"></input>
+<button type="submit">Upload</button>
+</div>
