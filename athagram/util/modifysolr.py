@@ -12,6 +12,10 @@ from athagraf import Athagraf
 from athahelpers import Language
 import poioapi
 from poioapi.io import typecraft, elan
+import uuid 
+
+class WrongFileFormatError(Exception):
+    pass
 
 
 def sanitize(s):
@@ -96,11 +100,11 @@ def delete(request):
     
    
 def put(request):    
-    def _transferfile(inputfn,input_file,accept):  
+    def _transferfile(inputfn,input_file):  
 	filetype = inputfn.split('.')[-1]
 	if filetype != 'eaf':
 	    raise WrongFileFormatError(filetype)
-	tmpdir = '%s'%uuid.uuid4()
+	tmpdir = '%s'%uuid.uuid4() 
 	os.mkdir(os.path.join('/tmp',tmpdir)) 
 	file_path = os.path.join('/tmp',tmpdir,inputfn)
 	# We first write to a temporary file to prevent incomplete files from
@@ -128,28 +132,40 @@ def put(request):
     fn = request.POST['elanfile'].filename
     input_file = request.POST['elanfile'].file 
     lg = fn[:3].lower()
-    eafpath = _transferfile(fn, input_file)
+    try:
+	eafpath = _transferfile(fn, input_file)
+    except WrongFileFormatError as e:
+	return Response(body=json.dumps({'status':'failure',
+				'msg':u'wrong file format. Expected: eaf. Found:%s'%e.args[0]}), 
+				content_type='application/json')
     
     parser  =  poioapi.io.elan.Parser(eafpath) 
     writer  =  poioapi.io.graf.Writer()
     converter  =  poioapi.io.graf.GrAFConverter(parser,  writer)
     converter.parse()
     converter.write("%s.hdr"%eafpath[:-4])
-
-    athagraf = Athagraf(eafpath.replace('.eaf','-utterance.xml'), lgs[lg],  metadatafile = None)
-    athagraf.parse() 
-    jsondata = athagraf.graf2json()  
+    try:
+	language = lgs[lg]
+    except KeyError:
+	return Response(body=json.dumps({'status':'failure',
+				'msg':u'File name must begin with a valid ISO639-3 code. Code found:%s'%lg}), 
+				content_type='application/json')
+	
+    athagraf = Athagraf(eafpath.replace('.eaf','-utterance.xml'), language,  metadatafile = '%s/metadata.csv'%lg)
     
+    athagraf.parse() 
+    jsondata = athagraf.graf2json()   
+	
     updateaddress = "http://localhost:8983/solr/aagd/update?commit=true" 
     
-    r = requests.post(address, jsondata, headers={'content-type': 'application/json'})
+    r = requests.post(updateaddress, jsondata, headers={'content-type': 'application/json'})
     try:
 	retval = json.loads(r.text)['responseHeader']['status']
     except:
 	return Response(body=json.dumps({'status':'failure',
 					'msg':u'json error'}), content_type='application/json')
     if retval == 0:
-	return Response(body=json.dumps({'status':'success','msg':u'Added %s:%s to %s' % (field,value,ID)} ), content_type='application/json') 
+	return Response(body=json.dumps({'status':'success','msg':u'uploaded %s' % fn} ), content_type='application/json') 
     if retval == 400:
 	msg = json.loads(r.text)['error']['msg']
 	return Response(body=json.dumps({'status':'failure',
@@ -173,6 +189,9 @@ if __name__ == '__main__':
     
     config.add_route('delete', '/delete/{ID}/{field}/{value}')
     config.add_view(delete, route_name='delete')
+    
+    config.add_route('put', '/put')
+    config.add_view(put, route_name='put')
     
     
     app = config.make_wsgi_app() 

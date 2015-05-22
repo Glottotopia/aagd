@@ -3,7 +3,31 @@
  <span class="togglebutton"  onClick="toggleBox('uploadbox')">&#x25BE;&#x25B4;</span>
 </h2>
 <div class="navigatorbox" id="uploadbox">
-<form action="http://www.glottotopia.org/aagd/mod/put" method="post" enctype="multipart/form-data" >   
-<input type="file" accept="text/*" name="elanfile"></input>
-<button type="submit">Upload</button>
+<form id="uploadform" action="http://www.glottotopia.org/aagd/mod/put" method="post" enctype="multipart/form-data" >   
+<input type="file" accept="text/*" name="elanfile" id="elanupload"></input>
+<button   id="uploadsubmit">Upload</button> 
+<div id="uploadmsg"></div>
 </div>
+
+<script>
+$('#uploadsubmit').on('click', function(event) {
+    event.preventDefault();
+    var file_data = $('#elanupload').prop("files")[0];  
+    filename = $("#elanupload").val() 
+    var form_data = new FormData();                  
+    form_data.append('elanfile', file_data);                           
+    $.ajax({
+                url: 'http://www.glottotopia.org/aagd/mod/put',
+                dataType: 'json',  
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,                         
+                type: 'post',
+                success: function(response){ 
+                    $('#uploadmsg').attr("class",response.status)
+                    $('#uploadmsg').text(response.msg)
+                }
+     });
+});
+</script>

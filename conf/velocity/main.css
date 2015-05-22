@@ -579,7 +579,7 @@ div.tag span.value{
 }
 
 .lingex .xlevel1>.label{
-/*     display:none;  */
+    display:none; 
 }
 
 
@@ -636,8 +636,8 @@ div.tag span.value{
 
 .xlabel{
     background:#f3f3f3 !important;
-    padding:1px;
-    margin:1px;
+    padding:2px;
+    margin:2px;
 }
 
 

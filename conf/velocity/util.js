@@ -91,6 +91,11 @@ function deletefield(id,field,value){
     });
 }
 
+
+ 
+
+
+
 function hidealltagbags(){
      $('div[class="tagbag"]').hide('fast')
      $('div[class="tagbag"]').parent().attr('style','')

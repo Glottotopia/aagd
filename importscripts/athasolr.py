@@ -1,6 +1,7 @@
 import re
 from xml.sax.saxutils import escape
 import xmltodict
+import json
 
 class AthaSOLR:
     """An object holding all information we need for SOLR import"""
@@ -57,7 +58,30 @@ class AthaSOLR:
 	out.close()
 	
     def json(self):
-	return json.dumps(xmltodict.parse(self.outstring)
+	return json.dumps(
+	    [{"id":"test123456", 
+	    "name":{"set":"test123456"},
+	    "vernacularsentence":{"set":escape(self.txt)},
+	    "translatedsentence":{"set":escape(self.translation)},
+	    "author":{"set":escape(self.src)}, 
+	    #"vernacularwords":{"set":self.vernacularwords}, 
+	    #"translationwords":{"set":self.translationwords}, 
+	    #"additions":{"set":additions}, 
+	    "language":{"set":self.language.name.replace(' ','_')},
+	    "iso639-3":{"set":self.language.iso},
+	    "location":{"set":self.language.coords}, 
+	    "words":{"set": self.lenwords}, 
+	    "chars":{"set":self.lenchars}, 
+	    #"pos ":{"set": self.getPOSString(self.partsofspeech)},
+	    #"glosses":{"set":self.getIMTString(self.imtglosses)},
+	    #"grammaticalglosses":{"set":self.getGrammaticalGlossString(self.grammaticalglosses)},
+	    #"lexicalglosses":{"set":self.getLexicalGlossString(self.lexicalglosses)},
+	    #"metadatastring":{"set": metadatastring},
+	    "lingex":{"set":self.lingex.bb()}
+	    }] 
+	    
+	    #"name":{"set":"Donald Duck"}}] 
+	)
 	
 	
     translation = ''
