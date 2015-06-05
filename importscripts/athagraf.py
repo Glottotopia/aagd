@@ -6,6 +6,7 @@ import pprint
 from athahelpers import Metadata
 from graftree import GrAFtree
 from athasolr import AthaSOLR
+import json
 
 IMTSPLITTERS = re.compile('[-=;:\.]')
 
@@ -141,7 +142,7 @@ class Athagraf:
 		)
 	    return u 
 	except KeyError:
-	    print "incomplete example\n\t%s"% self.getText(topnode)
+	    #print "incomplete example\n\t%s"% self.getText(topnode)
 	    return lingex.Item([])
 	    
 	 
@@ -226,6 +227,8 @@ class Athagraf:
     def graf2json(self): 
 	topnodes = self.ut_tree.edged.keys() 
 	#print topnodes
+	results = []
+	ids = []
 	for topnode in topnodes:
 	    #print topnode
 	    try:
@@ -240,7 +243,12 @@ class Athagraf:
 		continue	
 		
 	    athasolr = AthaSOLR(ID, topnode, self) 
-	    return athasolr.json()
+	    results.append(athasolr.forjson())
+	    ids.append(ID)
+	    #out = open('debug.json', 'w')    
+	    #out.write(result)
+	    #out.close()
+	return json.dumps(results), ids
 	
     def graf2solr(self):   
 	topnodes = self.ut_tree.edged.keys() 

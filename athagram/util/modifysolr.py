@@ -154,7 +154,8 @@ def put(request):
     athagraf = Athagraf(eafpath.replace('.eaf','-utterance.xml'), language,  metadatafile = '%s/metadata.csv'%lg)
     
     athagraf.parse() 
-    jsondata = athagraf.graf2json()   
+    jsondata, ids = athagraf.graf2json()   
+    #print jsondata
 	
     updateaddress = "http://localhost:8983/solr/aagd/update?commit=true" 
     
@@ -165,7 +166,7 @@ def put(request):
 	return Response(body=json.dumps({'status':'failure',
 					'msg':u'json error'}), content_type='application/json')
     if retval == 0:
-	return Response(body=json.dumps({'status':'success','msg':u'uploaded %s' % fn} ), content_type='application/json') 
+	return Response(body=json.dumps({'status':'success','msg':u'uploaded %s with %i IDs %s' % (fn,len(ids),', '.join(sorted(ids)))} ), content_type='application/json') 
     if retval == 400:
 	msg = json.loads(r.text)['error']['msg']
 	return Response(body=json.dumps({'status':'failure',

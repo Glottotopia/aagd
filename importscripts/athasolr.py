@@ -57,10 +57,9 @@ class AthaSOLR:
 	out.write(self.outstring.encode('utf8'))
 	out.close()
 	
-    def json(self):
-	return json.dumps(
-	    [{"id":"test123456", 
-	    "name":{"set":"test123456"},
+    def forjson(self):
+	return {"id":self.ID,
+	    "name":{"set":self.ID},
 	    "vernacularsentence":{"set":escape(self.txt)},
 	    "translatedsentence":{"set":escape(self.translation)},
 	    "author":{"set":escape(self.src)}, 
@@ -78,10 +77,7 @@ class AthaSOLR:
 	    #"lexicalglosses":{"set":self.getLexicalGlossString(self.lexicalglosses)},
 	    #"metadatastring":{"set": metadatastring},
 	    "lingex":{"set":self.lingex.bb()}
-	    }] 
-	    
-	    #"name":{"set":"Donald Duck"}}] 
-	)
+	    } 
 	
 	
     translation = ''
