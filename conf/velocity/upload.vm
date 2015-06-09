@@ -7,6 +7,7 @@
 <input type="file" accept="text/*" name="elanfile" id="elanupload"></input>
 <button   id="uploadsubmit">Upload</button> 
 <div id="uploadmsg"></div>
+<ul id="uploadedids"></ul>
 </div>
 
 <script>
@@ -27,6 +28,10 @@ $('#uploadsubmit').on('click', function(event) {
                 success: function(response){ 
                     $('#uploadmsg').attr("class",response.status)
                     $('#uploadmsg').text(response.msg)
+		    for (i=0;i<response.ids.length;i++){
+			ID = response.ids[i];
+			$('#uploadedids').append('<li><a target="_blank" href="http://www.glottotopia.org/solr/aagd/browse?q=id%3A'+ID+'">'+ID+'</a></li>')
+		    }                    
                 }
      });
 });

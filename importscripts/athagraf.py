@@ -234,14 +234,13 @@ class Athagraf:
 	    try:
 		ID = self.getID(topnode)	    
 	    except KeyError: 
-		print "no ID\n\t%s" % self.getText(topnode)
-		#ID = "rnd"+str(random.randint(1000000,9999999))
-		continue	
+		#print "no ID\n\t%s" % self.getText(topnode)
+		ID = "rnd"+str(random.randint(1000000,9999999))
+		#continue	
 	    if ID == '':
-		print "no ID\n\t%s" % self.getText(topnode)
-		#ID = "rnd"+str(random.randint(1000000,9999999))
-		continue	
-		
+		#print "no ID\n\t%s" % self.getText(topnode)
+		ID = "rnd"+str(random.randint(1000000,9999999))
+		#continue			
 	    athasolr = AthaSOLR(ID, topnode, self) 
 	    results.append(athasolr.forjson())
 	    ids.append(ID)

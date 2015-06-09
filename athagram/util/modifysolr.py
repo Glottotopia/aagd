@@ -141,9 +141,15 @@ def put(request):
     
     parser  =  poioapi.io.elan.Parser(eafpath) 
     writer  =  poioapi.io.graf.Writer()
-    converter  =  poioapi.io.graf.GrAFConverter(parser,  writer)
-    converter.parse()
-    converter.write("%s.hdr"%eafpath[:-4])
+    try:
+	converter  =  poioapi.io.graf.GrAFConverter(parser,  writer)
+	converter.parse()
+	converter.write("%s.hdr"%eafpath[:-4])
+    except:
+	return Response(body=json.dumps({'status':'failure',
+				'msg':u'Unknown conversion error'}), 
+				content_type='application/json')
+	
     try:
 	language = lgs[lg]
     except KeyError:
@@ -166,7 +172,9 @@ def put(request):
 	return Response(body=json.dumps({'status':'failure',
 					'msg':u'json error'}), content_type='application/json')
     if retval == 0:
-	return Response(body=json.dumps({'status':'success','msg':u'uploaded %s with %i IDs %s' % (fn,len(ids),', '.join(sorted(ids)))} ), content_type='application/json') 
+	return Response(body=json.dumps({'status':'success',
+					'msg':u'uploaded %s with %i IDs' % (fn,len(ids)),
+					'ids':sorted(ids)}), content_type='application/json') 
     if retval == 400:
 	msg = json.loads(r.text)['error']['msg']
 	return Response(body=json.dumps({'status':'failure',
