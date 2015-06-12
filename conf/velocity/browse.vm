@@ -85,7 +85,7 @@ $( ".translatedsentence" ).on( "dblclick", function() {
 var text = ($( this ).text()).trim(); 
 var ID_ = ($( this ).attr("id"))
 ID2 =  ID_.substring(4)
-$( this ).replaceWith('<div><input type="text" id="modtextfield" size="60" value="' + text + '"></input><button type="submit" onclick="modfield(ID2,\'translatedsentence\',modtextfield.value)">Change</button><button id="cancelbutton">Cancel</button></div>');
+$( this ).replaceWith('<div id="'+ID_+'"><input type="text" id="modtextfield" size="60" value="' + text + '"></input><button type="submit" onclick="modtrans(ID2,modtextfield.value)">Change</button><button id="cancelbutton">Cancel</button></div>');
 });
 
 

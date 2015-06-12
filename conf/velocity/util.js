@@ -1,8 +1,33 @@
-function modfield(id,field,value){
-    alert(id)
-    alert(field)
-    alert(value)
+
+// function modfield(id,field,value){
+//     modtrans(id,value)
+// }
+
+
+function modtrans(id,value){
+    field='translatedsentence'
+//     alert(id)
+//     alert(field)
+//     alert(value)
+    host = "http://www.glottotopia.org/aagd/mod";  
+    url = host+'/add/'+id+'/'+field+'/'+value ;
+    $.ajax({
+    dataType: "json",
+    url: url, 
+    success: function (o) { 
+	    msg = o.msg
+	    status = o.status  	    
+	    if (status == 'success'){ 		
+		$("#trs_"+id).replaceWith('span class="translatedsentence" id="trs_'+id+'">'+value+'</span>')
+		$("#trs_"+id).attr('background','green')		
+	    }
+	    if (status == 'failure'){ 
+		$("#trs_"+id).attr('background','green')
+	    }
+	},
+    });
 }
+ 
 
 
 function addfield(id,field,value){
