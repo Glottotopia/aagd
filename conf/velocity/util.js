@@ -1,3 +1,9 @@
+function modfield(id,field,value){
+    alert(id)
+    alert(field)
+    alert(value)
+}
+
 
 function addfield(id,field,value){
     host = "http://www.glottotopia.org/aagd/mod";  
@@ -109,7 +115,7 @@ function toggleBox(id){
     $("#"+id).toggle('fast')
 }
 
-function setFlag(id,value){     
+function setFlag(id,value){
     host = "http://www.glottotopia.org/aagd/mod";  
     url = host+'/flag/'+id+'/'+value;
     if (value==false){
@@ -143,4 +149,4 @@ function setFlag(id,value){
 
 
 
-
+// ondblclick="$(this).replaceWith($('<form ><div><input type=\'text\' value=\' + this.innerHTML + '\'></input	><button type=\'submit\'>test</button></div>  </form>'));alert(123)"
