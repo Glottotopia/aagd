@@ -1,4 +1,34 @@
 
+// function modfield(id,field,value){
+//     modtrans(id,value)
+// }
+
+
+function modtrans(id,value){
+    field='translatedsentence'
+//     alert(id)
+//     alert(field)
+//     alert(value)
+    host = "http://www.glottotopia.org/aagd/mod";  
+    url = host+'/set/'+id+'/'+field+'/'+value ;
+    $.ajax({
+    dataType: "json",
+    url: url, 
+    success: function (o) { 
+	    msg = o.msg
+	    status = o.status  	    
+	    if (status == 'success'){ 		
+		$("#trs_"+id).replaceWith('<span class="translatedsentence" id="trs_'+id+'" style="background:#7f7;border:4px double green">'+value+'</span>')
+	    }
+	    if (status == 'failure'){ 
+		$("#trs_"+id).attr('background','green')
+	    }
+	},
+    });
+}
+ 
+
+
 function addfield(id,field,value){
     host = "http://www.glottotopia.org/aagd/mod";  
     url = host+'/add/'+id+'/'+field+'/'+value ;
@@ -109,7 +139,7 @@ function toggleBox(id){
     $("#"+id).toggle('fast')
 }
 
-function setFlag(id,value){     
+function setFlag(id,value){
     host = "http://www.glottotopia.org/aagd/mod";  
     url = host+'/flag/'+id+'/'+value;
     if (value==false){
@@ -143,4 +173,4 @@ function setFlag(id,value){
 
 
 
-
+// ondblclick="$(this).replaceWith($('<form ><div><input type=\'text\' value=\' + this.innerHTML + '\'></input	><button type=\'submit\'>test</button></div>  </form>'));alert(123)"

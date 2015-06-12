@@ -14,4 +14,4 @@ metadatafile = '/'.join((lg,'metadata.csv'))
 athagraf = Athagraf(f, lgs[lg],  metadatafile = metadatafile)
 athagraf.parse() 
 athagraf.graf2solr()  
-	 
+print athagraf.graf2json()	 

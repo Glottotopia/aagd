@@ -64,13 +64,19 @@
 			#end
 		    #end
 		    </tr>
-		    <tr><td colspan="$l" id="">'#field('translatedsentence')'</td></tr>
+		    <tr><td colspan="$l">'#field('translatedsentence')'</td></tr>
 		</table>
 	#end
    </td>
   </tr>
 </table> 
-<div><span class="translatedsentence">'#field('translatedsentence')'</span> <span class="examplesource">#field('aadgID') </span></div>
+<div>
+ <span class="translatedsentence" id="trs_$doc.getFieldValue('id')">#field('translatedsentence')</span>
+ <span class="examplesource">#field('aadgID') </span>
+</div>
+
+
+
 
 ## <span> #field('author')</span></div>
  
@@ -158,16 +164,15 @@
 				#foreach($value in $doc.getFieldValues($fieldname))
 				    <span  id="$docId$fieldname$value">$esc.html($value)
 					<span class="closer">
-
-    #if($request.params.get('admin')=='true')  
-<select onChange="deletefield('$docId','$fieldname', '$value')">
-<option>---</option>
-<option>delete</option>
-## <option>exemplar</option>	
-## 					    <a href="#" onclick="deletefield('$docId','$fieldname','$value')">X</a>
-##  					    <a href="#" onclick="exemplar('$docId','$fieldname','$value')">[!]</a>
-</select>
-    #end
+					    #if($request.params.get('admin')=='true')  
+						<select onChange="deletefield('$docId','$fieldname', '$value')">
+						<option>---</option>
+						<option>delete</option>
+						## <option>exemplar</option>	
+						## 					    <a href="#" onclick="deletefield('$docId','$fieldname','$value')">X</a>
+						##  					    <a href="#" onclick="exemplar('$docId','$fieldname','$value')">[!]</a>
+						</select>
+					    #end
 					</span>
 				    </span>
 				#end

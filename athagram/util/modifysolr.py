@@ -41,11 +41,37 @@ def add(request):
 	return Response(body=json.dumps({'status':'failure',
 					'msg':u'json error'}), content_type='application/json')
     if retval == 0:
-	return Response(body=json.dumps({'status':'success','msg':u'Added %s:%s to %s' % (field,value,ID)} ), content_type='application/json') 
+	return Response(body=json.dumps({'status':'success','msg':u'Added %s:%s to %s' % (ID,field,value)} ), content_type='application/json') 
     if retval == 400:
 	msg = json.loads(r.text)['error']['msg']
 	return Response(body=json.dumps({'status':'failure',
 					    'msg':msg}), content_type='application/json')
+    return Response(body=json.dumps({'status':'failure',
+				    'msg':u'unknown error: %s'%retval}), 
+				    content_type='application/json')
+	
+   	     
+
+def set_(request):  
+    #there is currently no way of checking whether the field to be changed should be allowed to be changed!!
+    field = request.matchdict['field']
+    value =  request.matchdict['value']
+    ID =  request.matchdict['ID']
+    ID = sanitize(ID) 
+    address = "http://localhost:8983/solr/aagd/update?commit=true"
+    data = [{"id":ID,"%s"%field:{"set":"%s"%value}}] 
+    r = requests.post(address, data=json.dumps(data), headers={'content-type': 'application/json'})
+    try:
+	retval = json.loads(r.text)['responseHeader']['status']
+    except:
+	return Response(body=json.dumps({'status':'failure',
+					'msg':u'json error'}), content_type='application/json')
+    if retval == 0:
+	return Response(body=json.dumps({'status':'success','msg':u'Changed %s:%s to %s' % (ID,field,value)} ), content_type='application/json') 
+    if retval == 400:
+	msg = json.loads(r.text)['error']['msg']
+	return Response(body=json.dumps({'status':'failure',
+					    'msg':msg+data}), content_type='application/json')
     return Response(body=json.dumps({'status':'failure',
 				    'msg':u'unknown error: %s'%retval}), 
 				    content_type='application/json')
@@ -195,6 +221,10 @@ if __name__ == '__main__':
     config.add_route('add', '/add/{ID}/{field}/{value}')
     #config.add_route('add', '/add')
     config.add_view(add, route_name='add')
+    
+    config.add_route('set_', '/set/{ID}/{field}/{value}')
+    #config.add_route('add', '/add')
+    config.add_view(set_, route_name='set_')
     
     config.add_route('delete', '/delete/{ID}/{field}/{value}')
     config.add_view(delete, route_name='delete')
