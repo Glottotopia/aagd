@@ -155,6 +155,12 @@ def put(request):
     'koy':Language('Koyukon',       'koy','64.8816,-157.7044')
     }
     
+    metadataurls = {
+	'tau':'https://www.dropbox.com/sh/be37fv36h53qm6k/AABJjgZTjbJHjNDWBRTqoteea/taumetadata.csv',
+	'taa':'',
+	'koy':'',
+    }
+    
     fn = request.POST['elanfile'].filename
     input_file = request.POST['elanfile'].file 
     lg = fn[:3].lower()
@@ -183,7 +189,7 @@ def put(request):
 				'msg':u'File name must begin with a valid ISO639-3 code. Code found:%s'%lg}), 
 				content_type='application/json')
 	
-    athagraf = Athagraf(eafpath.replace('.eaf','-utterance.xml'), language,  metadatafile = '%s/metadata.csv'%lg)
+    athagraf = Athagraf(eafpath.replace('.eaf','-utterance.xml'), language,  metadataurl = metadataurls[lg])
     
     athagraf.parse() 
     jsondata, ids = athagraf.graf2json()   

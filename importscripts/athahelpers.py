@@ -1,4 +1,9 @@
 import time
+#import urllib2
+#import requests
+import subprocess
+import os
+#import cookielib, urllib2
 
 class MetadataError(ValueError):
     pass
@@ -50,9 +55,22 @@ class MetadataRecord:
 	return s
 
 class Metadata:
-    def __init__(self,csvfile):
+    def __init__(self,csvfile,url):
 	self.chunks = {} 
-	lines = open(csvfile).readlines()[1:] #drop first line where the labels are  
+	if csvfile != None:
+	    lines = open(csvfile).readlines()[1:] #drop first line where the labels are  
+	else:  
+	    #syscall = "wget %s" % url #urllib2 has problems with cookies
+	    #print syscall
+	    subprocess.call(["wget", "-O" "metadatafile", url])
+	    #cj = cookielib.CookieJar()
+	    #opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+	    #urllib2.install_opener(opener)
+	    #f = urllib2.urlopen(url)
+	    lines = open('metadatafile').readlines()[1:]
+	    os.remove("metadatafile")
+
+	print lines
 	for line in lines:
 	    fields = line.split('\t')
 	    ID = fields[0]
