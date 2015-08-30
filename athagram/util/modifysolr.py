@@ -32,25 +32,14 @@ def updateSOLR(f):
 def add(request):  
     field = request.matchdict['field']
     value =  request.matchdict['value']
-    ID =  request.matchdict['ID']
-    ID = sanitize(ID) 
-    address = "http://localhost:8983/solr/aagd/update?commit=true"
-    data = [{"id":ID,"%s"%field:{"add":"%s"%value}}] 
-    r = requests.post(address, data=json.dumps(data), headers={'content-type': 'application/json'})
+    doc = getDoc(request)
     try:
-	retval = json.loads(r.text)['responseHeader']['status']
-    except:
-	return Response(body=json.dumps({'status':'failure',
-					'msg':u'json error'}), content_type='application/json')
-    if retval == 0:
-	return Response(body=json.dumps({'status':'success','msg':u'Added %s:%s to %s' % (ID,field,value)} ), content_type='application/json') 
-    if retval == 400:
-	msg = json.loads(r.text)['error']['msg']
-	return Response(body=json.dumps({'status':'failure',
-					    'msg':msg}), content_type='application/json')
-    return Response(body=json.dumps({'status':'failure',
-				    'msg':u'unknown error: %s'%retval}), 
-				    content_type='application/json')
+	doc[field] = list(set(doc[field].append(value))) 
+    except KeyError:
+	doc[field] = [value]
+    
+    result =  _copydoc(doc,'added %s to %s' % (value, field))
+    return result
 	
    	     
 
@@ -126,17 +115,21 @@ def _copydoc(doc, successmsg,empty=False):
 				    'msg':u'unknown error: %s'%retval}), 
 				    content_type='application/json')
     
-    
-   
-def delete(request):    
-    field = request.matchdict['field']
-    value =  request.matchdict['value']
+
+def getDoc(request):
     ID =  request.matchdict['ID']
     ID = sanitize(ID) 
     getaddress = "http://localhost:8983/solr/aagd/get?id=%s&latest=true"%ID
     r = requests.get(getaddress) 
     doc = json.loads(r.text)['doc'] 
-    try:#this is probably not needed as it is unlikely to be triggered by a good faith user
+    return doc
+    
+   
+def delete(request):    
+    field = request.matchdict['field']
+    value =  request.matchdict['value']
+    doc = getDoc(request)
+    try: 
 	values = doc[field]
     except KeyError:
 	return Response(body=json.dumps({'status':'failure',
