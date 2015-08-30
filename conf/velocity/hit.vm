@@ -4,7 +4,7 @@
  *  depending on which fields the doc has
  *#
 
-#set($docId = $doc.getFieldValue('id'))
+#set($docId = $doc.getFieldValue('athaid'))
 
 <div class="result-document">
 

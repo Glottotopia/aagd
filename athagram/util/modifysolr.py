@@ -67,7 +67,7 @@ def add(request):
     except KeyError:
 	doc[field] = [value]
     try:	
-	result =  _copydoc(doc,'added %s to %s' % (value, field))
+	result =  _copydoc(doc)
     except JSONError:
 	return Response(body=json.dumps({'status':'failure',
 					'msg':u'JSONError'}), content_type='application/json')

@@ -13,7 +13,7 @@
   <span class="mlt">   
     #if($params.getBool('mlt', false) == false)
      ## <a href="#lensNoQ&q=id:$docId&mlt=true">&hellip;</a>
-     <a href="#lensNoQ&q=id:$docId&mlt=true">similar examples</a>
+     <a href="#lensNoQ&q=id:$docId+AND+latest:true&mlt=true">similar examples</a>
   #end
   </span>
 </div>

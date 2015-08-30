@@ -113,6 +113,7 @@ function deletefield(id,field,value){
 		}
 	    }
 	    if (status == 'failure'){
+		cid = "callbackmsg"+id  
 		document.getElementById(cid).innerHTML = msg
 		document.getElementById(cid).setAttribute("class",status+ " callbackmsg")
 		document.getElementById(cid).setAttribute("style",'')	

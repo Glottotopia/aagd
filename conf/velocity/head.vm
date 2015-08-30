@@ -71,7 +71,7 @@
  
 
 
-<script type="text/javascript" src="#{url_root}/js/util.js"></script>
+<script type="text/javascript" src="#{url_root}/js/util.js"></script> 
 ##     <script src="../../dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="#{url_root}/js/bootstrap.min.js"></script>
  

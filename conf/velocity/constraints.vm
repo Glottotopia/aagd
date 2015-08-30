@@ -6,9 +6,12 @@
     <ul>  
 	#set($i = 0)
 	#set($l = $params.getParams('fq').size())
-	#foreach($fq in $params.getParams('fq'))    
+	#foreach($fq in $params.getParams('fq'))   
 	    #set($ll = []) 
-	    <li class="constraintremover"> 
+	    #if($fq!="latest:true")
+		<li class="constraintremover"> 
+	    #else
+	    #end
 	    #set($part1 = $request.params.getParams('fq').subList(0,$i) ) 
 	    #set($i = $i+1)
 	    #set($part2 = $request.params.getParams('fq').subList($i,$l) )     
@@ -18,7 +21,9 @@
 	    #foreach($el in $part2)   
 		#set($_dummy = $ll.add($el)) 
 	    #end
-	    <a href="#url_for_filters($ll)" >$fq</a> 
+	    #if($fq!="latest:true")
+		<a href="#url_for_filters($ll)" >$fq</a>  
+	    #end
 	    </li>    
 	#end  
     </div></div>
