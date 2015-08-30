@@ -97,7 +97,7 @@ def delete(request):
 	doc[field] = newvalues 
     try:
 	#result =  _copydoc(doc,'deleted %s from %s' % (value, field), empty=empty)
-	result =  _copydoc(doc,'deleted %s from %s' % (value, field))
+	result =  _copydoc(doc,empty=empty)
     except JSONError:
 	return Response(body=json.dumps({'status':'failure',
 					'msg':u'JSONError'}), content_type='application/json')
