@@ -107,6 +107,7 @@
    -->
         
    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
+   <field name="uuid" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
 
    <!-- points to the root document of a block of nested documents -->
    <field name="_root_" type="string" indexed="true" stored="false"/>
@@ -117,6 +118,10 @@
    <field name="translatedsentence" type="text_general" indexed="true" stored="true"/>
    <field name="imtsentence" type="text_general" indexed="true" stored="true"/>
    <field name="flag" type="boolean" indexed="true" stored="true"/>
+   
+<!--    versioning -->
+   <field name="latest" type="boolean" indexed="true" stored="true"/>
+   <field name="version" type="int" indexed="true" stored="true"/>
    
    
    <field name="iso639-3" type="string" indexed="true" stored="true"/>

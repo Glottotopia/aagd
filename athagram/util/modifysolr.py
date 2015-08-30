@@ -14,6 +14,8 @@ import poioapi
 from poioapi.io import typecraft, elan
 import uuid 
 
+import pprint
+
 class WrongFileFormatError(Exception):
     pass
 
@@ -76,53 +78,83 @@ def set_(request):
 				    'msg':u'unknown error: %s'%retval}), 
 				    content_type='application/json')
 	
-   	 
+def _deprecate(uuid):  
+    """deprecates a doc when a modification is made and an updated copy is available"""
     
-def delete(request):    
-    field = request.matchdict['field']
-    value =  request.matchdict['value']
-    ID =  request.matchdict['ID']
-    ID = sanitize(ID) 
-    getaddress = "http://localhost:8983/solr/aagd/get?id=%s"%ID
-    r = requests.get(getaddress)
-    doc = None
-    try:
-	doc = json.loads(r.text)['doc']
-    except:
-	pass
-    try:
-	values = doc[field]
-    except KeyError:
-	return Response(body=json.dumps({'status':'failure',
-					'msg':u'Field %s not present in %s'%(field,ID)
-					}), content_type='application/json')
-    if value not in values:
-	return Response(body=json.dumps({'status':'failure',
-					'msg':u'Value %s not present in %s'%(value,ID)
-					}), content_type='application/json')
-    newvalues = [v for v in values if v != value]
-    empty = False
-    if len(newvalues) == 0:
-	empty = True
     address = "http://localhost:8983/solr/aagd/update?commit=true"
-    data = [{"id":ID,"%s"%field:{"set":newvalues}}] 
+    data = [{"uuid":uuid,"latest":{"set":False}}] 
+    r = requests.post(address, data=json.dumps(data), headers={'content-type': 'application/json'})
+    try:
+	retval = json.loads(r.text)['responseHeader']['status']
+    except:
+	print "json error when deprecating", uuid
+    if retval == 0:
+	return Response(body=json.dumps({'status':'success','msg':u'Deleted %s:%s from %s' % (field,value,ID), 'empty':empty} ), content_type='application/json') 
+    if retval == 400:
+	pass
+    print 'unknown error',retval
     
+def _copydoc(doc, successmsg,empty=False):      
+    olduuid  = doc["uuid"]
+    newuuid = str(uuid.uuid4())
+    doc["version"] += 1
+    doc["uuid"] = newuuid
+    doc["latest"] = True
+    address  = "http://localhost:8983/solr/aagd/update?commit=true"
+   
+    data = {'add':{'doc':doc}}  
+   
     r = requests.post(address, data=json.dumps(data), headers={'content-type': 'application/json'})
     try:
 	retval = json.loads(r.text)['responseHeader']['status']
     except:
 	return Response(body=json.dumps({'status':'failure',
 					'msg':u'json error'}), content_type='application/json')
-    if retval == 0:
-	return Response(body=json.dumps({'status':'success','msg':u'Deleted %s:%s from %s' % (field,value,ID), 'empty':empty} ), content_type='application/json') 
+    if retval == 0:	
+	try:
+	    _deprecate(olduuid)
+	except:
+	    return Response(body=json.dumps({'status':'error','msg':u'updated, but old doc not deprecated', 'empty':empty} ), content_type='application/json') 
+	return Response(body=json.dumps({'status':'success','msg':'%s (%s;%s)' %(successmsg, olduuid, newuuid), 'empty':empty,'deprecated':True} ), content_type='application/json') 
     if retval == 400:
-	msg = json.loads(r.text)['error']['msg']
+	ret = json.loads(r.text)
+	msg = ret['error']['msg']
 	return Response(body=json.dumps({'status':'failure',
-					    'msg':msg}), content_type='application/json')
+					    'msg':msg,
+					    'ret':ret}), content_type='application/json')
     return Response(body=json.dumps({'status':'failure',
 				    'msg':u'unknown error: %s'%retval}), 
 				    content_type='application/json')
     
+    
+   
+def delete(request):    
+    field = request.matchdict['field']
+    value =  request.matchdict['value']
+    ID =  request.matchdict['ID']
+    ID = sanitize(ID) 
+    getaddress = "http://localhost:8983/solr/aagd/get?id=%s&latest=true"%ID
+    r = requests.get(getaddress) 
+    doc = json.loads(r.text)['doc'] 
+    try:#this is probably not needed as it is unlikely to be triggered by a good faith user
+	values = doc[field]
+    except KeyError:
+	return Response(body=json.dumps({'status':'failure',
+					'msg':u'Field %s not present in %s'%(field,ID)
+					}), content_type='application/json')
+    #updates of doc fields is handled here. Versioning is handled by _copydoc
+    newvalues = list(set([v for v in values if v != value]))
+    empty = False
+    if len(newvalues) == 0:
+	empty = True
+	del doc[field]
+    else:
+	doc[field] = newvalues 
+    result =  _copydoc(doc,'deleted %s from %s' % (value, field), empty=empty)
+    return result
+
+
+
     
    
 def put(request):    

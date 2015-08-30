@@ -95,7 +95,7 @@
 <span class="metadatafield">Language</span><span class="metadatavalue">$doc.getFieldValue('lg')</span> 
 </div>
 #end
-#if($doc.getFieldValue('dialect') != '')  
+#if($doc.getFieldValue('dialect'))  
 <div class="metadatadiv" >
 <span class="metadatafield">Dialect</span><span class="metadatavalue">$doc.getFieldValue('dialect')</span> 
 </div>
