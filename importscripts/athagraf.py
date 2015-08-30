@@ -247,7 +247,7 @@ class Athagraf:
 	    #out = open('debug.json', 'w')    
 	    #out.write(result)
 	    #out.close()
-	return json.dumps(results), ids
+	return results, ids
 	
     def graf2solr(self):   
 	topnodes = self.ut_tree.edged.keys() 

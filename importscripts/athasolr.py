@@ -59,24 +59,25 @@ class AthaSOLR:
 	
     def forjson(self):
 	return {"id":self.ID,
-	    "name":{"set":self.ID},
-	    "vernacularsentence":{"set":escape(self.txt)},
-	    "translatedsentence":{"set":escape(self.translation)},
-	    "author":{"set":escape(self.src)}, 
-	    #"vernacularwords":{"set":self.vernacularwords}, 
-	    #"translationwords":{"set":self.translationwords}, 
-	    #"additions":{"set":additions}, 
-	    "language":{"set":self.language.name.replace(' ','_')},
-	    "iso639-3":{"set":self.language.iso},
-	    "location":{"set":self.language.coords}, 
-	    "words":{"set": self.lenwords}, 
-	    "chars":{"set":self.lenchars}, 
-	    #"pos ":{"set": self.getPOSString(self.partsofspeech)},
-	    #"glosses":{"set":self.getIMTString(self.imtglosses)},
-	    #"grammaticalglosses":{"set":self.getGrammaticalGlossString(self.grammaticalglosses)},
-	    #"lexicalglosses":{"set":self.getLexicalGlossString(self.lexicalglosses)},
-	    #"metadatastring":{"set": metadatastring},
-	    "lingex":{"set":self.lingex.bb()}
+	    "name":{self.ID},
+	    "vernacularsentence":{escape(self.txt)},
+	    "translatedsentence":{escape(self.translation)},
+	    "author":{escape(self.src)}, 
+	    #"vernacularwords":{self.vernacularwords}, 
+	    #"translationwords":{self.translationwords}, 
+	    #"additions":{additions}, 
+	    "language":{self.language.name.replace(' ','_')},
+	    "iso639-3":{self.language.iso},
+	    "location":{self.language.coords}, 
+	    "words":{ self.lenwords}, 
+	    "chars":{self.lenchars}, 
+	    #"pos ":{ self.getPOSString(self.partsofspeech)},
+	    #"glosses":{self.getIMTString(self.imtglosses)},
+	    #"grammaticalglosses":{self.getGrammaticalGlossString(self.grammaticalglosses)},
+	    #"lexicalglosses":{self.getLexicalGlossString(self.lexicalglosses)},
+	    #"metadatastring":{ metadatastring},
+	    "lingex":{self.lingex.bb()},
+	    "version":{0}
 	    } 
 	
 	
