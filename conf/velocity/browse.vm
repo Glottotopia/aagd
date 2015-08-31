@@ -1,93 +1,103 @@
-
 #set($searcher = $request.searcher)
 #set($params = $request.params)
 ## #set($clusters = $response.response.clusters)
 #set($mltResults = $response.response.get("moreLikeThis"))
 #set($annotate = $params.get("annotateBrowse"))
-
 #parse("variables.vm")
 #parse("occultono.vm")
 #parse("hiddenparams.vm")
-
-
-
-<body>  
-
-    <div class="navbar navbar-inverse" role="navigation"> 
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Alaskan Athabascan Grammar Database</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Browse</a></li>
-            <li><a href="http://www.glottotopia.org/aagd/About">About</a></li>
-            <li><a href="http://www.glottotopia.org/aagd/Contact">Contact</a></li>
-            <li><a href="http://www.glottotopia.org/aagd/Languages">Languages</a></li>
-            <li><a href="http://www.glottotopia.org/aagd/Glossary">Glossary</a></li>
-            <li><a href="http://www.glottotopia.org/aagd/Assumptions">Assumptions</a></li>
-            <li><a href="http://www.glottotopia.org/aagd/Help">Help</a></li> 
-            <li><a href="http://www.glottotopia.org/aagd/Search">Search</a></li>
-##             <li><a href="https://github.com/Glottotopia/athagram/wiki/Manual" target="_blank">Commentary</a></li>
-          </ul>
-        </div><!--/.nav-collapse --> 
+        </button>
+        <a class="navbar-brand" href="#">Alaskan Athabascan Grammar Database</a>
     </div>
-
-    <div class="container">  
-	    <div class="col-xs-12 col-sm-9">  
-		<div > 
-			<img src="../img/beads.png" id="logo" /></a> 
-			<div id="headerinfo">
-			    <h1> AAGD <h1> 
-			    <h3>  </h3> 
-			#parse('query_form.vm')
-			</div>   
-			#parse('did_you_mean.vm') 
-		</div> 
-		<div class="row">
-		    <div class="pagination">
-			#parse("pagination_top.vm")
-		    </div> 
-		    <div class="error">
-			#parse("error.vm")
-		    </div> 
-		    <div class="results">
-			#parse("results_list.vm")
-		    </div> 
-		    <div class="pagination">
-			#parse("pagination_bottom.vm")
-		    </div>
-		</div><!--/row-->
-	<footer>
-	    <p>&copy; Glottotopia 2013-4</p>
-	</footer> 
-	    </div><!--/span--> 
-	    <div class="col-xs-6 col-sm-3 " >
-		<div > 
-		    <div class="navigators">
-			#parse("facets.vm")
-			#parse("upload.vm")
-		    </div>   
-		</div>
-	    </div><!--/span--> 
-
-	<hr/> 
-    </div><!--/.container-->
-
-
-<script>
-$( ".translatedsentence" ).on( "dblclick", function() {
-var text = ($( this ).text()).trim(); 
-var ID_ = ($( this ).attr("id"))
-ID2 =  ID_.substring(4)
-$( this ).replaceWith('<div id="'+ID_+'"><input type="text" id="modtextfield" size="60" value="' + text + '"></input><button type="submit" onclick="modtrans(ID2,modtextfield.value)">Change</button><button id="cancelbutton">Cancel</button></div>');
-});
-
-
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="#">Browse</a>
+            </li>
+            <li>
+                <a href="http://www.glottotopia.org/aagd/About">About</a>
+            </li>
+            <li>
+                <a href="http://www.glottotopia.org/aagd/Contact">Contact</a>
+            </li>
+            <li>
+                <a href="http://www.glottotopia.org/aagd/Languages">Languages</a>
+            </li>
+            <li>
+                <a href="http://www.glottotopia.org/aagd/Glossary">Glossary</a>
+            </li>
+            <li>
+                <a href="http://www.glottotopia.org/aagd/Assumptions">Assumptions</a>
+            </li>
+            <li>
+                <a href="http://www.glottotopia.org/aagd/Help">Help</a>
+            </li>
+            <li>
+                <a href="http://www.glottotopia.org/aagd/Search">Search</a>
+            </li>
+##             <li><a href="https://github.com/Glottotopia/athagram/wiki/Manual" target="_blank">Commentary</a></li>
+        </ul>
+    </div>
+    <!--/.nav-collapse --> 
+</div>
+<div class="container">
+    <div class="col-xs-12 col-sm-9">
+        <div >
+            <img src="#{url_for_solr}/admin/file?file=/img/beads.png" id="logo" alt="Logo"/>
+        </a>
+        <div id="headerinfo">
+            <h1> AAGD </h1>
+            <h3>  </h3>
+            #parse('query_form.vm')
+        </div>
+        #parse('did_you_mean.vm') 
+    </div>
+    <div class="row">
+        <div class="pagination">
+            #parse("pagination_top.vm")
+        </div>
+        <div class="error">
+            #parse("error.vm")
+        </div>
+        <div class="results">
+            #parse("results_list.vm")
+        </div>
+        <div class="pagination">
+            #parse("pagination_bottom.vm")
+        </div>
+    </div>
+    <!--/row-->
+</div>
+<!--/span--> 
+<div class="col-xs-6 col-sm-3 " >
+    <div >
+        <div class="navigators">
+            #parse("facets.vm")
+            #parse("upload.vm")
+        </div>
+    </div>
+</div>
+<!--/span--> 
+<hr/>
+</div>
+<!--/.container-->
+<script  type="text/javascript">
+    $( ".translatedsentence" ).on( "dblclick", function() {
+    var text = ($( this ).text()).trim(); 
+    var ID_ = ($( this ).attr("id"))
+    ID2 =  ID_.substring(4)
+    $( this ).replaceWith('<div id="'+ID_+'">
+    <input type="text" id="modtextfield" size="60" value="' + text + '"></input>
+    <button type="submit" onclick="modtrans(ID2,modtextfield.value)">Change</button>
+    <button id="cancelbutton">Cancel</button>
+    </div>
+    ');
+    });
 </script>
-

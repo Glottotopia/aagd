@@ -1,21 +1,20 @@
 #**
- *  Overall HTML page layout
- *#
-
+*  Overall HTML page layout
+*#
+<!DOCTYPE html>
 <html>
-<head>
-  #parse("head.vm")
-</head>
-  <body>
-##     <div id="admin"><a href="#url_root/#/#core_name">Solr Admin</a></div>
-    <div id="header">
-      #parse("header.vm")
-    </div> 
-    <div id="content"> 
-      $content
-    </div>
-##     <div id="footer">
-##       #parse("footer.vm")
-##     </div>
-  </body>
+    <head>
+        #parse("head.vm")
+    </head>
+    <body>
+        <div id="header">
+            #parse("header.vm")
+        </div>
+        <div id="content"> 
+            $content
+        </div>
+        <div id="footer">
+            <p>&copy; Glottotopia 2013-2015</p>
+        </div>
+    </body>
 </html>

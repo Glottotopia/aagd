@@ -31,7 +31,7 @@
 	</div> 
 	<div class="tab-pane" id="freetab$thistagbagid">  
 	    <div class="addcontainer" > 
-		<script>
+		<script script type="text/javascript">
 		    $(function() { 
 			$( "#meaningsadder$thistagbagid" ).autocomplete({
 			source: onotags

@@ -3,13 +3,13 @@
 	    <input type="hidden" id="spatialFQ" name="fq" value=""/>
 	    <input type="hidden" name="queryOpts" value="spatial"/>   
 	    <input type="hidden" id="fq" name="fq" />  
-	    <input type="hidden" id="mapbounds" name="mapbounds" value="$mapbounds"/>
-	    <input type="hidden" id="north" name="north" value="$north"/>
-	    <input type="hidden" id="east" name="east"value="$east"/>
-	    <input type="hidden" id="south" name="south"   value="$south"/>
-	    <input type="hidden" id="west" name="west" value="$west"/>  
-	    <input type="hidden" id="rows" name="rows" id="rows" value="10"/>    
-	    <input type="hidden" id="zoom" name="zoom" value="$zoom"/>
+	    <input type="hidden" id="mapbounds" name="mapbounds" value="$!mapbounds"/>
+	    <input type="hidden" id="north" name="north" value="$!north"/>
+	    <input type="hidden" id="east" name="east" value="$!east"/>
+	    <input type="hidden" id="south" name="south"   value="$!south"/>
+	    <input type="hidden" id="west" name="west" value="$!west"/>  
+	    <input type="hidden" id="rows" name="rows" value="10"/>    
+	    <input type="hidden" id="zoom" name="zoom" value="$!zoom"/>
     </div>
 
 <div id="ono">
@@ -18,13 +18,13 @@
 	#set($cat=$a[0])
 	#set($values=$a[1])
 	#foreach($value in $values)
-	    <input name="ono" type="hidden" title="$cat:$value"> </input>
+	    <input name="ono" type="hidden" title="$!cat:$!value" /> 
 	#end
     #end
 #end
 </div>
 
-<script>
+<script type="text/javascript">
     $(function() {
 	onotags = []; //global
 	var els = document.getElementsByName("ono");
