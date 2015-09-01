@@ -77,7 +77,7 @@ class Item():
         childhtml = '\n'.join([c.html(outer=False, level=level+1) for c in self.children]) 
         pospart = ''
         if self.pos != '':
-	    pospart = u"""  <div class="pos"><div><span><a class="poslabel poslabel{}" title="show paradigm for {}" href="http://www.google.com/search?q={}" target="_blank">{}</a></span></div></div>\n""".format(self.pos,self.label,self.label,self.pos)
+	    pospart = u"""  <div class="pos"><div><span><a class="poslabel poslabel{}" title="show paradigm for {}" href="http://www.glottotopia.org/aagd/Glossary#{}" target="_blank">{}</a></span></div></div>\n""".format(self.pos,self.label,self.label,self.pos)
 	    #pospart = u"""  <div class="pos"><div title="Verb paradigm\n1s\n2s\n3s\n1p\n2p\n3p"><span class="poslabel">{}</span></div></div>\n""".format(self.pos,self.pos)
 	translationpart = ''
 	if self.translation != '':
