@@ -1,0 +1,6 @@
+#! /usr/bin/python
+#Fix and uncomment those 2 lines if your moin command doesn't find the MoinMoin package:
+#import sys
+#sys.path.insert(0, '/usr/lib/python/site-packages')
+from MoinMoin.script.moin import run
+run()
