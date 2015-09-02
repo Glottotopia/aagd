@@ -27,9 +27,6 @@
 	<lib dir="../../../contrib/extraction/lib" regex=".*\.jar" />
 	<lib dir="../../../dist/" regex="solr-cell-\d.*\.jar" />
 
-	<lib dir="../../../contrib/clustering/lib/" regex=".*\.jar" />
-	<lib dir="../../../dist/" regex="solr-clustering-\d.*\.jar" />
-
 	<lib dir="../../../contrib/langid/lib/" regex=".*\.jar" />
 	<lib dir="../../../dist/" regex="solr-langid-\d.*\.jar" />
 
