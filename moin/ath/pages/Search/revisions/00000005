@@ -1,0 +1,16 @@
+## page was renamed from search
+There are various ways to search the database 
+
+Try entering the following into the search field on http://www.glottotopia.org/solr/aagd/browse
+ 
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=vernacularword:tah |vernacularword:tah  ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=vernacularword:tah* |vernacularword:tah* ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=vernacularword:*aay |vernacularword:*aay ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=gloss:A?L|gloss:A?L ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=gloss:/[OS]BJ/|gloss:/[OS]BJ/ ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=iso639-3:ta?|iso639-3:ta?  ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=translatedword:moose~|translatedword:moose~  ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=chars:[7 TO 9]|chars:[7 TO 9] ]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=chars%3A%5B7+TO+9%5D+and+gloss%3AOPT|chars:[7 TO 9] and gloss:OPT]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?q=flag:true|flag:true]]
+See [[http://lucene.apache.org/core/4_0_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#Fields]] for a more general overview

@@ -1,0 +1,6 @@
+#acl All:read
+
+ * [[http://www.glottotopia.org/solr/aagd/browse |I am a linguist]]
+ * [[http://www.glottotopia.org/solr/aagd/browse?admin=true|I am an annotator]]
+ * [[http://www.glottotopia.org/solr/aagd/browse |I am a language teacher]]
+ * [[http://www.glottotopia.org/solr/aagd/browse |I am a language learner]]

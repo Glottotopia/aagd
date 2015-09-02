@@ -1,0 +1,19 @@
+=== workflow for annotation of texts ===
+
+{{{
+select document
+generate ID for document (e.g. [abbreviated] title)
+register ID in spreadsheet
+identify sentences in document
+generate IDs for sentences (e.g. running numbers)
+for every sentence:
+  identify all relevant categories
+  for every category thus identified:
+    add line to spreadsheet
+    add category
+    mark document ID in spreadsheet
+    mark sentence ID in spreadsheet
+    mark word ID in spreadsheet if locus of category is below sentence level
+    mark morpheme ID in spreadsheet if locus of category is below word level
+    mark discontinuous loci if applicable
+}}}

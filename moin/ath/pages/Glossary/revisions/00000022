@@ -1,0 +1,95 @@
+= Abbreviations =
+||Abbr. ||Technical term ||Explanation ||
+||? ||-- ||Annotator uncertainty. This happens, unfortunately. ||
+||Ø ||Zero morpheme ||An meaningful absence of an overt morpheme. For example, third person singular (he, she, it) is most often expressed by a zero morpheme in the verb, whereas first and second person as well as third person plural are all expressed by the presence of an overt morpheme. ||
+||1 ||first person ||'I' or 'we' ||
+||2 ||second person ||'you' (one or many) ||
+||3 ||third person || 'he, she, it, they'. Note that these languages do not distinguish gender! ||
+||4 ||fourth person || An impersonal form of the third person 'somebody,'  or 'one' ||
+||ABL ||Ablative || A part of directional adverbs meaning 'from', e.g. 'from downriver' or 'from up above' ||
+||AD ||Adverbial-derivational || A morpheme of position X with unknown meaning ||
+||ADJ ||adjective || An uninflected word that modifies a noun, e.g. 'big,' 'small.' ||
+||ADV || Adverb || A word that modifies a clause. ||
+||ADVdir ||directional adverb || An adverb indicating direction upriver, downriver, upland, downland, up vertically, down vertically, across, outside, and ahead. These adverbs typically consist of a prefix, a stem, and a suffix. In some languages, the stem and the suffix have fused. ||
+||ADVintens ||adverb of intensity || An adverb indicating extent of an event, e.g. 'It rained A LOT' ||
+||ADVloc ||adverb of location || An adverb indicating where an event takes place, e.g. 'here'. ||
+||ADVman ||adverb of manner || An adverb indicating how an event takes place, e.g. 'carefully'. ||
+||ADVmod ||modal adverb || An adverb indicating how certain an event's occurrence is, e.g. 'maybe'. ||
+||ADVtemp ||adverb of time || An adverb indicating when an event takes place, e.g. 'yesterday'. ||
+||ALL ||Allative || A part of directional adverbs meaning 'to', i.e. 'to downriver' or 'to up above' ||
+||AREAL ||Areal || A qualifier. Also a part of directional adverbs meaning 'in the general area of, i.e. 'in the downriver area' or 'somewhere up above'. ||
+||AUG ||Augmentative || A morpheme that indicates that an object is unusually large. ||
+||CLF ||Classifier || A morpheme immediately preceding the stem. Can have the form Ø-, Ł-, D-, L-. ||
+||CNJ ||Conjugation || A morpheme indicating conjugation class. Can have the form Ø-, GH-, S-, N-. ||
+||CON ||Conative || Also known as 'Directive' (e.g. in Holton 2000:234). A qualifier prefix indicating an unsuccessful or attempted action. It also occurs in the themes for 'buying' and 'asking'. ||
+||CONJ ||conjunction || A word connecting sentences or phrases, e.g. 'and' or 'when'. ||
+||CT ||Contrastive Topic || A discourse marker indicating a change of topic. ||
+||CUST ||Customary || A verb stem suffix (usually fused with the root) indicating that the action expressed by the verb happens habitually. ||
+||DEM ||demonstrative || A 'pointing' word such as 'this' or 'that'. ||
+||DIM ||Diminutive || A morpheme indicating that an object is unusually small. ||
+||DIST ||Distributive || A plural marker of position X. ||
+||DU ||Dual || A grammatical form indicating that there are two entities involved. Contrasts with Singular (one entity) and Plural (many entities). ||
+||DUR ||Durative || A grammatical category indicating that an action goes on for a long time. ||
+||EVID ||Evidential || A particle indicating the evidence that the speaker has for her claim. ||
+||EXPLET ||Expletive || ## do we need this?  ||
+||FOC ||Focus || A discourse particle indicating that the NP right before it is either new to the discourse or very important. ||
+||FUT ||Future || A grammatical category indicating that an action will happen in the future. ||
+||HUM ||Human || A human referent. ||
+||IMP ||Imperative || A grammatical form usually associated with giving commands. ||
+||INCEP ||Inceptive || A qualifier prefix indicating that an action is beginning. Occurs either with the S-conjugation (in the perfective and imperfective) or with the GH-imperfective + a future stem to mark the Future. ||
+||INCORP ||Incorporate || A prefix of position X with unknown meaning. Usually the meaning of an incorporate is given in the morpheme gloss. ## I don't think an inc is a prefix, and unknown?? needs thought||
+||INDEF ||Indefinite || An unknown or very unimportant referent. ||
+||INTRJCT ||Interjection || A word that is used on its own to express an emotion or reaction:  Edzoo! (Koyukon) Çold!' ||
+||IPFV ||Imperfective || One of the Modes. Indicates usually that an action is on-going or not completed. ||
+||IPHON ||ideophone, onomatopeia || Words that mimic sounds, e.g. names for birds that mimic the bird's call. An example from English would be 'chickadee'.||
+||ITER ||Iterative || A morpheme of position X. Indicates that an action takes place again and again, or that movement goes to a place and back again. ||
+||MOD ||modifier || An uninflectable word with a meaning similar to English adjectives ('big', 'small', ...).## NOTE, this is how I defined "adjective"- S ||
+||Ncp ||compound noun || A noun that consists of two stems. An English example would be 'dog food'. ||
+||Ndv ||deverbal noun || A noun that derives from a verb. An English example would be teacher 'a person who teaches'. ||
+||NEG ||Negative || Marked in various places. Indicates that something is NOT the case. ||
+||NEUT ||Neuter || A type of verb inflection. Also a morpheme used in this verb inflection. ||
+||Npn ||place name || A noun designating a place, e.g. Troth Yeddha', 'Wild Potato Hill,' the Lower Tanana name of the hill where the University of Alaska is. ||
+||Nprop ||proper noun || A name of a person. ||
+||Nstem ||stem noun || A noun consisting of a stem and maybe affixes, e.g. KOY kkun', LT kwn', UT kon' 'fire'. ||
+||NUM ||numeral || A number word ('one', 'two', 'sixty-seven', ...). ||
+||OBJ ||Object || A noun phrase or pronoun referring to a participant or object within the sentence, indexed with inflection in one of the subject prefix positions.  Usually represents a theme or patient in the sentence. ||
+||OBL ||Oblique || An object of the verb that is in position X. ||
+||OPT ||Optative || One of the Modes. Indicates that an action is desired or about to take place. ||
+||PFV ||Perfective || One of the Modes. Indicates that an action or event has been terminated. ||
+||PL ||Plural || A grammatical category indicating that many entities are involved. Contrasts with Singular (one entity) and in some languages with Dual (two entities). In languages without a Dual, Plural is also used for two entities. ||
+||PUNCT ||Punctual || A part of directional adverbs meaning 'at a specific point', i.e. 'at a specific place downriver' or 'at a specific place up above' ||
+||POSS ||Possessive || A suffix indicating that an entity is possessed (owned). ||
+||PPOST ||Postposition || A word class expressing relation between objects, such as 'in' or 'from'. English has prepositions that precede the noun; Athabascan languages have postpositions that follow the noun. ||
+||PROG ||Progressive || An aspect indicating that an activity is on-going. Often translated with the English -ing form. ||
+||PROH ||Prohibitive || A negative command; a morpheme involved in the formation of a negative command (e.g. "don't!") ||
+||PRON ||personal pronoun || A word such as I or you or they. ||
+||PRONint ||Interrogative pronoun || A question word such as who or what or why. ||
+||PRT ||Particle || A word that fits into none of the other categories. ||
+||PRTdm ||discourse particle || A word that fits into none of the other categories but the function of which is to organize the text. ||
+||PRTint ||Interrogative particle || A word that indicates that the preceding sentence was meant as a question, somewhat similar to British English "isn't it". ||
+||PRTneg ||Negative particle || A word that means 'not'. ||
+||PSSOR ||Possessor || A prefix indicating the possessor (owner) of an entity. ||
+||Q ||question || A particle used in question formation. ||
+||QUAL ||Qualifier || One of a set of prefixes that may occur in the qualifier zone.  May be meaningful, or a meaningless requirement within a verb theme ||
+||QUANT ||Quantifier || A word expressing quantity, such as much or few. ||
+||QUOT ||Quotative || A particle indicating that the speaker learned the information from someone else. ||
+||RECP ||Reciprocal || A prefix meaning 'each other'. Occurs in object, postpositional/oblique object, and possessor position. ||
+||REFL ||Reflexive || A prefix meaning 'self' indicating that the subject is identical to the object, postpositional/oblique object, or possessor. ||
+||REL ||Relative || A verb suffix indicating that the verb is relativized. Frequently translated as 'the one who' or 'the thing that'. ||
+||REP ||Repetitive || A grammatical category indicating that the action or event is repeated several times. ||
+||SBJ ||Subject || A noun phrase or pronoun referring to a participant or object within the sentence, indexed with inflection in one of the subject prefix positions.  May take many thematic roles. ||
+||SEMF ||Semelfactive || A grammatical category indicating that the action or event only takes place once. ||
+||SG ||Singular || A grammatical category indicating that many entities are involved. Contrasts with Singular (one entity) and in some languages with Dual (two entities). ||
+||SPECF ||Specific || ## Do we need this?  ||
+||TNS ||Tense marker || A particle that modifies a clause, contributing meaning about the relationship of the time of action to the time of speaking. ||
+||TOP ||Topic || A discourse particle indicating that the preceding noun is the topic of the discourse. ||
+||TRNS ||Transitional ||A qualifier indicating a change of state. (Kari 1990:67)||
+||Vcop ||Copula verb || A linking verb similar to English be. ||
+||Vdef || Defective verb || A verb that misses all or some of its affixes. ||
+||Vitr ||Intransitive verb || A verb that only has a subject, no objects. ||
+||VitrOBL ||Intransitive verb with oblique object || A verb that has a subject and either an oblique object or an incorporated postposition plus the object of the postposition. ||
+||Vpass ||Passive verb || A verb is passive when the object of action is expressed as a subject: "The moose skin was scraped."  ||
+||Vrecip ||Verb with reciprocal object || A verb where the subject and object do the activity to each other, e.g. 'we see each other'. ||
+||Vrefl ||verb with reflexive object || A verb where the subject and object are identical, e.g. 'I see myself'. ||
+||Vtr ||transitive verb || A verb with a subject and an object. ||
+||VtrOBL ||transitive verb with oblique object || A verb with a subject, an object, and an oblique object or the object of an incorporated postposition. ||

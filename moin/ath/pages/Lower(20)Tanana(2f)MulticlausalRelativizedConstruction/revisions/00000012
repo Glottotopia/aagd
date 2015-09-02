@@ -1,0 +1,52 @@
+= Lower Tanana/MulticlausalRelativizedConstruction = 
+ 
+== Form ==
+Describe the shape of the construction here. You can also provide a template
+
+||<tableclass="cbx" class="xc"> ||<class="cx"> NP NP VP||
+
+=== Examples ===
+Give at least one example with indication of source
+
+
+==== Exemplars ====
+||<tableclass="exemplarselector">incorporation:"verb" ||
+
+||<tableclass="exemplarselector">sentence_type:"multiclausal_coordinated" ||
+
+http://www.glottotopia.org/solr/aagd/select?q=sentence_type:%22multiclausal_relativized%22&fl=lingex,id
+
+==== Examples ====
+http://www.glottotopia.org/solr/aagd/select?q=sentence_type:%22multiclausal_relativized%22&fl=lingex,id 
+ 
+ 
+
+== Function ==
+Describe what primary function(s) this construction serves and what other function(s) it can be used for. Please provide [[Links]] to those functions.
+ 
+== Sociolinguistic remarks ==
+Describe who uses this grammatical feature. Think of age, gender, dialect, register etc.
+ 
+
+=== Frequency ===
+ubiquitous
+frequent
+common
+rare 
+elusive
+elicitation
+dontknow
+
+== Origin ==
+==== Lexical Material ====
+Describe the etymology of the lexical material used in this construction. Try to indicate the source language as well as grammaticalization processes or exaptation.
+
+CategoryNoLexicalEtymology
+
+==== Construction ====
+If this construction is borrowed or calqued, describe the analogous construction in the contact language.
+
+CategoryNoConstructionalEtymology
+
+----
+-----

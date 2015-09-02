@@ -1,0 +1,85 @@
+Things to discuss for the Athagram telco on August 2. Please amend and elaborate as you see fit
+
+
+=== PEOPLE ===
+ * Siri&nbsp;
+ * Olga&nbsp;
+ * Sebastian (before 15 Sept and after 15 Oct)
+
+=== TIME ===
+OL and ST will start woking out grammatical categories (3 Texts)
+schedule
+ * pilot
+ * production
+ * future
+we should agree on a rough time frame&nbsp;
+*
+
+=== CATEGORIES Morphosyntactic? Botanic? Gender? Aristotelian? ===
+*where do we start?
+*start functional categories
+*[http://www.galoes.org/grammars/fdg/Occult#Pragmatics http://www.galoes.org/grammars/fdg/Occult#Pragmatics]
+
+=== LANGUAGES ===
+*upper Tanana
+*lower Tanana
+*Koyukon
+
+=== DATA ===
+data acquisition
+ * electronic files&nbsp;
+  * SN will receive a couple of data files
+ * scans
+ * field work
+ *audio files
+  * [http://www.eopas.org/transcripts/113 http://www.eopas.org/transcripts/113]
+ *  metadata
+  *google spreadsheet
+  *[https://docs.google.com/spreadsheet/ccc?key=0Apb_EoY8u4imdDhING43Q2RuZUoySW9tR2ZMX0JMbWc#gid=0 https://docs.google.com/spreadsheet/ccc?key=0Apb_EoY8u4imdDhING43Q2RuZUoySW9tR2ZMX0JMbWc#gid=0]&nbsp;
+
+=== workflow ===
+ * physical document -&gt; electronic document -&gt; parsed document -&gt; db
+what will the conversion and ingestion process look like?
+ * OL and ST will give electronic documents to Sebastian
+ * data sorting &amp; preparation?
+ * prioritizing
+  *data for hour invested
+  *intrinsic value of document rated by ST and OL
+
+=== data management ===
+ * versioning
+ * backup
+
+=== data exchange ===
+ * Dropbox
+ * FTP
+ * SVN whazzat? [http://en.wikipedia.org/wiki/Apache_Subversion http://en.wikipedia.org/wiki/Apache_Subversion]
+ * [http://en.wikipedia.org/w/index.php?title=Test&action=history http://en.wikipedia.org/w/index.php?title=Test&amp;action=history]
+ * privacy
+ * copyright
+
+=== PUBLICATIONS ===
+ * db
+ * web interface
+ * materialization of some sort (dump)
+
+=== IT ===
+deployment
+ * Sebastian's server
+ * U Fairbanks server, ANLC, ANLA, Penn Fund
+
+=== DB Access ===
+access to texts restricted
+annotations more open&nbsp;
+[http://linguistics.okfn.org/resources/llod/ http://linguistics.okfn.org/resources/llod/]
+
+=== ACTION ITEMS ===
+How shall do what until when?
+ * One thing we'll need quite soon is an editable list of abbreviations as part of the DB so we label stuff consistently
+ * Siri will send Moses Charlie collection of texts by M Krauss to Sebastian
+  * typescript by Kari&nbsp;
+ * Olga will send eaf files
+ * OL ST will look into functional categories
+ * ol will send lexware file
+ * ST will put in LT and Koy lexware in "scratch folder"
+&nbsp;

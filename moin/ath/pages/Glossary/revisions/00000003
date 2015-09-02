@@ -1,0 +1,92 @@
+|| ? || annotator's uncertainty||
+|| 1 || first person ||
+|| 2 || second person ||
+|| 3 || third person ||
+|| 4 || fourth person ||
+|| ABL || ablative ('from') ||
+|| AD || adverbial-derivational ||
+|| ALL || allative ('to') ||
+|| AREAL || areal ||
+|| AUG || augmentative ||
+|| CLF || classifier (Ø-, Ł-, D-, L-) ||
+|| CNJ || conjugation (Ø-, GH-, S-, N-) ||
+|| CON || conative (called "directive" by some researchers) ||
+|| CT || contrastive topic ||
+|| CUST || customary ||
+|| DIM || diminutive ||
+|| DIST || distributive ||
+|| DU || dual ||
+|| DUR || durative ||
+|| EVID || evidential ||
+|| EXPLET || expletive ||
+|| FOC || focus ||
+|| FUT || future ||
+|| HUM || human ||
+|| IMP || imperative ||
+|| INCEP || inceptive ||
+|| INCORP || incorporate ||
+|| INDEF || indefinite ||
+|| IPFV || imperfective ||
+|| ITER || iterative ||
+|| NEG || negative ||
+|| NEUT || neuter ||
+|| OBJ || object ||
+|| OBL || oblique ||
+|| OPT || optative ||
+|| PFV || perfective ||
+|| PL || plural ||
+|| PUNCT || punctual ||
+|| POSS || possessive ||
+|| PROG || progressive ||
+|| PROH || prohibitive ||
+|| PROX || proximal ||
+|| PSSOR || possessor ||
+|| Q || question ||
+|| QUAL || qualifier ||
+|| QUOT || quotative ||
+|| RECP || reciprocal ||
+|| REFL || reflexive ||
+|| REL || relative ||
+|| REP || repetitive ||
+|| SBJ || subject ||
+|| SEMF || semelfactive ||
+|| SG || singular ||
+|| SPECF || specific ||
+|| TOP || topic ||
+
+
+|| ADJ || adjective ||
+|| ADV || dir directional adverb ||
+|| ADVintens || adverb of intensity ||
+|| ADVloc || adverb of location ||
+|| ADVman || adverb of manner ||
+|| ADVmod || modal adverb ||
+|| ADVtemp || adverb of time ||
+|| CONJ || conjunction ||
+|| DEM || demonstrative ||
+|| INTRJCT || interjection ||
+|| IPHON || ideophone, onomatopeia ||
+|| MOD || modifier ||
+|| NUM || numeral ||
+|| Ncp || compound noun ||
+|| Ndv || deverbal noun ||
+|| Npn || place name ||
+|| Nprop || proper noun ||
+|| Nstem || stem noun ||
+|| PPOST || postposition ||
+|| PRON || personal pronoun ||
+|| PRONint || interrogative pronoun ||
+|| PRT || particle ||
+|| PRTdm || discourse particle ||
+|| PRTint || interrogative particle ||
+|| PRTneg || negative particle ||
+|| QUANT || quantifier ||
+|| TNS || tense marker ||
+|| Vcop || copula verb ||
+|| Vitr || intransitive verb ||
+|| VitrOBL || intransitive verb with oblique object ||
+|| Vpass || passive verb ||
+|| Vrecip || verb with reciprocal object ||
+|| Vrefl || verb with reflexive object ||
+|| Vtr || transitive verb ||
+|| VtrOBL || transitive verb with oblique object ||

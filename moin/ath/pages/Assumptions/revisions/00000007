@@ -1,0 +1,10 @@
+= The verb template =
+
+The Dene/Athabascan verb can be represented using a template. Different  templates have been used to describe different languages; sometimes this  reflects actual differences between the languages, but sometimes it  reflects different analyses by linguists. On this page, we present a  template that more or less works for our three languages.
+||<tableclass="grid">||||||||||Disjunct||||||||||||Conjunct|| |||| Suffix||
+||12 ||11 ||10 ||9 ||8 ||7 ||6 ||5 ||4 ||3 ||2 ||1 ||0 ||-1 ||-2 ||
+||PObj ||PP ||AD ||Iter ||Incorp ||Dist ||Pron ||Qual ||Cnj ||Mo ||Sbj ||Clf ||Stem ||Neg ||Rel ||
+
+
+= Other assumptions =
+We assume that there are [[Assumptions/ZeroMorphemes| Ø-morphemes ]]. 

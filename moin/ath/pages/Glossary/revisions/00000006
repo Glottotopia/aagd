@@ -1,0 +1,93 @@
+= Abbreviations =
+||Abbr. ||Technical term ||Explanation ||
+||? ||-- ||Annotator uncertainty. This happens, unfortunately. ||
+||1 ||first person ||'I' or 'we' ||
+||2 ||second person ||'you' (one or many) ||
+||3 ||third person || 'he, she, it, they'. Note that these languages do not distinguish gender! ||
+||4 ||fourth person || SIRI ||
+||ABL ||Ablative || A part of directional adverbs meaning 'from', i.e. 'from downriver' or 'from up above' ||
+||AD ||Adverbial-derivational || A morpheme of position X with unknown meaning ||
+||ALL ||Allative || A part of directional adverbs meaning 'to', i.e. 'to downriver' or 'to up above' ||
+||AREAL ||Areal || A qualifier. Also a part of directional adverbs meaning 'in the general area of, i.e. 'in the downriver area' or 'somewhere up above'. ||
+||AUG ||Augmentative || A morpheme that indicates that an object is unusually large. ||
+||CLF ||Classifier || A morpheme immediately preceding the stem. Can have the form Ø-, Ł-, D-, L-. ||
+||CNJ ||Conjugation || A morpheme indicating conjugation class. Can have the form Ø-, GH-, S-, N-. ||
+||CON ||Conative || Also known as 'Directive' (e.g. in Holton 2000:234). A qualifier prefix indicating an unsuccessful or attempted action. It also occurs in the themes for 'buying' and 'asking'. ||
+||CT ||Contrastive Topic || A discourse marker indicating a change of topic. ||
+||CUST ||Customary || A verb stem suffix (usually fused with the root) indicating that the action expressed by the verb happens habitually. ||
+||DIM ||Diminutive || A morpheme indicating that an object is unusually small. ||
+||DIST ||Distributive || A plural marker of position X. ||
+||DU ||Dual || A grammatical form indicating that there are two entities involved. Contrasts with Singular (one entity) and Plural (many entities). ||
+||DUR ||Durative || A grammatical category indicating that an action goes on for a long time. ||
+||EVID ||Evidential || A particle indicating the evidence that the speaker has for her claim. ||
+||EXPLET ||Expletive || SIRI! ||
+||FOC ||Focus || A discourse particle indicating that the NP right before it is either new to the discourse or very important. ||
+||FUT ||Future || A grammatical category indicating that an action will happen in the future. ||
+||HUM ||Human || A human referent. ||
+||IMP ||Imperative || A grammatical form usually associated with giving commands. ||
+||INCEP ||Inceptive || A qualifier prefix indicating that an action is beginning. Occurs either with the S-conjugation (in the perfective and imperfective) or with the GH-imperfective + a future stem to mark the Future. ||
+||INCORP ||Incorporate || A prefix of position X with unknown meaning. Usually the meaning of an incorporate is given in the morpheme gloss. ||
+||INDEF ||Indefinite || An unknown or very unimportant referent. ||
+||IPFV ||Imperfective || One of the Modes. Indicates usually that an action is on-going or not completed. ||
+||ITER ||Iterative || A morpheme of position X. Indicates that an action takes place again and again, or that movement goes to a place and back again. ||
+||NEG ||Negative || Marked in various places. Indicates that something is NOT the case. ||
+||NEUT ||Neuter || A type of verb inflection. Also a morpheme used in this verb inflection. ||
+||OBJ ||Object || SIRI! ||
+||OBL ||Oblique || An object of the verb that is in position X. ||
+||OPT ||Optative || One of the Modes. Indicates that an action is desired or about to take place. ||
+||PFV ||Perfective || One of the Modes. Indicates that an action or event has been terminated. ||
+||PL ||Plural || A grammatical entity indicating that many entities are involved. Contrasts with Singular (one entity) and in some languages with Dual (two entities). In languages without a Dual, Plural is also used for two entities. ||
+||PUNCT ||Punctual || A part of directional adverbs meaning 'at a specific point', i.e. 'at a specific place downriver' or 'at a specific place up above'  
+||POSS ||Possessive || A suffix indicating that an entity is possessed (owned). ||
+||PROG ||Progressive || An aspect indicating that an activity is on-going. Often translated with the English -ing form. ||
+||PROH ||Prohibitive || A negative command; a morpheme involved in the formation of a negative command (e.g. "don't!") ||
+||PSSOR ||Possessor || A prefix indicating the possessor (owner) of an entity. ||
+||Q ||question || A particle used in question formation. ||
+||QUAL ||qualifier || SIRI!!! ||
+||QUOT ||quotative ||
+||RECP ||reciprocal ||
+||REFL ||reflexive ||
+||REL ||relative ||
+||REP ||repetitive ||
+||SBJ ||subject ||
+||SEMF ||semelfactive ||
+||SG ||singular ||
+||SPECF ||specific ||
+||TOP ||topic ||
+
+
+||ADJ ||adjective ||
+||ADV ||dir directional adverb ||
+||ADVintens ||adverb of intensity ||
+||ADVloc ||adverb of location ||
+||ADVman ||adverb of manner ||
+||ADVmod ||modal adverb ||
+||ADVtemp ||adverb of time ||
+||CONJ ||conjunction ||
+||DEM ||demonstrative ||
+||INTRJCT ||interjection ||
+||IPHON ||ideophone, onomatopeia ||
+||MOD ||modifier ||
+||NUM ||numeral ||
+||Ncp ||compound noun ||
+||Ndv ||deverbal noun ||
+||Npn ||place name ||
+||Nprop ||proper noun ||
+||Nstem ||stem noun ||
+||PPOST ||postposition ||
+||PRON ||personal pronoun ||
+||PRONint ||interrogative pronoun ||
+||PRT ||particle ||
+||PRTdm ||discourse particle ||
+||PRTint ||interrogative particle ||
+||PRTneg ||negative particle ||
+||QUANT ||quantifier ||
+||TNS ||tense marker ||
+||Vcop ||copula verb ||
+||Vitr ||intransitive verb ||
+||VitrOBL ||intransitive verb with oblique object ||
+||Vpass ||passive verb ||
+||Vrecip ||verb with reciprocal object ||
+||Vrefl ||verb with reflexive object ||
+||Vtr ||transitive verb ||
+||VtrOBL ||transitive verb with oblique object ||
