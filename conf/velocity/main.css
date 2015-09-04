@@ -203,7 +203,7 @@ position:relative;
   -moz-border-radius: 15px;
   border-radius: 5px;
   box-shadow: 3px 2px 2px #ddddee;
-  font-size: 150%; 
+  font-size: 100%; 
 /*   background-image: url("/solr/img/parchment.png"); */
 /*   min-height:150px; */
 }

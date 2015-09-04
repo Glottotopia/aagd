@@ -25,9 +25,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Comparative Alaskan Athabascan Grammar Database" />
 <meta name="author" content="Sebastian Nordhoff et al." />
-<link rel="shortcut icon" href="#{url_for_solr}/admin/file?img/favicon.png" />
-<script type="text/javascript" src="#{url_for_solr}/admin/file?util.js"></script>
-<script type="text/javascript" src="#{url_for_solr}/admin/file?bootstrap.min.js"></script>
+<link rel="shortcut icon" href="#{url_for_solr}/admin/file?file=/velocity/img/favicon.png" />
+<script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/util.js&contentType=application/javascript"></script>
+<script type="text/javascript" src="#{url_for_solr}/admin/file?file=/velocity/bootstrap.min.js&contentType=application/javascript"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
