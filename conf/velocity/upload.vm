@@ -10,7 +10,7 @@
 <ul id="uploadedids"></ul>
 </div>
 
-<script>
+<script type="text/javascript" >
 $('#uploadsubmit').on('click', function(event) {
     event.preventDefault();
     var file_data = $('#elanupload').prop("files")[0];  

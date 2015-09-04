@@ -1,10 +1,16 @@
 import time
+#import urllib2
+#import requests
+import subprocess
+import os
+import re
+#import cookielib, urllib2
 
 class MetadataError(ValueError):
     pass
 
 class MetadataRecord:
-    def __init__(self, ID, params): 
+    def __init__(self, ID, params):  
 	self.ID = ID 
 	self.lg = params[0] 
 	self.dialect = params[1] 
@@ -46,13 +52,28 @@ class MetadataRecord:
 	sources = '\n'.join(['<field name="source">%s</field>'%src for src in self.sources])
 	recordinglinguists = '\n'.join(['<field name="recordinglinguist">%s</field>'%rl for rl in self.recordinglinguists])
 	texttypes = '\n'.join(['<field name="texttype">%s</field>'%tt for tt in self.texttypes]) 
-	s = ''.join((singlevalues,speakers,sources,recordinglinguists,texttypes)) 
+	s = ''.join((singlevalues,speakers,sources,recordinglinguists,texttypes))  
 	return s
 
 class Metadata:
-    def __init__(self,csvfile):
+    def __init__(self,csvfile,url):
 	self.chunks = {} 
-	lines = open(csvfile).readlines()[1:] #drop first line where the labels are  
+	if csvfile != None:
+	    lines = open(csvfile).readlines()[1:] #drop first line where the labels are  
+	else:  
+	    #syscall = "wget %s" % url #urllib2 has problems with cookies
+	    #print syscall
+	    subprocess.call(["wget", "-O" "/tmp/metadatafile", url])
+	    #cj = cookielib.CookieJar()
+	    #opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+	    #urllib2.install_opener(opener)
+	    #f = urllib2.urlopen(url)
+	    f = open('/tmp/metadatafile')
+	    #lines=f.readlines() 
+	    lines=re.split('[\r\n]',f.read())
+	    #os.remove("metadatafile")
+
+	print len(lines)
 	for line in lines:
 	    fields = line.split('\t')
 	    ID = fields[0]

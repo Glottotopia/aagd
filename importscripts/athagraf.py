@@ -13,7 +13,7 @@ IMTSPLITTERS = re.compile('[-=;:\.]')
 class Athagraf:    
     athasolr = None
     
-    def __init__(self, utterancefile, language = None, metadatafile=None):
+    def __init__(self, utterancefile, language = None, metadatafile=None, metadataurl=None):
 	self.utterancefile = utterancefile  
 	self.barefile = self.utterancefile.replace('-utterance.xml','')
 	#self.IDfile = self.utterancefile.replace('-utterance','-default-ldt')
@@ -28,7 +28,7 @@ class Athagraf:
 	self.POSfile = utterancefile.replace('-utterance','-POS')
 	self.UTfile = utterancefile.replace('-utterance','-utterance_translation')
 	self.language = language 
-	self.metadata = Metadata(metadatafile)
+	self.metadata = Metadata(metadatafile,metadataurl)
 	        
     #def __init__(self, utterancefile, language = None, orig='eaf', metadatafile=None):
 	#if orig=='eaf':
@@ -247,7 +247,7 @@ class Athagraf:
 	    #out = open('debug.json', 'w')    
 	    #out.write(result)
 	    #out.close()
-	return json.dumps(results), ids
+	return results, ids
 	
     def graf2solr(self):   
 	topnodes = self.ut_tree.edged.keys() 

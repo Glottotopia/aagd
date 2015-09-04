@@ -1,234 +1,237 @@
-
 #set($thistagbagid = "tagbag"+$doc.getFieldValue('id'))
 #parse("tagbag.vm")
 <div class="result-title">
-  <b>#field('name')</b> 
-  ## <span class="togglebutton" onclick='jQuery(this).parent().siblings("table").toggle();' > &pm;   </span>
-  <a  onclick='jQuery(this).parent().siblings("table").toggle();jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > expand  </a>
-  #if($request.params.get('admin')=='true') 
-  ## <span class="togglebutton"  onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > &equiv;   </span>
-    <a   onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:1px solid darkred; box-shadow:1px 1px 1px 1px")' > add tags  </a> 
-  #end
-
-  <span class="mlt">   
-    #if($params.getBool('mlt', false) == false)
-     ## <a href="#lensNoQ&q=id:$docId&mlt=true">&hellip;</a>
-     <a href="#lensNoQ&q=id:$docId&mlt=true">similar examples</a>
-  #end
-  </span>
-</div>
-
-## <div class="tagbag" name="extr"  id="tagbag"> 
-
-<table style="display:none;"> 
-  <tr>
-     <td class="lxmeta">
-	<table>
-	    <tr>
-		<td class="lxnumber"><span></span></td> 
-	    </tr>
-	    <tr>
-		<td class="lxlg" title="#field('language')">#*#field('iso639-3')*#</td>
-		<td class="lxlg"></td>
-	    </tr>
-	</table>
-    </td>
-   <td>
-	#if($doc.getFieldValue('lingex') and $doc.getFieldValue('lingex')!='' )
-	<div class="lingex" name="extr">
-	    $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="label"','class="xlabel"') 
-	</div>
-	<br/>
-	#else
-		<table class="lxtable">
-		    <tr class="vernacular">  
-		    #set($vs = $doc.getFieldValue('vernacularsentence') )  
-		    #set($array = $vs.split(" ")) 
-		    #set( $l =  0)
-		    #foreach($a in $array)
-			<td> $a   </td>
-			#set ( $l = $l + 1 )
-		    #end
-		    </tr> 
-		    <tr name="extr"  id="imtline$exnr"> 
-		    #set( $exnr = $exnr + 1 )
-		    #set( $imts = $doc.getFieldValue('imtsentence') )  
-		    #if($imts)
-			#set($array = $imts.split(" ")) 
-			#foreach($a in $array)
-			    <td> $a </td>
-			#end
-		    #else	
-			#if($request.params.get('admin')=='true')  
-			    <td colspan="$l"> <input type="textarea" /> <input type="button" value="provide IMT"/></td>
-			#end
-		    #end
-		    </tr>
-		    <tr><td colspan="$l">'#field('translatedsentence')'</td></tr>
-		</table>
-	#end
-   </td>
-  </tr>
-</table> 
-<div>
- <span class="translatedsentence" id="trs_$doc.getFieldValue('id')">#field('translatedsentence')</span>
- <span class="examplesource">#field('aadgID') </span>
-</div>
-
-
-
-
-## <span> #field('author')</span></div>
- 
- 
-##   <div class="tagcontainer"  name="extr"   id="tagcontainer$docId" style="display:none;" >
-<div class="tagcontainer"  name="extr"  id="tagcontainer$docId"  style="display:none;">    
-
-
-<div class="metadatacontainer"> 
-    
-<div class="metadatadiv" >
-<span class="metadatafield">ID</span><span class="metadatavalue">#field('aagdID')</span> 
-</div>
-#if($doc.getFieldValue('lg') != '')  
-<div class="metadatadiv" >
-<span class="metadatafield">Language</span><span class="metadatavalue">$doc.getFieldValue('lg')</span> 
-</div>
-#end
-#if($doc.getFieldValue('dialect') != '')  
-<div class="metadatadiv" >
-<span class="metadatafield">Dialect</span><span class="metadatavalue">$doc.getFieldValue('dialect')</span> 
-</div>
-#end
-#if($doc.getFieldValue('speaker') != [''])  
-<div class="metadatadiv" >
-<span class="metadatafield">Speaker</span><span class="metadatavalue">$doc.getFieldValue('speaker')</span>
-</div>
-#end
-#if($doc.getFieldValue('recordingname') != '')  
-<div class="metadatadiv" >
-<span class="metadatafield">Recording name</span><span class="metadatavalue">$doc.getFieldValue('recordingname')</span> 
-</div>
-#end
-#if($doc.getFieldValue('recordingdate') and $doc.getFieldValue('recordingdate') != '')  
-<div class="metadatadiv" >
-<span class="metadatafield">Recording date</span><span class="metadatavalue">
-     $date.format('medium_date', $doc.getFieldValue('recordingdate'))     
-</div>
-#end
-#if($doc.getFieldValue('recordinglinguist') != [''])  
-<div class="metadatadiv" >
-<span class="metadatafield">Recording linguist</span><span class="metadatavalue">$doc.getFieldValue('recordinglinguist')</span>
-</div>
-#end
-#if($doc.getFieldValue('editedbyspeaker') == 'true')  
-<div class="metadatadiv" >
-<span class="metadatafield">Edited by speaker</span><span class="metadatavalue">$doc.getFieldValue('editedbyspeaker')</span>
-</div>
-#end
-#if($doc.getFieldValue('editedbylinguist') == 'true')  
-<div class="metadatadiv" >
-<span class="metadatafield">Edited by linguist</span><span class="metadatavalue">$doc.getFieldValue('editedbylinguist')</span> 
-</div>
-#end
-#if($doc.getFieldValue('texttype') != [''])  
-<div class="metadatadiv" >
-<span class="metadatafield">Text type</span><span class="metadatavalue">$doc.getFieldValue('texttype')</span> 
-</div>
-#end
-#if($doc.getFieldValue('rejectedbyspeaker') == 'true')  
-<div class="metadatadiv" >
-<span class="metadatafield">Rejected by speaker</span><span class="metadatavalue">$doc.getFieldValue('rejectedbyspeaker')</span> 
-</div>0
-#end
-#if($doc.getFieldValue('source') != '')  
-<div class="metadatadiv" >
-<span class="metadatafield">Published in</span><span class="metadatavalue">$doc.getFieldValue('source')</span>
-</div>
-#end
-#if($doc.getFieldValue('anlalink') != '')  
-<div class="metadatadiv" >
-<span class="metadatafield">ANLA link</span><span class="metadatavalue"><a href="$doc.getFieldValue('anlalink')">$doc.getFieldValue('anlalink')</a></span> 
-</div>
-#end
-</div> 
-<hr/>
-<div class="tagcontainer2">
-    #foreach($fieldname in $doc.fieldNames)   
-	#foreach($ontofields in $megafields)     
-	    #foreach($ontofield in $ontofields)     
-		    #if($fieldname == $ontofield[0])   
-			<div class="tag">
-			    <span class="field">$fieldname</span>
-			    <span class="value">
-				#foreach($value in $doc.getFieldValues($fieldname))
-				    <span  id="$docId$fieldname$value">$esc.html($value)
-					<span class="closer">
-					    #if($request.params.get('admin')=='true')  
-						<select onChange="deletefield('$docId','$fieldname', '$value')">
-						<option>---</option>
-						<option>delete</option>
-						## <option>exemplar</option>	
-						## 					    <a href="#" onclick="deletefield('$docId','$fieldname','$value')">X</a>
-						##  					    <a href="#" onclick="exemplar('$docId','$fieldname','$value')">[!]</a>
-						</select>
-					    #end
-					</span>
-				    </span>
-				#end
-			    </span>
-			</div>
-		    #end
-		#end
-	    #end	 
-    #end	
-</div>
-#set($id_ = $doc.getFieldValue('id'))
-
-
+    <b>#field('name')</b>
+## <span class="togglebutton" onclick='jQuery(this).parent().siblings("table").toggle();' > &pm;   </span>
+<a  onclick='jQuery(this).parent().siblings("table").toggle();jQuery(this).parent().siblings("div[class=tagcontainer]").toggle("fast");' > expand  </a>
 #if($request.params.get('admin')=='true') 
-    #if($id_== true)   	
-	<img id="flag$id_" onclick="setFlag('$id_',false)"  src="#{url_root}/img/redflag.png"  width="32px">
-    #else
-	<img id="flag$id_"  onclick="setFlag('$id_',true)"  src="#{url_root}/img/greenflag.png"  width="32px">
-    #end
+## <span class="togglebutton"  onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:2px dotted darkred;background:#f4ffe0")' > &equiv;   </span>
+<a   onclick='hidealltagbags(); jQuery(this).parent().siblings("div[class=tagbag]").slideDown("slow");jQuery(this).parent().parent().attr("style","border:1px solid darkred; box-shadow:1px 1px 1px 1px")' > add tags  </a>
 #end
-</div> 
-    
- ## Display Similar Documents / MLT = More Like This
+<span class="mlt">   
+    #if($params.getBool('mlt', false) == false)
+## <a href="#lensNoQ&q=id:$!docId&mlt=true">&hellip;</a>
+<a href="#lensNoQ&q=id:$!docId+AND+latest:true&mlt=true">similar examples</a>
+    #end
+</span>
+</div>
+## <div class="tagbag" name="extr"  id="tagbag"> 
+<table style="display:none;">
+    <tr>
+        <td class="lxmeta">
+            <table>
+                <tr>
+                    <td class="lxnumber">
+                        <span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lxlg" title="#field('language')">#*#field('iso639-3')*#</td>
+                    <td class="lxlg"></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            #if($doc.getFieldValue('lingex') and $doc.getFieldValue('lingex')!='' )
+                <div class="lingex" name="extr">
+                    $doc.getFieldValue('lingex').replace('[','<').replace(']','>').replace('class="label"','class="xlabel"') 
+                </div>
+                <br/>
+            #else
+                <table class="lxtable">
+                    <tr class="vernacular">  
+                        #set($vs = $doc.getFieldValue('vernacularsentence') )  
+                        #set($array = $vs.split(" ")) 
+                        #set( $l =  0)
+                        #foreach($a in $array)
+                            <td> $a   </td>
+                            #set ( $l = $l + 1 )
+                        #end
+                    </tr>
+                    <tr name="extr"  id="imtline$exnr"> 
+                        #set( $exnr = $exnr + 1 )
+                        #set( $imts = $doc.getFieldValue('imtsentence') )  
+                        #if($imts)
+                            #set($array = $imts.split(" ")) 
+                            #foreach($a in $array)
+                                <td> $a </td>
+                            #end
+                        #else	
+                            #if($request.params.get('admin')=='true')  
+                                <td colspan="$l">
+                                    <input type="textarea" />
+                                    <input type="button" value="provide IMT"/>
+                                </td>
+                            #end
+                        #end
+                    </tr>
+                    <tr>
+                        <td colspan="$l">'#field('translatedsentence')'</td>
+                    </tr>
+                </table>
+            #end
+        </td>
+    </tr>
+</table>
+<div>
+    <span class="translatedsentence" id="trs_$!doc.getFieldValue('id')">#field('translatedsentence')</span>
+    <span class="examplesource">#field('aadgID') </span>
+</div>
+## <span> #field('author')</span></div>
+##   <div class="tagcontainer"  name="extr"   id="tagcontainer$docId" style="display:none;" >
+<div class="tagcontainer"  name="extr"  id="tagcontainer$!docId"  style="display:none;">
+    <div class="metadatacontainer">
+        <div class="metadatadiv" >
+            <span class="metadatafield">ID</span>
+            <span class="metadatavalue">#field('aagdID')</span>
+        </div>
+        #if($doc.getFieldValue('lg') != '')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Language</span>
+                <span class="metadatavalue">$!doc.getFieldValue('lg')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('dialect'))  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Dialect</span>
+                <span class="metadatavalue">$!doc.getFieldValue('dialect')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('speaker') != [''])  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Speaker</span>
+                <span class="metadatavalue">$!doc.getFieldValue('speaker')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('recordingname') != '')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Recording name</span>
+                <span class="metadatavalue">$!doc.getFieldValue('recordingname')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('recordingdate') and $doc.getFieldValue('recordingdate') != '')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Recording date</span>
+                <span class="metadatavalue">
+                    $date.format('medium_date', $!doc.getFieldValue('recordingdate'))     
+                </div>
+        #end
+        #if($doc.getFieldValue('recordinglinguist') != [''])  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Recording linguist</span>
+                <span class="metadatavalue">$!doc.getFieldValue('recordinglinguist')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('editedbyspeaker') == 'true')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Edited by speaker</span>
+                <span class="metadatavalue">$!doc.getFieldValue('editedbyspeaker')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('editedbylinguist') == 'true')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Edited by linguist</span>
+                <span class="metadatavalue">$!doc.getFieldValue('editedbylinguist')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('texttype') != [''])  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Text type</span>
+                <span class="metadatavalue">$!doc.getFieldValue('texttype')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('rejectedbyspeaker') == 'true')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Rejected by speaker</span>
+                <span class="metadatavalue">$!doc.getFieldValue('rejectedbyspeaker')</span>
+            </div>
+            0
+        #end
+        #if($doc.getFieldValue('source') != '')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">Published in</span>
+                <span class="metadatavalue">$!doc.getFieldValue('source')</span>
+            </div>
+        #end
+        #if($doc.getFieldValue('anlalink') != '')  
+            <div class="metadatadiv" >
+                <span class="metadatafield">ANLA link</span>
+                <span class="metadatavalue">
+                    <a href="$!doc.getFieldValue('anlalink')">$!doc.getFieldValue('anlalink')</a>
+                </span>
+            </div>
+        #end
+            </div>
+            <hr/>
+            <div class="tagcontainer2">
+                #foreach($fieldname in $doc.fieldNames)   
+                    #foreach($ontofields in $megafields)     
+                        #foreach($ontofield in $ontofields)     
+                            #if($fieldname == $ontofield[0])   
+                                <div class="tag">
+                                    <span class="field">$fieldname</span>
+                                    <span class="value">
+                                        #foreach($value in $doc.getFieldValues($!fieldname))
+                                            <span  id="$!docId$!fieldname$!value">$esc.html($!value)
+                                                <span class="closer">
+                                                    #if($request.params.get('admin')=='true')  
+                                                        <select onChange="deletefield('$!docId','$!fieldname', '$!value')">
+                                                            <option>---</option>
+                                                            <option>delete</option>
+                                                        </select>
+                                                    #end
+                                                </span>
+                                            </span>
+                                        #end
+                                    </span>
+                                </div>
+                            #end
+                        #end
+                    #end	 
+                #end	
+            </div>
+            #set($id_ = $doc.getFieldValue('id'))
+            #if($request.params.get('admin')=='true') 
+                #if($id_== true)   	
+                    <img id="flag$id_" onclick="setFlag('$id_',false)"  src="#{url_root}/img/redflag.png"  width="32px" alt="red flag" />
+                #else
+                    <img id="flag$id_"  onclick="setFlag('$id_',true)"  src="#{url_root}/img/greenflag.png"  width="32px" alt="green flag" />
+                #end
+            #end
+                                </div>
+## Display Similar Documents / MLT = More Like This
 <div class="mlt">
-  #set($mlt = $mltResults.get($docId))
-  #set($mltOn = $params.getBool('mlt'))
-  #if($mltOn == true)
-    <div class="field-name">
-      Similar Items
-    </div>
-  #end
-  ## If has MLT enabled An Entries to show
+    #set($mlt = $mltResults.get($!docId))
+    #set($mltOn = $params.getBool('mlt'))
+    #if($mltOn == true)
+        <div class="field-name">
+            Similar Items
+        </div>
+    #end
+## If has MLT enabled An Entries to show
 ##   #if ($mltOn && $mlt && $mlt.size() > 0)
-  #if (true)
+#if (true)
     <ul>
-      #foreach($mltHit in $mlt)
-        #set($mltId = $mltHit.getFieldValue('id'))
-        <li>
-          <div>
-            <a href="#url_for_home?q=id:$mltId">
-              $mltHit.getFieldValue('name')</a>
-          </div>
-          <div> 
-            "$mltHit.getFieldValue('translatedsentence')"
-          </div>
-          <div> 
-            $mltHit.getFieldValue('language') 
-          </div>
-        </li>
-      #end    ## end for each mltHit in $mlt
+        #foreach($mltHit in $mlt)
+            #set($mltId = $!mltHit.getFieldValue('id'))
+            <li>
+                <div>
+                    <a href="#url_for_home?q=id:$mltId">
+                        $!mltHit.getFieldValue('name')</a>
+                </div>
+                <div> 
+                    "$!mltHit.getFieldValue('translatedsentence')"
+                </div>
+                <div> 
+                    $!mltHit.getFieldValue('language') 
+                </div>
+            </li>
+        #end    ## end for each mltHit in $mlt
     </ul>
-  ## Else MLT Enabled but no mlt results for this query
-  #elseif($mltOn && $mlt.size() == 0)
+## Else MLT Enabled but no mlt results for this query
+#elseif($mltOn && $mlt.size() == 0)
     <div>No Similar Items Found</div>
-  #end
-</div>  ## div class=mlt
-
- 
+#end
+</div>
+## div class=mlt
 #parse('debug.vm')

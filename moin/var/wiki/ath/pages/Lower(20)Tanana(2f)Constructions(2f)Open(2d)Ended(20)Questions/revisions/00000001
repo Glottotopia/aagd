@@ -1,0 +1,78 @@
+= Lower Tanana/Constructions/Do-Construction =
+Describe   a language specific construction here
+ 
+== Form ==
+
+The question particle _do_ may be included in certain verb themes in Lower
+Tanana. It occurs in disjunct position, but it is not completely clear
+where it would be in the template, because the examples do not include
+other disjunct prefixes.
+
+||<tableclass="cbx" class="xc"> ||<class="cx"> NP do-V||
+
+=== Examples ===
+<<Anchor(dointa)>>
+
+||<tableclass="lx" class="xc">|| Do'int'a? ||
+|| || ||
+|| ||<-3>'How are you?'||
+
+<<Anchor(doitanh)>>
+||<tableclass="lx" class="xc">|| Do'ít'anh? ||
+|| || ||
+|| ||<-3>'What are you doing?'||
+
+
+== Function ==
+Describe what primary function(s) this construction serves and what other function(s) it can be used for. Please provide [[Links]] to those functions.
+
+
+=== Examples ===
+Give at least one example with indication of source
+
+
+||<tableclass="lx" class="xc">|| Een || goed || voorbeeld ||
+|| || ~-indef-~|| good || example   ||
+|| ||<-3>'A good example.'  [[attachment:AttachedTexts/Nosource.txt|(nousource)]] ||
+|| ||<-3> <<EmbedObject(AttachedAudio/nosource.mp3, height=25px, width=400px)>>||
+
+CategoryNoExamples
+
+
+CategoryNoFunctionLinks
+
+== Sociolinguistic remarks ==
+Describe who uses this grammatical feature. Think of age, gender, dialect, register etc.
+
+CategoryNoSociolinguistics
+
+=== Frequency ===
+ubiquitous
+frequent
+common
+rare 
+elusive
+elicitation
+dontknow
+
+== Origin ==
+==== Lexical Material ====
+Describe the etymology of the lexical material used in this construction. Try to indicate the source language as well as grammaticalization processes or exaptation.
+
+CategoryNoLexicalEtymology
+
+==== Construction ====
+If this construction is borrowed or calqued, describe the analogous construction in the contact language.
+
+CategoryNoConstructionalEtymology
+
+----
+-----
+===== Tags =====
+
+===== More Examples =====
+fq=vernacularword%3A%2Fdo.*%3F%2F
+fq=language%3A"Lower_Tanana"
+fq=speech_acts:"question_open-ended"
+
+||<tableclass="exemplarselector">speech_acts:"question_open-ended" ||

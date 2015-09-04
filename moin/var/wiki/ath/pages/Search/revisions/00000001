@@ -1,0 +1,14 @@
+ *  There are various ways to search the database 
+ *  try entering the following into the database 
+ *  vernacularword:tah 
+ *  vernacularword:tah* 
+ *  vernacularword:*aay  
+ *  gloss:A?L  
+ *  gloss:/[OS]BJ/ 
+ *  iso639-3:ta? 
+ *  translatedword:moose~ 
+ *  chars:[7 TO 9] 
+ *  chars:[7 TO 9] and gloss:OPT 
+ *  flag:true 
+ 
+See [[http://lucene.apache.org/core/4_0_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#Fields]] for a more general overview

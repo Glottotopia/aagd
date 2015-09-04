@@ -62,7 +62,7 @@
   ## Link for MLT / More Like This / Find Similar
   <span class="mlt">
     #if($params.getBool('mlt', false) == false)
-      <a href="#lensNoQ&q=id:%22$docId%22&mlt=true">
+      <a href="#lensNoQ&q=id:%22$!docId%22&mlt=true">
         More Like This</a>
     #end
   </span>

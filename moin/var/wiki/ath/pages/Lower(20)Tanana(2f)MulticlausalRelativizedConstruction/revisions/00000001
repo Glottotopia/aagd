@@ -1,0 +1,68 @@
+= Lower Tanana/MulticlausalRelativizedConstruction = 
+ 
+== Form ==
+Describe the shape of the construction here. You can also provide a template
+
+||<tableclass="cbx" class="xc"> ||<class="cx"> NP NP VP||
+
+=== Examples ===
+Give at least one example with indication of source
+
+<<Anchor(uniqueindentifierforthisexample)>>
+
+||<tableclass="lx" class="xc">|| Een || goed || voorbeeld ||
+|| || ~-indef-~|| good || example   ||
+|| ||<-3>'A good example.'  [[attachment:AttachedTexts/Nosource.txt|(nousource)]] ||
+|| ||<-3> <<EmbedObject(AttachedAudio/nosource.mp3, height=25px, width=400px)>>||
+ 
+
+== Function ==
+Describe what primary function(s) this construction serves and what other function(s) it can be used for. Please provide [[Links]] to those functions.
+
+
+=== Examples ===
+Give at least one example with indication of source
+
+<<Anchor(asa)>>
+
+||<tableclass="lx" class="xc">|| Een || goed || voorbeeld ||
+|| || ~-indef-~|| good || example   ||
+|| ||<-3>'A good example.'  [[attachment:AttachedTexts/Nosource.txt|(nousource)]] ||
+|| ||<-3> <<EmbedObject(AttachedAudio/nosource.mp3, height=25px, width=400px)>>||
+
+CategoryNoExamples
+
+
+CategoryNoFunctionLinks
+
+== Sociolinguistic remarks ==
+Describe who uses this grammatical feature. Think of age, gender, dialect, register etc.
+
+CategoryNoSociolinguistics
+
+=== Frequency ===
+ubiquitous
+frequent
+common
+rare 
+elusive
+elicitation
+dontknow
+
+== Origin ==
+==== Lexical Material ====
+Describe the etymology of the lexical material used in this construction. Try to indicate the source language as well as grammaticalization processes or exaptation.
+
+CategoryNoLexicalEtymology
+
+==== Construction ====
+If this construction is borrowed or calqued, describe the analogous construction in the contact language.
+
+CategoryNoConstructionalEtymology
+
+----
+-----
+===== Exemplars =====
+http://www.glottotopia.org/solr/aagd/select?q=sentence_type:%22multiclausal_relativized%22&fl=lingex,id
+===== Examples =====
+http://www.glottotopia.org/solr/aagd/select?q=sentence_type:%22multiclausal_relativized%22&fl=lingex,id 
