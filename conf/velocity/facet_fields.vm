@@ -76,7 +76,7 @@
             <ul id="ul$field.name" name="facetul">
                 #foreach($facet in $field.values)
                     <li>
-                        <a href="#url_for_facet_filter($field.name, $facet.name)">$facet.name</a>
+                        <a href="#url_for_facet_filter($field.name, $facet.name)">$facet.name.replace("<","&lt;").replace(">","&gt;")</a>
                         ($facet.count)
                     </li>
                 #end
