@@ -1,0 +1,70 @@
+/*##
+####  msie.css - SimpleMente
+####
+####  Partly based on rightsidebar css
+####  Rightsidebar theme copyright (c) 2001, 2002, 2003 by Juergen Hermann
+####
+####  SimpleMente theme Copyright (c) 2007 by Eduardo Mercovich und Oliver Siemoneit
+####  license: GNU GPL, see COPYING for details.
+*/
+
+
+/*  msie.css - MoinMoin MS Internet explorer bug workarounds */
+
+/* IE6 and IE7 both suck with :before */
+/* Simplemente: Most of the icons turned off except attachments */
+/*a.www { padding-left: 14px; background: url('../img/moin-www.png') no-repeat left center; }
+a.http { padding-left: 14px; background: url('../img/moin-www.png') no-repeat left center; }
+a.https { padding-left: 14px; background: url('../img/moin-www.png') no-repeat left center; }
+a.file { padding-left: 14px; background: url('../img/moin-ftp.png') no-repeat left center; }
+a.ftp { padding-left: 14px; background: url('../img/moin-ftp.png') no-repeat left center; }
+a.nntp { padding-left: 14px; background: url('../img/moin-news.png') no-repeat left center; }
+a.news { padding-left: 14px; background: url('../img/moin-news.png') no-repeat left center; }
+a.telnet { padding-left: 14px; background: url('../img/moin-telnet.png') no-repeat left center; }
+a.irc, a.ircs  { padding-left: 14px; background: url('../img/moin-telnet.png') no-repeat left center; }
+a.mailto { padding-left: 14px; background: url('../img/moin-email.png') no-repeat left center; }*/
+
+a.attachment { padding-left: 14px; background: url('../img/moin-attach.png') no-repeat left center; }
+
+/*a.badinterwiki { padding-left: 14px; background: url('../img/moin-inter.png') no-repeat left center; }
+a.interwiki { padding-left: 14px; background: url('../img/moin-inter.png') no-repeat left center; }*/
+
+
+/* Simplemente: This looks silly on simplement theme. Therefore turned off... */
+/*#pagetrail li, #pagelocation li {
+    border-left: 1px solid #AAA;
+    padding: 0 0.3em;
+}*/
+
+/* Spans for line-anchors - needed for IE6 and IE7 where omitting the "display: none" triggers rendering bugs. */
+span.anchor { display: none; }
+
+/*
+This could maybe avoid screen jumping in IE with IE7 hack.
+
+It works (or rather: should work) like this:
+First, IE sees the a.interwiki definition only as it doesn't understand neither
+* > a.interwiki, nor a.interwiki:before. We use a.interwiki to reserve some
+space for the icon inserted later.
+Later, the IE7 hack kicks in and then IE also understands those 2 other css lines.
+The * > a.interwiki line now removes the space we previously reserved and the
+:before inserts the icon.
+
+a.interwiki {margin-left: 25px; padding-top: 25px; padding-bottom: 25px;}
+* > a.interwiki {margin-left: 0px; padding-top: 25px; padding-bottom: 25px;}
+a.interwiki:before {content: url(../img/moin-inter.png);}
+
+Problem:
+While margin-left seems to work, margin-/padding-top/bottom doesnt.
+After getting it to work, this has to be fine-tuned to avoid screen jumping.
+*/
+
+/* Some * html hacks for IE6 and below only (IE7 ignores * html) */
+
+/* IE6 has a bug with rendering of float elements. We workaround this bug by
+ * assigning those elements a height attribute because we currently don't know
+ * a better solution. This results in IE calculating the correct height of the
+ * characters and displaying them correctly. We don't know any negative side
+ * effects of this workaround:
+ */
+* html div#page, * html div#header { height: 0.001%; }
