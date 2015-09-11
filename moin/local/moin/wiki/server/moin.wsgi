@@ -30,7 +30,7 @@ sys.path.insert(0, '/usr/local/moin/')
 # a2) Path of the directory where wikiconfig.py / farmconfig.py is located.
 #     See wiki/config/... for some sample config files.
 #sys.path.insert(0, '/path/to/wikiconfigdir')
-sys.path.insert(0, '/usr/local/etc/moin/' )
+sys.path.insert(0, '/usr/etc/moin/' )
 
 # b) Configuration of moin's logging
 #    If you have set up MOINLOGGINGCONF environment variable, you don't need this!
@@ -45,5 +45,5 @@ from MoinMoin.web.serving import make_application
 # use shared=True to have moin serve the builtin static docs
 # use shared=False to not have moin serve static docs
 # use shared='/my/path/to/htdocs' to serve static docs from that path
-application = make_application(shared='/var/wiki/htdocs')
+application = make_application(shared='/var/htdocs')
 
