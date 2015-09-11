@@ -4,10 +4,7 @@
 
 ## use
 ### search
-The basic use of the AAGD platform is to search for examples. The main search field allows you to search for English or vernacular words and glosses. In order to search for other fields, use a colon, e.g. "polarity:situation_negative".
-
-Inline-style: 
-![Domains](https://github.com/Glottotopia/aagd/blob/master/doc/img/domains.png "Domains")
+The basic use of the AAGD platform is to search for examples. The main search field allows you to search for English or vernacular words and glosses.  
 
 
 On the right hand side, you see a number of sorted tags for the result of your search. The numbers after the tags indicate how many documents in the result set bear the particular tags. By clicking on these tags, you can further restrict your search, yielding a more constrained set. The currently active constraints are listed on the top right in red.
