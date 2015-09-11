@@ -6,11 +6,11 @@
  - the FCKEditor is included. We only allow write access to people we personally know, so security risks are few
 
 #Install:
- - load mod_wsgi in Apache
- - edit ./local/moin/wiki/server/moin.wsgi
+ - load `mod_wsgi` in Apache
+ - edit `./local/moin/wiki/server/moin.wsgi`
  - add the following line to apache config:
- --    WSGIScriptAlias /aagd $WHATEVERTHEPATHIS/local/moin/wiki/server/moin.wsgi
- - edit ./etc/wikiconfig.py
+  -  `WSGIScriptAlias /aagd $WHATEVERTHEPATHIS/local/moin/wiki/server/moin.wsgi`
+ - edit `./etc/wikiconfig.py`
 
 
 
