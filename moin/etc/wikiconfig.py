@@ -45,13 +45,13 @@ class Config(multiconfig.DefaultConfig):
     # If that's not true, feel free to just set instance_dir to the real path
     # where data/ and underlay/ is located:
     #instance_dir = '/where/ever/your/instance/is'
-    instance_dir = './athagram/moin/'
+    instance_dir = '../local/moin/'
 
     # Where your own wiki pages are (make regular backups of this directory):
-    data_dir = os.path.join(instance_dir, 'var', 'wiki', 'ath', '') # path with trailing /
+    data_dir = os.path.join(instance_dir, '..', 'var', 'wiki', 'ath', '') # path with trailing /
 
     # Where system and help pages are (you may exclude this from backup):
-    data_underlay_dir = os.path.join(instance_dir, 'etc','underlay', '') # path with trailing /
+    data_underlay_dir = os.path.join(instance_dir, '..', 'etc','underlay', '') # path with trailing /
 
     # The URL prefix we use to access the static stuff (img, css, js).
     # Note: moin runs a static file server at url_prefix_static path (relative
@@ -66,10 +66,17 @@ class Config(multiconfig.DefaultConfig):
 
     # Site name, used by default for wiki name-logo [Unicode]
     sitename = u'Alaskan Athabascan Grammar Database'
+    
+    page_front_page = u"FrontPage"
+    #data_dir = '/var/wiki/ath'
+    theme_default = 'aagd'
+    acl_rights_default = 'SebastianNordhoff:read,write,delete,revert,admin All:read'
+  
+    acl_rights_before  = u"SebastianNordhoff:read,write,delete,revert,admin"
+    refresh = (0, 'external')  
 
     #logo_string = u'<img src="%s/common/moinmoin.png" alt="MoinMoin Logo">' % url_prefix_static
-
-    #page_front_page = u"FrontPage"
+ 
 
     # Security ----------------------------------------------------------
 
@@ -118,9 +125,7 @@ class Config(multiconfig.DefaultConfig):
         u'HelpContents',
     ]
 
-    # The default theme anonymous or new users get
-    theme_default = 'aagd'
-
+ 
 
     # Language options --------------------------------------------------
 
@@ -144,48 +149,10 @@ class Config(multiconfig.DefaultConfig):
 
     # Show users hostnames in RecentChanges
     show_hosts = 1
+ 
+ 
 
-    # Enable graphical charts, requires gdchart.
-    #chart_options = {'width': 600, 'height': 300}
-
-
-
-#-----
-
-    sitename = u'athagram' # [Unicode]
-    interwikiname = u'AaGd' # [Unicode]
-    page_front_page = u"FrontPage"
-    data_dir = '/var/wiki/ath'
-    theme_default = 'aagd'
-    acl_rights_default = 'stuttle,OlgaLovick,SebastianNordhoff:read,write,delete,revert,admin All:read'
-
-   navi_bar = [
-        u"[[FrontPage|Overview]]",
-        u"[[GALOES]]",
-        u"[[Treeview]]",
-        u"[[TitleIndex]]",
-        u"[[RecentChanges]]",
-        u"[[FindPage]]",
-        u"[[WantedPages|Missing Pages]]",
-        u"[[HelpForUsers|Help]]",
-        u"[[Credits]]"
-        ]
-
-    #logo_string = u'<img src="http://www.galoes.org/galleon2.png" alt="Galoes">
-    acl_rights_default = u"EditorGroup:read,write,revert All:"
-    acl_rights_before  = u"SebastianNordhoff:read,write,delete,revert,admin"
-    refresh = (0, 'external')
-    theme_default = 'galoes2'
-    #theme_default = 'modern'
-    # Language options --------------------------------------------------
-
-    # See http://moinmo.in/ConfigMarket for configuration in
-    # YOUR language that other people contributed.
-
-    # The main wiki language, set the direction of the wiki pages
-    language_default = 'en'
-
-                     mimetypes_xss_protect = ['text/html', 'application/xhtml+xml',]
+    mimetypes_xss_protect = ['text/html', 'application/xhtml+xml',]
 
     mimetypes_embed = ['video/mp4','application/x-shockwave-flash','audio/ogg','video/ogg','video/x-flv','application/x-dvi', 'application/postscript', 'application/pdf', 'application/ogg', 'application/vnd.visio', 'image/x-ms-bmp', 'image/svg+xml', 'image/tiff', 'image/x-photoshop', 'audio/mpeg', 'audio/midi', 'audio/x-wav', 'video/fli', 'video/mpeg', 'video/quicktime', 'video/x-msvideo', 'chemical/x-pdb', 'x-world/x-vrml',]
 
