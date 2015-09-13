@@ -50,7 +50,7 @@
 <div class="container">
     <div class="col-xs-12 col-sm-9">
         <div >
-            <img src="#{url_for_solr}/admin/file?file=/img/beads.png" id="logo" alt="Logo"/>
+            <img src="#{url_for_solr}/admin/file?file=/velocity/img/beads.png" id="logo" alt="Logo"/>
         </a>
         <div id="headerinfo">
             <h1> AAGD </h1>

@@ -51,9 +51,9 @@
 ## TODO: convert to use {!raw f=$field}$value (with escaping of course)
 #macro(url_for_facet_filter $field $value)#url_for_home#lens&fq=$esc.url($field):$value#end
 
-#macro(url_for_facet_date_filter $field $value)#url_for_home#lens&fq=$esc.url($field:$value)#end
+#macro(url_for_facet_date_filter $field $value)#url_for_home#lens&fq=$esc.url($field):$esc.url($value)#end
 
-#macro(url_for_facet_range_filter $field $value)#url_for_home#lens&fq=$esc.url($field:$value)#end
+#macro(url_for_facet_range_filter $field $value)#url_for_home#lens&fq=$esc.url($field):$esc.url($value)#end
 
 
 #macro(link_to_previous_page $text)
