@@ -1,0 +1,457 @@
+/*##
+####  screen.css - SimpleMente
+####
+####  Partly based on rightsidebar css
+####  Rightsidebar theme copyright (c) 2001, 2002, 2003 by Juergen Hermann
+####
+####  SimpleMente theme Copyright (c) 2007 by Eduardo Mercovich und Oliver Siemoneit
+####  license: GNU GPL, see COPYING for details.
+*/
+
+
+body {
+ font-family: garamond, georgia, 'bitstream serif', 'Nimbus Roman No9 L', 'times new roman', times, serif;
+ font-size: 11pt;
+ line-height: 125%;
+ padding: 1em;
+ color: #222;
+ background-color: white; 
+ }
+ 
+/* Making a liquid layout where in the source code the content comes first, then the sidebar
+   and the footer is no easy task, see http://alistapart.com/articles/negativemargins.
+   To get it work we need some extra containers.
+*/
+#container_content {
+ width: 100%;
+ float: right;
+ margin-left: -16em;
+}
+
+#container_footer {
+ /*width: 100%;
+ float: right;
+ margin-left: -16em;
+ clear: right;*/
+ clear both;
+}
+
+/* content styles */
+
+.footnotes div {
+}
+
+a {
+ text-decoration: none;
+}
+
+a:link {
+
+}
+
+/* IE needs this combination to get the highlighting of the tab based navigation work correctly */
+a:focus,
+a:hover,
+a:active {
+ color: #BF2A26 !important;
+ /*background-color: #FFF5F5;*/ /* #F5F5F5;*/
+}
+
+a.nonexistent, a.badinterwiki {
+ color: gray;
+ text-decoration: underline;
+ /*border-bottom: dotted 1px;*/
+}
+
+input {
+}
+
+textarea {
+}
+
+span.sep {
+}
+
+
+/* Skip-link navigation stuff */
+
+.help {
+ height: 1.3em;
+ text-align: left; /*right;*/
+}
+
+.screenreader_info, .help a {
+ position: absolute;
+ top: -10000px;
+ left: -10000px;
+}
+
+.help ul li {
+ display: inline;
+ margin: 0 0.25em 0 1em;
+ font-size: 0.83em;
+ font-weight: bold;
+}
+
+.help ul li a:focus,
+.help ul li a:hover,
+.help ul li a:active {
+ position: fixed;
+ left: 0em;
+ top: 0.01em;
+ width: 170em; /*18.5em;*/ /*70.9em;*/
+ height: 1.5em;
+ padding: 0 1em;
+ background-color: #FFF5F5; /*#F5F5F5;*/
+ color: #BF2A26;
+}
+
+
+
+/* user interface styles */
+
+/* -------------- Sidebar ---------------------------------------- */
+#sidebar {
+ width: 16em; /* We set it in em values so that the sidebar is resized when the user resizes the text. The textlogo won't be broken then. The Wikinames which don't wrap also don't cause trouble then*/
+ float: left;
+ font-family: 'bitstream vera sans', helvetica, verdana, arial, sans-serif;
+ text-align: right;
+ background-image: url('../img/diosagaia.jpg');
+ background-position: 100% 80%; 
+ background-repeat: no-repeat; 
+ padding-bottom: 660px; /* adjust this to the bkg-image size */
+ border-right: 1px solid #ccc; 
+}
+
+#sidebar ul {
+ list-style-type: none; 
+}
+
+#sidebar, sidebar a {
+ color: #888;
+ font-size: 10pt; 
+ line-height: 1.3em;
+}
+
+/* --------- Logo ----------------------------------- */
+
+/* The text logo is now a list element of navibar. Please disable css to see the structure of the page
+   how it appears to people using screenreaders... That's why we use a textlogo...
+*/
+
+span#simple {
+ display: block; 
+ text-align: right; 
+ font-family: 'times new roman', times, serif;
+ margin: 0px;
+ padding: 0px;
+ font-size: 3.5em; 
+ /*padding-top: 0.2em;*/ /* needed since IE7 cuts of the top of the logotext */
+ color: #222; 
+}
+
+span#mente {
+ display: block; 
+ text-align: right; 
+ font-family: 'times new roman', times, serif;
+ margin: 0px;
+ padding: 0px;
+ font-size: 5em; 
+ position: relative; 
+ top: 0.18em; 
+ color: #888; 
+ opacity: 0.65;
+}
+
+span#wiki {
+ display: block;
+ text-align: right; 
+ font-family: 'times new roman', times, serif;
+ margin: 0px;
+ padding: 0px;
+ font-size: 2em; 
+ position: relative; 
+ top: 0.75em; 
+ color: #444; 
+ margin-bottom: 2em; /*1.1em;*/
+ opacity: 0.55;
+ /*letter-spacing: 0.25em;*/ /*This unfortunately causes a rendering bug on Opera: only text "wi" is visible, the rest lost. Therefore turned off*/
+ font-style: italic; 
+}
+
+/* ----------- Page ----------------------------------- */
+
+#page {
+ margin-bottom: 1em; /* Needed to push away the floating footer */
+ margin-left: 16em;
+ padding-left: 1em; /* This makes the "margin" from sidebar to the page content */
+ min-width: 60%; /*30em;*/ /* Fluid layout is restricted since the sidebar has a fixed width and will render the page unusable with big zoom-factors */ 
+}
+
+#pagebottom {
+  border-bottom: solid 2px #aaa;
+}
+
+#header {
+}
+
+#pagelocation {
+ font-size: 3em; 
+ font-weight: normal;
+ margin-bottom: 0.5em; 
+ line-height: 130%;
+}
+
+
+#pagelocation, #content, #pagebottom, #pageinfo, .editbar, .simplemente_editbar, .simplemente_editbar_ext, #message, #footer {
+ padding: 0 0; 
+ margin: 0 0;
+}
+
+ul.editbar {
+ border-top: solid 1px #eee; 
+ padding: 0.5em 0px; 
+}
+
+ul.editbar li {
+ display: inline; 
+ padding-right: 0.8em; 
+ list-style-type: none;
+ font-style: italic; 
+}
+
+ul.simplemente_editbar {
+ border-top: solid 1px #eee; 
+ /*padding: 0.5em 0px; */
+ padding: 0.5em 0 0.2em 0;
+}
+
+ul.simplemente_editbar li {
+ display: inline; 
+ padding-right: 0.8em; 
+ list-style-type: none;
+ font-style: italic; 
+}
+
+ul.simplemente_editbar_ext {
+ /*border-top: solid 1px #eee; */
+ /*padding: 0.5em 0px; */
+ padding: 0 0 0.2em 0;
+}
+
+ul.simplemente_editbar_ext li {
+ display: inline; 
+ padding-right: 0.8em; 
+ list-style-type: none;
+ font-style: italic; 
+}
+
+ul.simplemente_editbar_ext a {
+ color: gray;
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+ font-family: garamond, georgia, 'bitstream serif', 'Nimbus Roman No9 L', 'times new roman', times, serif;
+}
+
+/* ------- search -----------------------------------------*/
+
+#sidebar input#searchinput {
+ display: block;
+ padding: 0px; 
+}
+
+#searchform {
+}
+
+*[dir="rtl"] #searchform {
+    float: left;
+}
+
+#searchform form div {
+}
+
+/* -------- Where does this belong to ------------ */
+
+#title h1 {
+}
+
+#title h1 a {
+}
+
+.sidepanel {
+ padding: 1em 0px; 
+}
+
+.sidepanel h1, .sidepanel h2, .sidepanel h3, .sidepanel h4, .sidepanel h5, .sidepanel h6 {
+ color: gray; 
+}
+
+.sidepanel h1 {
+ margin: 1.5em 0 0 0;
+ padding: 0 0 0.3em 0;
+ font-size: 1.6em;}
+ line-height: 1.2em;
+}	
+
+.sidepanel h2 {
+}
+
+.sidepanel ul {
+}
+
+.sidepanel li {
+}
+
+.sidepanel li form {
+}
+
+.sidepanel a {
+}
+
+.sidepanel a:hover {
+}
+
+#navibar li.current {
+}
+
+.editbar form, .editbar form div {
+}
+
+/* ------- footer -----------------------------------------*/
+
+#footer {
+ margin-left: 16em;
+ padding-left: 7em; /* Adjust this to fit #page padding */
+ margin-top: 0em; 
+ padding-top: 0em;  
+ /*border-top: solid 2px #aaa;*/ /* This causes a rendering bug. Moved to #pagebottom */
+ font-size: 0.75em; 
+ color: #555; 
+
+}
+
+#credits, #version, #timings{
+}
+
+#creditos{
+}
+
+#footer li {
+ display: inline;
+}
+
+#accesskeys ul {
+ list-style-type: none;
+ display: inline;
+ padding: 0 0;
+ margin: 0 0; 
+}
+
+#accesskeys li {
+ display: inline;
+ padding: 0 0.5em;
+}
+     
+#credits li, #version li, #timings li{
+	display: inline;
+	padding: 0 2px;
+	margin: 0 4px;
+}
+
+#credits img {
+	vertical-align: middle;
+}
+
+/* - footer end - */
+
+
+/* -------- Where does this belong to ------------ */
+
+#message {
+}
+
+#message p{
+}
+
+#message div.buttons {
+}
+
+form.dialog {
+}
+
+.dialog td {
+}
+
+.dialog td.label {
+}
+
+*[dir="rtl"] .dialog td.label {
+    text-align: left;
+}
+
+.dialog td.content input {
+}
+
+#editor textarea, #editor-comment {
+ float: right; /* sucking IE needs this... don't know why.. */
+ display: block; 
+ width: 100%; 
+}
+
+#pagebottom {
+}
+
+#preview {
+	background: url('../img/draft.png');
+}
+
+.diff {
+}
+
+.diff-title {
+}
+
+.diff-added {
+	background-color: #E0FFE0;
+	vertical-align: sub;
+}
+
+.diff-removed {
+	background-color: #FFFFE0;
+	vertical-align: sub;
+}
+
+.diff-added span {
+	background-color: #80FF80;
+}
+
+.diff-removed span {
+	background-color: #FFFF80;
+}
+
+.searchresult dd span {
+}
+
+
+#message {
+ background: #ddd; 
+ padding: 1em; 
+ border: solid 2px #555;
+}
+
+#searchinput {
+ float: right;
+ clear: both;
+}
+
+#titlesearch {
+ float: right;
+ clear: both;
+}
+
+#fullsearch {
+ float: right;
+}
