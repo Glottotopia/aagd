@@ -9,7 +9,7 @@ function modtrans(id,value){
 //     alert(id)
 //     alert(field)
 //     alert(value)
-    host = "http://www.glottotopia.org/aagd/mod";  
+    host = "/mod";  
     url = host+'/set/'+id+'/'+field+'/'+value ;
     $.ajax({
     dataType: "json",
