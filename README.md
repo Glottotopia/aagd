@@ -65,7 +65,7 @@ Partial Update
 
 Instead of downloading the archive you can update the configuration using git. Be aware, that local changes will be overwritten
 
-	cd [installation directory]
+	cd /home/solr/aagdSolrPackage/server/solr/aagd
 	git clone https://github.com/Glottotopia/aagd.git
 	
 	
