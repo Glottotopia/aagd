@@ -289,18 +289,18 @@ def set_(request):
 if __name__ == '__main__':
     config = Configurator()
     
-    config.add_route('add', '/add/{ID}/{field}/{value}')
+    config.add_route('add', '/mod/add/{ID}/{field}/{value}')
     #config.add_route('add', '/add')
     config.add_view(add, route_name='add')
     
-    config.add_route('set_', '/set/{ID}/{field}/{value}')
+    config.add_route('set_', '/mod/set/{ID}/{field}/{value}')
     #config.add_route('add', '/add')
     config.add_view(set_, route_name='set_')
     
-    config.add_route('delete', '/delete/{ID}/{field}/{value}')
+    config.add_route('delete', '/mod/delete/{ID}/{field}/{value}')
     config.add_view(delete, route_name='delete')
     
-    config.add_route('put', '/put')
+    config.add_route('put', '/mod/put')
     config.add_view(put, route_name='put')
     
     
