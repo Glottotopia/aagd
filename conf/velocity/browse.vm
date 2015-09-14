@@ -22,25 +22,25 @@
                 <a href="#">Browse</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/About">About</a>
+                <a href="/aagd/About">About</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Contact">Contact</a>
+                <a href="/aagd/Contact">Contact</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Languages">Languages</a>
+                <a href="/aagd/Languages">Languages</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Glossary">Glossary</a>
+                <a href="/aagd/Glossary">Glossary</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Assumptions">Assumptions</a>
+                <a href="/aagd/Assumptions">Assumptions</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Help">Help</a>
+                <a href="/aagd/Help">Help</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Search">Search</a>
+                <a href="/aagd/Search">Search</a>
             </li>
 ##             <li><a href="https://github.com/Glottotopia/athagram/wiki/Manual" target="_blank">Commentary</a></li>
         </ul>
