@@ -289,6 +289,7 @@ def set_(request):
 if __name__ == '__main__':
     config = Configurator()
     
+<<<<<<< HEAD
     config.add_route('add', '/add/{ID}/{field}/{value}')
     #config.add_route('add', '/add')
     config.add_view(add, route_name='add')
@@ -301,6 +302,20 @@ if __name__ == '__main__':
     config.add_view(delete, route_name='delete')
     
     config.add_route('put', '/put')
+=======
+    config.add_route('add', '/mod/add/{ID}/{field}/{value}')
+    #config.add_route('add', '/add')
+    config.add_view(add, route_name='add')
+    
+    config.add_route('set_', '/mod/set/{ID}/{field}/{value}')
+    #config.add_route('add', '/add')
+    config.add_view(set_, route_name='set_')
+    
+    config.add_route('delete', '/mod/delete/{ID}/{field}/{value}')
+    config.add_view(delete, route_name='delete')
+    
+    config.add_route('put', '/mod/put')
+>>>>>>> de9605d1ac6ba5f1b77dacf4dfb2864650e0a5f9
     config.add_view(put, route_name='put')
     
     
@@ -309,4 +324,8 @@ if __name__ == '__main__':
     server.serve_forever()
 
     
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> de9605d1ac6ba5f1b77dacf4dfb2864650e0a5f9

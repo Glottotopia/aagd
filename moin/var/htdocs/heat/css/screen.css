@@ -1,0 +1,252 @@
+html {
+    color: #222;
+    font: 92% sans-serif;
+    height: 100%;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0 auto;
+    padding: 0 0 2.5em 0;
+//  width: 60em;
+    position: relative;
+    min-height: 100%;
+    background: #fff;
+/*    box-shadow: #333 0 0 1em;
+    -moz-box-shadow: #333 0 0 1em;
+    -webkit-box-shadow: #333 0 0 1em; 
+    border-radius: 0 0 1em 1em;
+    -moz-border-radius: 0 0 1em 1em; */
+}
+a img { border: none }
+a { color: #2a7ab2; text-decoration: none; }
+
+#header {
+    background: #c90b42 url(../img/header-back.png) repeat-y 0 0;
+    color: #eee;
+//    border-radius: 0 0 1em 1em;
+//    -moz-border-radius: 0 0 1em 1em;
+    padding: 0.25em 0.5em 2em 0.5em;
+    position: relative;
+/*    box-shadow: inset #333 0 0 0.4em;
+    -moz-box-shadow: inset #333 0 0 0.4em;
+    -webkit-box-shadow: inset #333 0 0 0.4em; */
+}
+#header a {
+    color: #fff;
+    text-decoration: none;
+}
+#header a:hover {
+    text-shadow: #ffb7d7 0 0 0.75em;
+}
+#searchform {
+    padding: 0;
+    margin: 2em 0 0 0;
+    float: right;
+}
+#searchform input {
+    font-size: 90%;
+    border: 1px solid #6d2d45;
+    vertical-align: middle;
+    color: #6e133c;
+}
+#searchform input:hover {
+    box-shadow: #ffb7d7 0 0 0.75em;
+    -moz-box-shadow: #ffb7d7 0 0 0.75em;
+    -webkit-box-shadow: #ffb7d7 0 0 0.75em;
+}
+#searchinput {
+    background: #ebacc8;
+}
+#titlesearch, #fullsearch {
+    background: #ba5a85;
+}
+#username {
+    position: absolute;
+    top: 0.25em;
+    right: 1em;
+}
+#username a {
+    font-size: 90%;
+}
+#logo {
+    margin: 0.25em 0 0 1.5em;
+}
+#header h1 {
+    margin: 0 0 0.25em 1em;
+    letter-spacing: 0;
+    font: 100% sans-serif;
+    position: absolute;
+    bottom: -2em;
+    left: 0;
+    border: none;
+}
+#header h1 a {
+    color: #333;
+}
+#header h1 a:hover {
+    text-decoration: underline;
+    text-shadow: none;
+}
+
+#navibar {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0.5em;
+}
+#navibar li {
+    margin: 0 1em;
+    padding: 0;
+    list-style: none;
+    float: left;
+}
+#navibar a {
+    display: block;
+    padding: 0.25em 0.5em 0 0.5em;
+    font-weight: bold;
+    border-radius: 0.5em 0.5em 0 0;
+    -moz-border-radius: 0.5em 0.5em 0 0;
+}
+#navibar li.current a {
+    background: #fff;
+    color: #333;
+    box-shadow: #30436e 0 -0.2em 0.3em;
+    -moz-box-shadow: #30436e 0 -0.2em 0.3em;
+    -webkit-box-shadow: #30436e 0 -0.2em 0.3em;
+}
+#navibar li.current a:hover {
+    text-shadow: none;
+    color: #000;
+}
+
+ul.editbar {
+    clear: both;
+    float: right;
+    margin: 2.5em 0 0.25em 0;
+    padding: 0;
+}
+#footer ul.editbar {
+    margin: 0.35em 1em 0 0;
+}
+ul.editbar li {
+    display: block;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 75%;
+}
+#header ul.editbar a,
+ul.editbar a,
+ul.editbar span {
+    display: block;
+    padding: 0.25em 0.5em;
+    color: #2a7ab2;
+}
+ul.editbar span {
+    color: #999;
+}
+ul.editbar form {
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+ul.editbar select {
+    margin: 0;
+    font-size: 100%;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+#content {
+    padding: 2.25em 1.5em;
+    line-height: 1.4em;
+}
+
+
+
+
+#message {
+    margin: 0.5em;
+    background: #fff;
+    border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    padding: 0.5em;
+    box-shadow: #333 0 0.05em 0.4em;
+    -moz-box-shadow: #333 0 0.05em 0.4em;
+    -webkit-box-shadow: #333 0 0.05em 0.4em;
+    font-size: 90%;
+    color: #000;
+}
+#message a {
+    color: #2a7ab2;
+    text-shadow: none;
+}
+
+
+#message table {
+    max-width: 100%;
+    border: none;
+}
+#message table td {
+    border: none;
+}
+#message p {
+    margin: 0;
+}
+
+#message input {
+    width: 100%;
+}
+#message .buttons input {
+    width: auto;
+}
+#editor {
+    padding: 0.5em 0 0 0;
+    margin: 0.5em;
+} 
+#editor textarea {
+    display: block;
+    font-size: 100%;
+    width: 100%;
+}
+#editor-comment {
+    display: block;
+    width: 100%;
+}
+div#textcha {
+    padding: 0.25em 1em;
+    background: #fff29f;
+    border: 1px solid #eee18e;
+    margin: 0.25em 0;
+    color: #630;
+}
+
+#pageinfo {
+    margin: 2em 2em 0.25em 0;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    background: #eee;
+    border: 1px solid #aaa;
+    border-radius: 0 0 1em 1em;
+    -moz-border-radius: 0 0 1em 1em; 
+    height: 2em;
+    width: 100%;
+}
+#credits {
+    margin: 0.25em 0 0 1em;
+    padding: 0;
+}
+#credits li {
+    display: inline;
+    padding: 0;
+    margin: 0 0.5em;
+    list-style: none;
+    font-size: 75%;
+}
