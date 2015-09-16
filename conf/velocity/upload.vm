@@ -3,7 +3,7 @@
  <span class="togglebutton"  onClick="toggleBox('uploadbox')">&#x25BE;&#x25B4;</span>
 </h2>
 <div class="navigatorbox" id="uploadbox">
-<form id="uploadform" action="http://www.glottotopia.org/aagd/mod/put" method="post" enctype="multipart/form-data" >   
+<form id="uploadform" action="/aagd/mod/put" method="post" enctype="multipart/form-data" >   
 <input type="file" accept="text/*" name="elanfile" id="elanupload"></input>
 <button   id="uploadsubmit">Upload</button> 
 <div id="uploadmsg"></div>
@@ -18,7 +18,7 @@ $('#uploadsubmit').on('click', function(event) {
     var form_data = new FormData();                  
     form_data.append('elanfile', file_data);                           
     $.ajax({
-                url: 'http://www.glottotopia.org/aagd/mod/put',
+                url: '/aagd/mod/put',
                 dataType: 'json',  
                 cache: false,
                 contentType: false,
@@ -30,7 +30,7 @@ $('#uploadsubmit').on('click', function(event) {
                     $('#uploadmsg').text(response.msg)
 		    for (i=0;i<response.ids.length;i++){
 			ID = response.ids[i];
-			$('#uploadedids').append('<li><a target="_blank" href="http://www.glottotopia.org/solr/aagd/browse?q=id%3A'+ID+'">'+ID+'</a></li>')
+			$('#uploadedids').append('<li><a target="_blank" href="/solr/aagd/browse?q=id%3A'+ID+'">'+ID+'</a></li>')
 		    }                    
                 }
      });

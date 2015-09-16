@@ -22,25 +22,25 @@
                 <a href="#">Browse</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/About">About</a>
+                <a href="/wiki/About">About</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Contact">Contact</a>
+                <a href="/wiki/Contact">Contact</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Languages">Languages</a>
+                <a href="/wiki/Languages">Languages</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Glossary">Glossary</a>
+                <a href="/wiki/Glossary">Glossary</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Assumptions">Assumptions</a>
+                <a href="/wiki/Assumptions">Assumptions</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Help">Help</a>
+                <a href="/wiki/Help">Help</a>
             </li>
             <li>
-                <a href="http://www.glottotopia.org/aagd/Search">Search</a>
+                <a href="/aagd/Search">Search</a>
             </li>
 ##             <li><a href="https://github.com/Glottotopia/athagram/wiki/Manual" target="_blank">Commentary</a></li>
         </ul>
@@ -50,7 +50,7 @@
 <div class="container">
     <div class="col-xs-12 col-sm-9">
         <div >
-            <img src="#{url_for_solr}/admin/file?file=/img/beads.png" id="logo" alt="Logo"/>
+            <img src="#{url_for_solr}/admin/file?file=/velocity/img/beads.png" id="logo" alt="Logo"/>
         </a>
         <div id="headerinfo">
             <h1> AAGD </h1>
@@ -93,11 +93,6 @@
     var text = ($( this ).text()).trim(); 
     var ID_ = ($( this ).attr("id"))
     ID2 =  ID_.substring(4)
-    $( this ).replaceWith('<div id="'+ID_+'">
-    <input type="text" id="modtextfield" size="60" value="' + text + '"></input>
-    <button type="submit" onclick="modtrans(ID2,modtextfield.value)">Change</button>
-    <button id="cancelbutton">Cancel</button>
-    </div>
-    ');
+    $( this ).replaceWith('<div id="'+ID_+'">    <input type="text" id="modtextfield" size="60" value="' + text + '"></input>    <button type="submit" onclick="modtrans(ID2,modtextfield.value)">Change</button>    <button id="cancelbutton">Cancel</button>    </div>    ');
     });
 </script>
