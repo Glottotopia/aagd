@@ -15,15 +15,15 @@
 <schema name="example" version="1.5">
 	<fields>
 
-		<field name="id" type="string" indexed="true" stored="true"
+		<field name="id" type="caseInsensitiveString" indexed="true" stored="true"
 			required="true" multiValued="false" />
-		<field name="uuid" type="string" indexed="true" stored="true"
+		<field name="uuid" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="false" />  <!-- deprecated. normal id remains primary key -->
-		<field name="athaid" type="string" indexed="true" stored="true"
+		<field name="athaid" type="caseInsensitiveString" indexed="true" stored="true"
 			required="true" multiValued="false" />
 
 		<!-- points to the root document of a block of nested documents -->
-		<field name="_root_" type="string" indexed="true" stored="false" />
+		<field name="_root_" type="caseInsensitiveString" indexed="true" stored="false" />
 
 
 		<field name="name" type="text_general" indexed="true" stored="true" />
@@ -40,37 +40,37 @@
 		<field name="version" type="int" indexed="true" stored="true" />
 
 
-		<field name="iso639-3" type="string" indexed="true" stored="true" />
-		<field name="language" type="string" indexed="true" stored="true" />
-		<field name="vernacularword" type="string" indexed="true"
+		<field name="iso639-3" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="language" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="vernacularword" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" termVectors="true" />
-		<field name="translatedword" type="string" indexed="true"
+		<field name="translatedword" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" termVectors="true" />
-		<field name="gloss" type="string" indexed="true" stored="true"
+		<field name="gloss" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" termVectors="true" />
-		<field name="pos" type="string" indexed="true" stored="true"
+		<field name="pos" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" termVectors="true" />
-		<field name="lexicalgloss" type="string" indexed="true" stored="true"
+		<field name="lexicalgloss" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" termVectors="true" />
-		<field name="grammaticalgloss" type="string" indexed="true"
+		<field name="grammaticalgloss" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" termVectors="true" />
 		<!-- from metadata spreadsheet -->
-		<field name="aagdID" type="string" indexed="true" stored="true" />
-		<field name="lg" type="string" indexed="true" stored="true" /> <!--must be unified with lg -->
-		<field name="dialect" type="string" indexed="true" stored="true" />
-		<field name="speaker" type="string" indexed="true" stored="true" />
-		<field name="source" type="string" indexed="true" stored="true" />
-		<field name="recordingname" type="string" indexed="true" stored="true" />
+		<field name="aagdID" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="lg" type="caseInsensitiveString" indexed="true" stored="true" /> <!--must be unified with lg -->
+		<field name="dialect" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="speaker" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="source" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="recordingname" type="caseInsensitiveString" indexed="true" stored="true" />
 		<field name="recordingdate" type="tdate" indexed="true" stored="true" />
-		<field name="recordinglinguist" type="string" indexed="true"
+		<field name="recordinglinguist" type="caseInsensitiveString" indexed="true"
 			stored="true" />
-		<field name="anlalink" type="string" indexed="true" stored="true" />
-		<field name="editedbyspeaker" type="string" indexed="true"
+		<field name="anlalink" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="editedbyspeaker" type="caseInsensitiveString" indexed="true"
 			stored="true" />
-		<field name="editedbylinguist" type="string" indexed="true"
+		<field name="editedbylinguist" type="caseInsensitiveString" indexed="true"
 			stored="true" />
-		<field name="texttype" type="string" indexed="true" stored="true" />
-		<field name="rejectedbyspeaker" type="string" indexed="true"
+		<field name="texttype" type="caseInsensitiveString" indexed="true" stored="true" />
+		<field name="rejectedbyspeaker" type="caseInsensitiveString" indexed="true"
 			stored="true" />
 
 
@@ -78,48 +78,48 @@
 
 		<!-- start ontology import here -->
 
-		<field name="sentence_type" type="string" indexed="true" stored="true"
+		<field name="sentence_type" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="predicate_type" type="string" indexed="true"
+		<field name="predicate_type" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="phrase_type" type="string" indexed="true" stored="true"
+		<field name="phrase_type" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="incorporation" type="string" indexed="true" stored="true"
+		<field name="incorporation" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="polarity" type="string" indexed="true" stored="true"
+		<field name="polarity" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="coordination" type="string" indexed="true" stored="true"
+		<field name="coordination" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="adverbial_clauses" type="string" indexed="true"
+		<field name="adverbial_clauses" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="situation_types" type="string" indexed="true"
+		<field name="situation_types" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="aspect" type="string" indexed="true" stored="true"
+		<field name="aspect" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="time" type="string" indexed="true" stored="true"
+		<field name="time" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="event_modality" type="string" indexed="true"
+		<field name="event_modality" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="proposition_modality" type="string" indexed="true"
+		<field name="proposition_modality" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="participant_roles" type="string" indexed="true"
+		<field name="participant_roles" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="quantification_of_individuals" type="string"
+		<field name="quantification_of_individuals" type="caseInsensitiveString"
 			indexed="true" stored="true" multiValued="true" />
-		<field name="quantification_of_other" type="string" indexed="true"
+		<field name="quantification_of_other" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="comparison" type="string" indexed="true" stored="true"
+		<field name="comparison" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="possession" type="string" indexed="true" stored="true"
+		<field name="possession" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="information_structure" type="string" indexed="true"
+		<field name="information_structure" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
-		<field name="speech_acts" type="string" indexed="true" stored="true"
+		<field name="speech_acts" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
-		<field name="politeness" type="string" indexed="true" stored="true"
+		<field name="politeness" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
 		<!-- finish ontology import here -->
-		<field name="lingex" type="string" stored="true" />
+		<field name="lingex" type="caseInsensitiveString" stored="true" />
 
 
 		<field name="location" type="location" indexed="true" stored="true" />
@@ -142,10 +142,10 @@
 		<field name="resourcename" type="text_general" indexed="true"
 			stored="true" />
 		<field name="url" type="text_general" indexed="true" stored="true" />
-		<field name="content_type" type="string" indexed="true" stored="true"
+		<field name="content_type" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
 		<field name="last_modified" type="date" indexed="true" stored="true" />
-		<field name="links" type="string" indexed="true" stored="true"
+		<field name="links" type="caseInsensitiveString" indexed="true" stored="true"
 			multiValued="true" />
 
 		<!-- Main body of document extracted by SolrCell. NOTE: This field is not 
@@ -168,8 +168,8 @@
 
 		<!-- non-tokenized version of manufacturer to make it easier to sort or 
 			group results by manufacturer. copied from "manu" via copyField -->
-		<!-- <field name="manu_exact" type="string" indexed="true" stored="false"/> 
-			<field name="manu_exactus" type="string" indexed="true" stored="false"/> -->
+		<!-- <field name="manu_exact" type="caseInsensitiveString" indexed="true" stored="false"/> 
+			<field name="manu_exactus" type="caseInsensitiveString" indexed="true" stored="false"/> -->
 
 		<field name="payloads" type="payloads" indexed="true" stored="true" />
 
@@ -179,9 +179,9 @@
 			stored="true" />
 		<dynamicField name="*_is" type="int" indexed="true"
 			stored="true" multiValued="true" />
-		<dynamicField name="*_s" type="string" indexed="true"
+		<dynamicField name="*_s" type="caseInsensitiveString" indexed="true"
 			stored="true" />
-		<dynamicField name="*_ss" type="string" indexed="true"
+		<dynamicField name="*_ss" type="caseInsensitiveString" indexed="true"
 			stored="true" multiValued="true" />
 		<dynamicField name="*_l" type="long" indexed="true"
 			stored="true" />
@@ -321,7 +321,12 @@
 		<fieldType name="random" class="solr.RandomSortField"
 			indexed="true" />
 
-
+		<fieldType name="caseInsensitiveString" class="solr.TextField" indexed="true" stored="true" omitNorms="true" sortMissingLast="true" positionIncrementGap="100"> 
+			<analyzer> 
+			<tokenizer class="solr.KeywordTokenizerFactory"/> 
+			<filter class="solr.LowerCaseFilterFactory"/> 
+			</analyzer> 
+		</fieldType> 
 
 		<!-- A text field that only splits on whitespace for exact matching of 
 			words -->

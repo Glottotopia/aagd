@@ -1,8 +1,5 @@
-#**
-*  Render the top section of the page visible to users
-*#
-<div id="head">
+<!--<div id="head">
     <span >
         <a href="#url_for_home#if($request.params.get('debugQuery'))?debugQuery=true#end" >#</a>
     </span>
-</div>
+</div>-->
